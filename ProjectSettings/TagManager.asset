@@ -42,3 +42,15 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Background
+    uniqueID: 2778815769
+    locked: 0
+  - name: Unit
+    uniqueID: 2048200221
+    locked: 0
+  - name: Health
+    uniqueID: 2087533261
+    locked: 0
+  - name: UI
+    uniqueID: 2102577645
+    locked: 0
