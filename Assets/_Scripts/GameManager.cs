@@ -24,4 +24,9 @@ public class GameManager : MonoBehaviour
         startMenuCanvas.SetActive(true);
         guiCanvas.SetActive(false);
     }
+
+    public void DisplayDefeatMenu()
+    {
+        defeatCanvas.SetActive(true);
+    }
 }
