@@ -5,6 +5,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject startMenuCanvas;
     [SerializeField] private GameObject guiCanvas;
     [SerializeField] private GameObject defeatCanvas;
+    [SerializeField] private PlayerHealth playerHealth;
 
     void Start()
     {
@@ -16,6 +17,7 @@ public class GameManager : MonoBehaviour
     {
         startMenuCanvas.SetActive(false);
         guiCanvas.SetActive(true);
+        playerHealth.ReadyPlayer();
     }
 
     public void ReturnToStartMenu()
@@ -23,10 +25,5 @@ public class GameManager : MonoBehaviour
         defeatCanvas.SetActive(false);
         startMenuCanvas.SetActive(true);
         guiCanvas.SetActive(false);
-    }
-
-    public void DisplayDefeatMenu()
-    {
-        defeatCanvas.SetActive(true);
     }
 }

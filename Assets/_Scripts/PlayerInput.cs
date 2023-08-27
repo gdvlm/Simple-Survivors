@@ -6,12 +6,14 @@ public class PlayerInput : MonoBehaviour
     [SerializeField] private float movementSpeed;
 
     private Rigidbody2D _rigidbody2D;
+    private PlayerHealth _playerHealth;
     private PlayerInputActionWrapper _playerInputActionWrapper;
     private Vector2 _velocity;
 
     void Awake()
     {
         _rigidbody2D = GetComponent<Rigidbody2D>();
+        _playerHealth = GetComponent<PlayerHealth>();
         _playerInputActionWrapper = new PlayerInputActionWrapper();
     }
 
@@ -22,7 +24,10 @@ public class PlayerInput : MonoBehaviour
 
     void FixedUpdate()
     {
-        _rigidbody2D.MovePosition(_rigidbody2D.position + _velocity * (movementSpeed * Time.fixedDeltaTime));
+        if (_playerHealth.IsAlive())
+        {
+            _rigidbody2D.MovePosition(_rigidbody2D.position + _velocity * (movementSpeed * Time.fixedDeltaTime));
+        }
     }
 
     void OnEnable()

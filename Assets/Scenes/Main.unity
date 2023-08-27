@@ -785,6 +785,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerHpSprite: {fileID: 1939600323}
+  playerSprite: {fileID: 1270463146}
+  defeatCanvas: {fileID: 2243971}
 --- !u!1 &340735291
 GameObject:
   m_ObjectHideFlags: 0
@@ -2272,7 +2274,7 @@ GameObject:
   - component: {fileID: 1186984705}
   m_Layer: 0
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3283,6 +3285,7 @@ MonoBehaviour:
   startMenuCanvas: {fileID: 763713208}
   guiCanvas: {fileID: 277463158}
   defeatCanvas: {fileID: 2243971}
+  playerHealth: {fileID: 320292018}
 --- !u!4 &1909455526
 Transform:
   m_ObjectHideFlags: 0
@@ -3610,7 +3613,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1909455525}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: StartGame
+        m_MethodName: ReturnToStartMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
