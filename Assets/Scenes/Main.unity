@@ -868,7 +868,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 626df3021e5470342b781384255116a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerHpSprite: {fileID: 1939600323}
+  playerHpSprite: {fileID: 1063135292}
   playerSprite: {fileID: 1270463146}
   defeatCanvas: {fileID: 2243971}
 --- !u!1 &340735291

@@ -31,8 +31,8 @@ public class PlayerHealth : MonoBehaviour
     {
         _playerCurrentHp = Math.Clamp(_playerCurrentHp, 0, _playerCurrentHp - damage);
         
-        // TODO: Update player hp sprite to reflect current HP
-        print(_playerCurrentHp);
+        float hpPercent = (float)_playerCurrentHp / _playerMaxHp;
+        playerHpSprite.transform.localScale = new Vector3(hpPercent, 1, 1);
 
         if (_playerCurrentHp == 0)
         {
@@ -54,6 +54,7 @@ public class PlayerHealth : MonoBehaviour
         _playerCurrentHp = _playerMaxHp;
         playerSprite.SetActive(true);
         transform.position = _startingPosition;
+        playerHpSprite.transform.localScale = Vector3.one;
     }
 
     public bool IsAlive()
