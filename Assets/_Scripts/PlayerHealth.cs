@@ -15,7 +15,6 @@ public class PlayerHealth : MonoBehaviour
     void Start()
     {
         _startingPosition = transform.position;
-        ReadyPlayer();
     }
 
     void OnCollisionEnter2D(Collision2D other)

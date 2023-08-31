@@ -6,6 +6,14 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject guiCanvas;
     [SerializeField] private GameObject defeatCanvas;
     [SerializeField] private PlayerHealth playerHealth;
+    [SerializeField] private GameObject enemyContainer;
+
+    private EnemyMovement[] _enemyMovements;
+
+    void Awake()
+    {
+        _enemyMovements = enemyContainer.GetComponentsInChildren<EnemyMovement>();
+    }
 
     void Start()
     {
@@ -18,6 +26,11 @@ public class GameManager : MonoBehaviour
         startMenuCanvas.SetActive(false);
         guiCanvas.SetActive(true);
         playerHealth.ReadyPlayer();
+        
+        foreach (EnemyMovement enemyMovement in _enemyMovements)
+        {
+            enemyMovement.ResetRandomPosition();
+        }
     }
 
     public void ReturnToStartMenu()

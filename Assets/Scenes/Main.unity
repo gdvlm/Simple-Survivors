@@ -3304,6 +3304,8 @@ MonoBehaviour:
   guiCanvas: {fileID: 277463158}
   defeatCanvas: {fileID: 2243971}
   playerHealth: {fileID: 320292018}
+  enemyContainer: {fileID: 1237582523}
+  _enemyMovements: []
 --- !u!4 &1909455526
 Transform:
   m_ObjectHideFlags: 0
