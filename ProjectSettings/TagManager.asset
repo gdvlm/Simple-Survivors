@@ -48,6 +48,9 @@ TagManager:
   - name: Unit
     uniqueID: 2048200221
     locked: 0
+  - name: Skill Effects
+    uniqueID: 2924202717
+    locked: 0
   - name: Health
     uniqueID: 2087533261
     locked: 0
