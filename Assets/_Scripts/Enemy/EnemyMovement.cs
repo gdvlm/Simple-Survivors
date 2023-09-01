@@ -2,21 +2,21 @@ using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
-    [SerializeField] private Transform playerPosition;
     [SerializeField] private float speed = 1.0f;
 
     private Rigidbody2D _rigidbody2D;
+    private Transform _playerPosition;
     private PlayerHealth _playerHealth;
     
     void Awake()
     {
         _rigidbody2D = GetComponent<Rigidbody2D>();
-        _playerHealth = playerPosition.GetComponent<PlayerHealth>();
     }
 
     void FixedUpdate()
     {
-        if (_playerHealth.IsAlive())
+        // _playerHealth is null until Initialize() is called
+        if (_playerHealth?.IsAlive() == true)
         {
             MoveTowardsPlayer();    
         }
@@ -24,8 +24,14 @@ public class EnemyMovement : MonoBehaviour
 
     private void MoveTowardsPlayer()
     {
-        Vector3 direction = (playerPosition.position - transform.position).normalized;
+        Vector3 direction = (_playerPosition.position - transform.position).normalized;
         _rigidbody2D.MovePosition(transform.position + direction * (speed * Time.fixedDeltaTime));
+    }
+
+    public void Initialize(Transform playerPosition)
+    {
+        _playerPosition = playerPosition;
+        _playerHealth = playerPosition.GetComponent<PlayerHealth>();
     }
 
     public void ResetRandomPosition()
