@@ -3051,8 +3051,7 @@ MonoBehaviour:
   enemyParent: {fileID: 1237582524}
   playerPosition: {fileID: 320292016}
   purpleBallPrefab: {fileID: 1920071628209019622, guid: 0dd68960c2cde3c42a3d8636a11db70c, type: 3}
-  _enemies: []
-  _enemyMovements: []
+  distanceTemp: 8
 --- !u!1 &1595284046
 GameObject:
   m_ObjectHideFlags: 0

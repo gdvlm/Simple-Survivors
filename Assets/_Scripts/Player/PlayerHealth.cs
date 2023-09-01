@@ -28,6 +28,11 @@ public class PlayerHealth : MonoBehaviour
 
     private void TakeDamage(int damage)
     {
+        if (_playerCurrentHp == 0)
+        {
+            return;
+        }
+        
         _playerCurrentHp = Math.Clamp(_playerCurrentHp, 0, _playerCurrentHp - damage);
         
         float hpPercent = (float)_playerCurrentHp / _playerMaxHp;

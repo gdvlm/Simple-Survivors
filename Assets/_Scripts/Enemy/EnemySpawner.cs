@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class EnemySpawner : MonoBehaviour
 {
@@ -13,9 +14,9 @@ public class EnemySpawner : MonoBehaviour
     /// <summary>
     /// Get a random position based on a certain distance from the center.
     /// </summary>
-    private Vector3 GetRandomPositionByDistance(float distance)
+    private Vector2 GetRandomPositionByDistance(float distance)
     {
-        return new Vector3(-0.06f, -4f, 0);
+        return Random.insideUnitCircle.normalized * distance;
     }
 
     /// <summary>
@@ -26,8 +27,9 @@ public class EnemySpawner : MonoBehaviour
         for (int i = 0; i < times; i++)
         {
             // TODO: Implement object pooling
-            Vector3 randomPosition = GetRandomPositionByDistance(distance);
-            GameObject enemy = Instantiate(prefab, randomPosition, Quaternion.identity, enemyParent);
+            Vector2 randomPosition = GetRandomPositionByDistance(distance);
+            GameObject enemy = Instantiate(prefab, new Vector3(randomPosition.x, randomPosition.y, 0),
+                Quaternion.identity, enemyParent);
 
             EnemyMovement enemyMovement = enemy.GetComponent<EnemyMovement>();
             enemyMovement.Initialize(playerPosition);
@@ -38,6 +40,6 @@ public class EnemySpawner : MonoBehaviour
 
     public void SpawnWave1()
     {
-        Spawn(purpleBallPrefab, 3.0f, 1);
+        Spawn(purpleBallPrefab, 8.0f, 50);
     }
 }
