@@ -4,7 +4,6 @@ using Random = UnityEngine.Random;
 
 public class EnemySpawner : MonoBehaviour
 {
-    [SerializeField] private Transform enemyParent;
     [SerializeField] private Transform playerPosition;
     [SerializeField] private GameObject purpleBallPrefab;
 
@@ -29,7 +28,7 @@ public class EnemySpawner : MonoBehaviour
             // TODO: Implement object pooling
             Vector2 randomPosition = GetRandomPositionByDistance(distance);
             GameObject enemy = Instantiate(prefab, new Vector3(randomPosition.x, randomPosition.y, 0),
-                Quaternion.identity, enemyParent);
+                Quaternion.identity, transform);
 
             EnemyMovement enemyMovement = enemy.GetComponent<EnemyMovement>();
             enemyMovement.Initialize(playerPosition);
