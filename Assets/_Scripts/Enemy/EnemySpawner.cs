@@ -5,6 +5,9 @@ public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] private Transform playerPosition;
     [SerializeField] private GameObject purpleBallPrefab;
+    
+    // TESTING
+    [SerializeField] private int spawnCount;
 
     private List<GameObject> _enemies = new();
     private List<EnemyMovement> _enemyMovements = new();
@@ -30,7 +33,7 @@ public class EnemySpawner : MonoBehaviour
 
     public void SpawnWave1()
     {
-        Spawn(purpleBallPrefab, 8.0f, 50);
+        Spawn(purpleBallPrefab, 8.0f, spawnCount);
     }
 
     public void ResetEnemyPositions()

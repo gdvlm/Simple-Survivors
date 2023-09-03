@@ -17,7 +17,7 @@ public class PlayerHealth : MonoBehaviour
         _startingPosition = transform.position;
     }
 
-    void OnCollisionEnter2D(Collision2D other)
+    void OnTriggerEnter2D(Collider2D other)
     {
         if (other.transform.CompareTag("Enemy"))
         {
@@ -25,6 +25,15 @@ public class PlayerHealth : MonoBehaviour
             TakeDamage(damage);
         }
     }
+
+    // void OnCollisionEnter2D(Collision2D other)
+    // {
+    //     if (other.transform.CompareTag("Enemy"))
+    //     {
+    //         int damage = 50;
+    //         TakeDamage(damage);
+    //     }
+    // }
 
     private void TakeDamage(int damage)
     {
