@@ -36,14 +36,8 @@ public class EnemyMovement : MonoBehaviour
 
     public void ResetRandomPosition()
     {
-        // TODO: Get these values dynamically
-        float screenMinX = -9;
-        float screenMaxX = 9;
-        float screenMinY = -9;
-        float screenMaxY = 9;
-        int offset = 1;
-        float randomX = Random.Range(screenMinX + offset, screenMaxX - offset);
-        float randomY = Random.Range(screenMinY + offset, screenMaxY - offset);
-        transform.position = new Vector3(randomX, randomY, 1);
+        float distance = 8.0f;
+        Vector2 randomPosition = Vector2Extensions.GetRandomPositionByDistance(distance);
+        transform.position = new Vector3(randomPosition.x, randomPosition.y, 1);
     }
 }

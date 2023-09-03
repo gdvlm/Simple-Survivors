@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 public class EnemySpawner : MonoBehaviour
 {
@@ -11,14 +10,6 @@ public class EnemySpawner : MonoBehaviour
     private List<EnemyMovement> _enemyMovements = new();
 
     /// <summary>
-    /// Get a random position based on a certain distance from the center.
-    /// </summary>
-    private Vector2 GetRandomPositionByDistance(float distance)
-    {
-        return Random.insideUnitCircle.normalized * distance;
-    }
-
-    /// <summary>
     /// Spawns a given prefab at a certain distance from the center a given number of times.
     /// </summary>
     private void Spawn(GameObject prefab, float distance, int times)
@@ -26,7 +17,7 @@ public class EnemySpawner : MonoBehaviour
         for (int i = 0; i < times; i++)
         {
             // TODO: Implement object pooling
-            Vector2 randomPosition = GetRandomPositionByDistance(distance);
+            Vector2 randomPosition = Vector2Extensions.GetRandomPositionByDistance(distance);
             GameObject enemy = Instantiate(prefab, new Vector3(randomPosition.x, randomPosition.y, 0),
                 Quaternion.identity, transform);
 
@@ -40,5 +31,13 @@ public class EnemySpawner : MonoBehaviour
     public void SpawnWave1()
     {
         Spawn(purpleBallPrefab, 8.0f, 50);
+    }
+
+    public void ResetEnemyPositions()
+    {
+        foreach (EnemyMovement enemyMovement in _enemyMovements)
+        {
+            enemyMovement.ResetRandomPosition();
+        }
     }
 }
