@@ -13,11 +13,11 @@ public class Timer : MonoBehaviour
         if (_isRunning)
         {
             _currentTime += Time.deltaTime;
-            timerText.text = GetTime();
+            timerText.text = GetDisplayTime();
         }
     }
 
-    private string GetTime()
+    private string GetDisplayTime()
     {
         int seconds = (int)_currentTime % 60;
         int minutes = (int)_currentTime / 60;
@@ -44,5 +44,10 @@ public class Timer : MonoBehaviour
     public void ResumeTimer()
     {
         _isRunning = true;
+    }
+
+    public float GetTime()
+    {
+        return _currentTime;
     }
 }

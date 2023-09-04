@@ -1905,19 +1905,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1149404630}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1535066869}
-        m_TargetAssemblyTypeName: EnemySpawner, Assembly-CSharp
-        m_MethodName: SpawnWave1
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1149404630
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2727,8 +2715,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerPosition: {fileID: 320292016}
-  purpleBallPrefab: {fileID: 1920071628209019622, guid: 0dd68960c2cde3c42a3d8636a11db70c, type: 3}
-  spawnCount: 1
+  timer: {fileID: 2003937766}
+  spawnSchedules:
+  - prefab: {fileID: 1920071628209019622, guid: 0dd68960c2cde3c42a3d8636a11db70c, type: 3}
+    count: 5
+    distance: 8
+    time: 0
+  - prefab: {fileID: 6864368344625920715, guid: a7cd77a73112e0b40a926a78e8c7728d, type: 3}
+    count: 5
+    distance: 8
+    time: 30
+  - prefab: {fileID: 7650011717829272153, guid: 0cdf96aa6744a4049a7dc350caf9f45c, type: 3}
+    count: 5
+    distance: 8
+    time: 60
 --- !u!1 &1595284046
 GameObject:
   m_ObjectHideFlags: 0

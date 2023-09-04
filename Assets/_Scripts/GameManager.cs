@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
         startMenuCanvas.SetActive(false);
         guiCanvas.SetActive(true);
         playerHealth.ReadyPlayer();
-        enemySpawner.ResetEnemyPositions();
+        enemySpawner.ResetEnemies();
         timer.StartTimer();
     }
 

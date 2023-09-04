@@ -4,13 +4,39 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] private Transform playerPosition;
-    [SerializeField] private GameObject purpleBallPrefab;
-    
-    // TESTING
-    [SerializeField] private int spawnCount;
+    [SerializeField] private Timer timer;
+    [SerializeField] private SpawnSchedule[] spawnSchedules;
 
     private List<GameObject> _enemies = new();
     private List<EnemyMovement> _enemyMovements = new();
+    private bool _isEnabled = false;
+    private int _currentScheduleIndex = 0;
+
+    void Update()
+    {
+        if (!_isEnabled || spawnSchedules.Length == 0)
+        {
+            return;
+        }
+
+        SpawnOnSchedule();
+    }
+
+    private void SpawnOnSchedule()
+    {
+        if (spawnSchedules[_currentScheduleIndex].time < timer.GetTime())
+        {
+            Spawn(spawnSchedules[_currentScheduleIndex].prefab,
+                spawnSchedules[_currentScheduleIndex].distance,
+                spawnSchedules[_currentScheduleIndex].count);
+            _currentScheduleIndex++;
+
+            if (_currentScheduleIndex == spawnSchedules.Length)
+            {
+                _isEnabled = false;
+            }
+        }
+    }
 
     /// <summary>
     /// Spawns a given prefab at a certain distance from the center a given number of times.
@@ -31,16 +57,14 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
-    public void SpawnWave1()
-    {
-        Spawn(purpleBallPrefab, 8.0f, spawnCount);
-    }
-
-    public void ResetEnemyPositions()
+    public void ResetEnemies()
     {
         foreach (EnemyMovement enemyMovement in _enemyMovements)
         {
             enemyMovement.ResetRandomPosition();
         }
+
+        _currentScheduleIndex = 0;
+        _isEnabled = true;
     }
 }
