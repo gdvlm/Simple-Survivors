@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject defeatCanvas;
     [SerializeField] private PlayerHealth playerHealth;
     [SerializeField] private EnemySpawner enemySpawner;
+    [SerializeField] private Timer timer;
 
     void Start()
     {
@@ -20,6 +21,7 @@ public class GameManager : MonoBehaviour
         guiCanvas.SetActive(true);
         playerHealth.ReadyPlayer();
         enemySpawner.ResetEnemyPositions();
+        timer.StartTimer();
     }
 
     public void ReturnToStartMenu()

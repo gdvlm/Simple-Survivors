@@ -6,6 +6,7 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private GameObject playerHpSprite;
     [SerializeField] private GameObject playerSprite;
     [SerializeField] private GameObject defeatCanvas;
+    [SerializeField] private Timer timer;
 
     private bool _isAlive;
     private int _playerMaxHp;
@@ -25,15 +26,6 @@ public class PlayerHealth : MonoBehaviour
             TakeDamage(damage);
         }
     }
-
-    // void OnCollisionEnter2D(Collision2D other)
-    // {
-    //     if (other.transform.CompareTag("Enemy"))
-    //     {
-    //         int damage = 50;
-    //         TakeDamage(damage);
-    //     }
-    // }
 
     private void TakeDamage(int damage)
     {
@@ -58,6 +50,7 @@ public class PlayerHealth : MonoBehaviour
         _isAlive = false;
         playerSprite.SetActive(false);
         defeatCanvas.SetActive(true);
+        timer.PauseTimer();
     }
 
     public void ReadyPlayer()

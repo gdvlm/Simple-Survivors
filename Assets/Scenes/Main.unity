@@ -3450,6 +3450,7 @@ MonoBehaviour:
   defeatCanvas: {fileID: 2243971}
   playerHealth: {fileID: 320292018}
   enemySpawner: {fileID: 1535066869}
+  timer: {fileID: 2003937766}
 --- !u!4 &1909455526
 Transform:
   m_ObjectHideFlags: 0
@@ -3470,6 +3471,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 7766944038244514612, guid: 75bc9f868344589439e61e31138defdf, type: 3}
   m_PrefabInstance: {fileID: 7766944038994268881}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2003937766 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7766944038244514615, guid: 75bc9f868344589439e61e31138defdf, type: 3}
+  m_PrefabInstance: {fileID: 7766944038994268881}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c9972ba6bce84c49a7bdd9f18ab73bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2048458676
 GameObject:
   m_ObjectHideFlags: 0
@@ -3676,7 +3688,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5218328877150823760, guid: 5ee18c06d5b7d204fb668b7b9fd07298, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5218328877150823760, guid: 5ee18c06d5b7d204fb668b7b9fd07298, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3718,6 +3730,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5218328877150823762, guid: 5ee18c06d5b7d204fb668b7b9fd07298, type: 3}
+      propertyPath: timer
+      value: 
+      objectReference: {fileID: 2003937766}
     - target: {fileID: 5218328877150823762, guid: 5ee18c06d5b7d204fb668b7b9fd07298, type: 3}
       propertyPath: defeatCanvas
       value: 
