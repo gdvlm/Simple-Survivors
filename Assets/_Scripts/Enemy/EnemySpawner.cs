@@ -50,6 +50,9 @@ public class EnemySpawner : MonoBehaviour
             GameObject enemy = Instantiate(prefab, new Vector3(randomPosition.x, randomPosition.y, 0),
                 Quaternion.identity, transform);
 
+            EnemyHealth enemyHealth = enemy.GetComponent<EnemyHealth>();
+            enemyHealth.ReadyEnemy();
+            
             EnemyMovement enemyMovement = enemy.GetComponent<EnemyMovement>();
             enemyMovement.Initialize(playerPosition);
             _enemyMovements.Add(enemyMovement);

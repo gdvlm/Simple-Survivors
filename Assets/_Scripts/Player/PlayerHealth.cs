@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 
+[RequireComponent(typeof(CapsuleCollider2D))]
 public class PlayerHealth : MonoBehaviour
 {
     [SerializeField] private GameObject playerHpSprite;
@@ -8,11 +9,19 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private GameObject defeatCanvas;
     [SerializeField] private Timer timer;
 
+    private PlayerAttack _playerAttack;
     private bool _isAlive;
     private int _playerMaxHp;
     private int _playerCurrentHp;
     private Vector3 _startingPosition;
-    
+    private CapsuleCollider2D _capsuleCollider;
+
+    void Awake()
+    {
+        _playerAttack = GetComponentInChildren<PlayerAttack>();
+        _capsuleCollider = GetComponent<CapsuleCollider2D>();
+    }
+
     void Start()
     {
         _startingPosition = transform.position;
@@ -20,7 +29,7 @@ public class PlayerHealth : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.transform.CompareTag("Enemy"))
+        if (_capsuleCollider.IsTouching(other) && other.transform.CompareTag("Enemy"))
         {
             int damage = 50;
             TakeDamage(damage);
@@ -51,16 +60,19 @@ public class PlayerHealth : MonoBehaviour
         playerSprite.SetActive(false);
         defeatCanvas.SetActive(true);
         timer.PauseTimer();
+        _playerAttack.StopAttack();
     }
 
     public void ReadyPlayer()
     {
+        // TODO: Refactor to PlayerController class
         _isAlive = true;
         _playerMaxHp = 100;
         _playerCurrentHp = _playerMaxHp;
         playerSprite.SetActive(true);
         transform.position = _startingPosition;
         playerHpSprite.transform.localScale = Vector3.one;
+        _playerAttack.StartAttack();
     }
 
     public bool IsAlive()

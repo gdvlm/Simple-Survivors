@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 524057034716081486}
   - component: {fileID: 7409489990208373612}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: HardCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -59,6 +59,7 @@ GameObject:
   - component: {fileID: 1920071628209019673}
   - component: {fileID: 1920071628209019672}
   - component: {fileID: 3345911057413647938}
+  - component: {fileID: -8274710864354788125}
   m_Layer: 0
   m_Name: Enemy1
   m_TagString: Enemy
@@ -118,6 +119,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1
+--- !u!114 &-8274710864354788125
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1920071628209019622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f5a5e4e93735cc4a80f83622bf9bee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _enemyHp: 1
 --- !u!1 &1920071629465407764
 GameObject:
   m_ObjectHideFlags: 0
