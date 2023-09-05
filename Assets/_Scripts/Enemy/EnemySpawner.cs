@@ -1,73 +1,78 @@
 using System.Collections.Generic;
+using SimpleSurvivors.Extensions;
+using SimpleSurvivors.Utils;
 using UnityEngine;
 
-public class EnemySpawner : MonoBehaviour
+namespace SimpleSurvivors.Enemy
 {
-    [SerializeField] private Transform playerPosition;
-    [SerializeField] private Timer timer;
-    [SerializeField] private SpawnSchedule[] spawnSchedules;
-
-    private List<GameObject> _enemies = new();
-    private List<EnemyMovement> _enemyMovements = new();
-    private bool _isEnabled = false;
-    private int _currentScheduleIndex = 0;
-
-    void Update()
+    public class EnemySpawner : MonoBehaviour
     {
-        if (!_isEnabled || spawnSchedules.Length == 0)
+        [SerializeField] private Transform playerPosition;
+        [SerializeField] private Timer timer;
+        [SerializeField] private SpawnSchedule[] spawnSchedules;
+
+        private List<GameObject> _enemies = new();
+        private List<EnemyMovement> _enemyMovements = new();
+        private bool _isEnabled = false;
+        private int _currentScheduleIndex = 0;
+
+        void Update()
         {
-            return;
+            if (!_isEnabled || spawnSchedules.Length == 0)
+            {
+                return;
+            }
+
+            SpawnOnSchedule();
         }
 
-        SpawnOnSchedule();
-    }
-
-    private void SpawnOnSchedule()
-    {
-        if (spawnSchedules[_currentScheduleIndex].time < timer.GetTime())
+        private void SpawnOnSchedule()
         {
-            Spawn(spawnSchedules[_currentScheduleIndex].prefab,
-                spawnSchedules[_currentScheduleIndex].distance,
-                spawnSchedules[_currentScheduleIndex].count);
-            _currentScheduleIndex++;
-
-            if (_currentScheduleIndex == spawnSchedules.Length)
+            if (spawnSchedules[_currentScheduleIndex].time < timer.GetTime())
             {
-                _isEnabled = false;
+                Spawn(spawnSchedules[_currentScheduleIndex].prefab,
+                    spawnSchedules[_currentScheduleIndex].distance,
+                    spawnSchedules[_currentScheduleIndex].count);
+                _currentScheduleIndex++;
+
+                if (_currentScheduleIndex == spawnSchedules.Length)
+                {
+                    _isEnabled = false;
+                }
             }
         }
-    }
 
-    /// <summary>
-    /// Spawns a given prefab at a certain distance from the center a given number of times.
-    /// </summary>
-    private void Spawn(GameObject prefab, float distance, int times)
-    {
-        for (int i = 0; i < times; i++)
+        /// <summary>
+        /// Spawns a given prefab at a certain distance from the center a given number of times.
+        /// </summary>
+        private void Spawn(GameObject prefab, float distance, int times)
         {
-            // TODO: Implement object pooling
-            Vector2 randomPosition = Vector2Extensions.GetRandomPositionByDistance(distance);
-            GameObject enemy = Instantiate(prefab, new Vector3(randomPosition.x, randomPosition.y, 0),
-                Quaternion.identity, transform);
+            for (int i = 0; i < times; i++)
+            {
+                // TODO: Implement object pooling
+                Vector2 randomPosition = Vector2Extensions.GetRandomPositionByDistance(distance);
+                GameObject enemy = Instantiate(prefab, new Vector3(randomPosition.x, randomPosition.y, 0),
+                    Quaternion.identity, transform);
 
-            EnemyHealth enemyHealth = enemy.GetComponent<EnemyHealth>();
-            enemyHealth.ReadyEnemy();
+                EnemyHealth enemyHealth = enemy.GetComponent<EnemyHealth>();
+                enemyHealth.ReadyEnemy();
             
-            EnemyMovement enemyMovement = enemy.GetComponent<EnemyMovement>();
-            enemyMovement.Initialize(playerPosition);
-            _enemyMovements.Add(enemyMovement);
-            _enemies.Add(enemy);            
+                EnemyMovement enemyMovement = enemy.GetComponent<EnemyMovement>();
+                enemyMovement.Initialize(playerPosition);
+                _enemyMovements.Add(enemyMovement);
+                _enemies.Add(enemy);            
+            }
         }
-    }
 
-    public void ResetEnemies()
-    {
-        foreach (EnemyMovement enemyMovement in _enemyMovements)
+        public void ResetEnemies()
         {
-            enemyMovement.ResetRandomPosition();
-        }
+            foreach (EnemyMovement enemyMovement in _enemyMovements)
+            {
+                enemyMovement.ResetRandomPosition();
+            }
 
-        _currentScheduleIndex = 0;
-        _isEnabled = true;
+            _currentScheduleIndex = 0;
+            _isEnabled = true;
+        }
     }
 }

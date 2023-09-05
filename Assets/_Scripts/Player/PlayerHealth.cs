@@ -1,82 +1,86 @@
 using System;
+using SimpleSurvivors.Utils;
 using UnityEngine;
 
-[RequireComponent(typeof(CapsuleCollider2D))]
-public class PlayerHealth : MonoBehaviour
+namespace SimpleSurvivors.Player
 {
-    [SerializeField] private GameObject playerHpSprite;
-    [SerializeField] private GameObject playerSprite;
-    [SerializeField] private GameObject defeatCanvas;
-    [SerializeField] private Timer timer;
-
-    private PlayerAttack _playerAttack;
-    private bool _isAlive;
-    private int _playerMaxHp;
-    private int _playerCurrentHp;
-    private Vector3 _startingPosition;
-    private CapsuleCollider2D _capsuleCollider;
-
-    void Awake()
+    [RequireComponent(typeof(CapsuleCollider2D))]
+    public class PlayerHealth : MonoBehaviour
     {
-        _playerAttack = GetComponentInChildren<PlayerAttack>();
-        _capsuleCollider = GetComponent<CapsuleCollider2D>();
-    }
+        [SerializeField] private GameObject playerHpSprite;
+        [SerializeField] private GameObject playerSprite;
+        [SerializeField] private GameObject defeatCanvas;
+        [SerializeField] private Timer timer;
 
-    void Start()
-    {
-        _startingPosition = transform.position;
-    }
+        private PlayerAttack _playerAttack;
+        private bool _isAlive;
+        private int _playerMaxHp;
+        private int _playerCurrentHp;
+        private Vector3 _startingPosition;
+        private CapsuleCollider2D _capsuleCollider;
 
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        if (_capsuleCollider.IsTouching(other) && other.transform.CompareTag("Enemy"))
+        void Awake()
         {
-            int damage = 50;
-            TakeDamage(damage);
+            _playerAttack = GetComponentInChildren<PlayerAttack>();
+            _capsuleCollider = GetComponent<CapsuleCollider2D>();
         }
-    }
 
-    private void TakeDamage(int damage)
-    {
-        if (_playerCurrentHp == 0)
+        void Start()
         {
-            return;
+            _startingPosition = transform.position;
         }
+
+        void OnTriggerEnter2D(Collider2D other)
+        {
+            if (_capsuleCollider.IsTouching(other) && other.transform.CompareTag("Enemy"))
+            {
+                int damage = 50;
+                TakeDamage(damage);
+            }
+        }
+
+        private void TakeDamage(int damage)
+        {
+            if (_playerCurrentHp == 0)
+            {
+                return;
+            }
         
-        _playerCurrentHp = Math.Clamp(_playerCurrentHp, 0, _playerCurrentHp - damage);
+            _playerCurrentHp = Math.Clamp(_playerCurrentHp, 0, _playerCurrentHp - damage);
         
-        float hpPercent = (float)_playerCurrentHp / _playerMaxHp;
-        playerHpSprite.transform.localScale = new Vector3(hpPercent, 1, 1);
+            float hpPercent = (float)_playerCurrentHp / _playerMaxHp;
+            playerHpSprite.transform.localScale = new Vector3(hpPercent, 1, 1);
 
-        if (_playerCurrentHp == 0)
-        {
-            KillPlayer();
+            if (_playerCurrentHp == 0)
+            {
+                KillPlayer();
+            }
         }
-    }
 
-    private void KillPlayer()
-    {
-        _isAlive = false;
-        playerSprite.SetActive(false);
-        defeatCanvas.SetActive(true);
-        timer.PauseTimer();
-        _playerAttack.StopAttack();
-    }
+        private void KillPlayer()
+        {
+            _isAlive = false;
+            playerSprite.SetActive(false);
+            defeatCanvas.SetActive(true);
+            timer.PauseTimer();
+            _playerAttack.StopAttack();
+        }
 
-    public void ReadyPlayer()
-    {
-        // TODO: Refactor to PlayerController class
-        _isAlive = true;
-        _playerMaxHp = 100;
-        _playerCurrentHp = _playerMaxHp;
-        playerSprite.SetActive(true);
-        transform.position = _startingPosition;
-        playerHpSprite.transform.localScale = Vector3.one;
-        _playerAttack.StartAttack();
-    }
+        public void ReadyPlayer()
+        {
+            // TODO: Refactor to PlayerController class
+            _isAlive = true;
+            _playerMaxHp = 100;
+            _playerCurrentHp = _playerMaxHp;
+            playerSprite.SetActive(true);
+            transform.position = _startingPosition;
+            playerHpSprite.transform.localScale = Vector3.one;
+            _playerAttack.StartAttack();
+        }
 
-    public bool IsAlive()
-    {
-        return _isAlive;
+        public bool IsAlive()
+        {
+            return _isAlive;
+        }
     }
 }

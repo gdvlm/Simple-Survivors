@@ -1,33 +1,35 @@
 using UnityEngine;
 
-public class EnemyHealth : MonoBehaviour
+namespace SimpleSurvivors.Enemy
 {
-    // TODO: Integrate with Scriptable Objects
-    private bool _isAlive = false;
-    public int _enemyHp;
-
-    void OnTriggerEnter2D(Collider2D other)
+    public class EnemyHealth : MonoBehaviour
     {
-        if (_isAlive && other.transform.CompareTag("PlayerAttack"))
-        {
-            print("Enemy was attacked");
-            _enemyHp--;
+        // TODO: Integrate with Scriptable Objects
+        private bool _isAlive = false;
+        public int _enemyHp;
 
-            if (_enemyHp == 0)
+        void OnTriggerEnter2D(Collider2D other)
+        {
+            if (_isAlive && other.transform.CompareTag("PlayerAttack"))
             {
-                _isAlive = false;
-                Destroy(gameObject);
+                _enemyHp--;
+
+                if (_enemyHp == 0)
+                {
+                    _isAlive = false;
+                    Destroy(gameObject);
+                }
             }
         }
-    }
 
-    public void ReadyEnemy()
-    {
-        _isAlive = true;
-    }
+        public void ReadyEnemy()
+        {
+            _isAlive = true;
+        }
 
-    public bool IsAlive()
-    {
-        return _isAlive;
+        public bool IsAlive()
+        {
+            return _isAlive;
+        }
     }
 }
