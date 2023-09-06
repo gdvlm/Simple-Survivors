@@ -144,6 +144,7 @@ GameObject:
   - component: {fileID: 6864368344625920821}
   - component: {fileID: 7748799657842069103}
   - component: {fileID: 3803250184099604603}
+  - component: {fileID: 129397112590086820}
   m_Layer: 0
   m_Name: Enemy2
   m_TagString: Enemy
@@ -216,6 +217,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _enemyHp: 2
+--- !u!114 &129397112590086820
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6864368344625920715}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8ca54e2ae3e36d4490ae3abd9f67dd9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lootPrefab: {fileID: 7625876723104100347, guid: b53e96116b2de0b4a87eaf5163cda09d, type: 3}
 --- !u!1 &8692996723020274425
 GameObject:
   m_ObjectHideFlags: 0
