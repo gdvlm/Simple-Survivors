@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8642001960125286533}
   - component: {fileID: 5086524021301893377}
   m_Layer: 0
-  m_Name: ExpPoint
+  m_Name: ExpPoint5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
-  m_Color: {r: 0, g: 0.51408315, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.70711786, b: 0.32704395, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -98,6 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97bd5100edae99e4d8f02093a52203da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  experiencePoints: 5
 --- !u!70 &5086524021301893377
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
