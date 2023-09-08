@@ -13,6 +13,7 @@ namespace SimpleSurvivors.Player
         [SerializeField] private Timer timer;
 
         private PlayerAttack _playerAttack;
+        private PlayerExp _playerExp;
         private bool _isAlive;
         private int _playerMaxHp;
         private int _playerCurrentHp;
@@ -22,6 +23,7 @@ namespace SimpleSurvivors.Player
         void Awake()
         {
             _playerAttack = GetComponentInChildren<PlayerAttack>();
+            _playerExp = GetComponent<PlayerExp>();
             _capsuleCollider = GetComponent<CapsuleCollider2D>();
         }
 
@@ -75,6 +77,7 @@ namespace SimpleSurvivors.Player
             playerSprite.SetActive(true);
             transform.position = _startingPosition;
             playerHpSprite.transform.localScale = Vector3.one;
+            _playerExp.ResetExp();
             _playerAttack.StartAttack();
         }
 
