@@ -9,10 +9,10 @@ namespace SimpleSurvivors.Enemy
     {
         [SerializeField] private Transform playerPosition;
         [SerializeField] private Timer timer;
+        [SerializeField] private Transform lootParent;
         [SerializeField] private SpawnSchedule[] spawnSchedules;
 
         private List<GameObject> _enemies = new();
-        private List<EnemyMovement> _enemyMovements = new();
         private bool _isEnabled = false;
         private int _currentScheduleIndex = 0;
 
@@ -59,16 +59,23 @@ namespace SimpleSurvivors.Enemy
             
                 EnemyMovement enemyMovement = enemy.GetComponent<EnemyMovement>();
                 enemyMovement.Initialize(playerPosition);
-                _enemyMovements.Add(enemyMovement);
-                _enemies.Add(enemy);            
+                _enemies.Add(enemy);
+
+                EnemyLoot enemyLoot = enemy.GetComponent<EnemyLoot>();
+                enemyLoot.lootParent = lootParent;
             }
         }
 
         public void ResetEnemies()
         {
-            foreach (EnemyMovement enemyMovement in _enemyMovements)
+            for (int i = 0; i < transform.childCount; i++)
             {
-                enemyMovement.ResetRandomPosition();
+                Destroy(transform.GetChild(i).gameObject);
+            }            
+
+            for (int i = 0; i < lootParent.childCount; i++)
+            {
+                Destroy(lootParent.GetChild(i).gameObject);
             }
 
             _currentScheduleIndex = 0;
