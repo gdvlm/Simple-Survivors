@@ -6,6 +6,7 @@ namespace SimpleSurvivors.Player
     public class PlayerExp : MonoBehaviour
     {
         [SerializeField] private TMP_Text levelText;
+        [SerializeField] private Transform expBarSprite;
         
         private IExpRequirement _expRequirement;
         private int _totalExpPoints = 0;
@@ -55,9 +56,7 @@ namespace SimpleSurvivors.Player
 
         private void UpdateExpBar(float expPercent)
         {
-            print($"ExpPercent: {expPercent:P}");
-            // TODO: Update exp bar sprite
-            //playerExpSprite.transform.localScale = new Vector3(expPercent, 1, 1);
+            expBarSprite.localScale = new Vector3(expPercent, 1, 1);
         }
         
         public void ResetExp()
