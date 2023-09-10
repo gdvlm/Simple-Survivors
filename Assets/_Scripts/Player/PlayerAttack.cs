@@ -9,17 +9,7 @@ namespace SimpleSurvivors.Player
         [SerializeField] private float attackOffset = 1.0f;
 
         private GameObject _currentAttack;
-        private bool _isRunning = false;
-
-        // Start is called before the first frame update
-        void Start()
-        {
-        }
-
-        // Update is called once per frame
-        void FixedUpdate()
-        {
-        }
+        private bool _isRunning;
 
         /// <summary>
         /// Create an attack prefab and attach to this object.
@@ -38,7 +28,7 @@ namespace SimpleSurvivors.Player
                 // TODO: Refactor to use object pooling
                 //print("Fired attack");
                 _currentAttack.SetActive(true);
-                yield return new WaitForSeconds(0.25f);
+                yield return new WaitForSeconds(0.1f);
                 _currentAttack.SetActive(false);
 
                 // Delay
