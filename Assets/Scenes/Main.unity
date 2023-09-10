@@ -2789,14 +2789,38 @@ MonoBehaviour:
     count: 5
     distance: 8
     time: 0
+  - prefab: {fileID: 1920071628209019622, guid: 0dd68960c2cde3c42a3d8636a11db70c, type: 3}
+    count: 10
+    distance: 8
+    time: 15
+  - prefab: {fileID: 1920071628209019622, guid: 0dd68960c2cde3c42a3d8636a11db70c, type: 3}
+    count: 15
+    distance: 8
+    time: 30
   - prefab: {fileID: 6864368344625920715, guid: a7cd77a73112e0b40a926a78e8c7728d, type: 3}
     count: 5
     distance: 8
     time: 30
+  - prefab: {fileID: 6864368344625920715, guid: a7cd77a73112e0b40a926a78e8c7728d, type: 3}
+    count: 10
+    distance: 8
+    time: 45
+  - prefab: {fileID: 6864368344625920715, guid: a7cd77a73112e0b40a926a78e8c7728d, type: 3}
+    count: 15
+    distance: 8
+    time: 60
   - prefab: {fileID: 7650011717829272153, guid: 0cdf96aa6744a4049a7dc350caf9f45c, type: 3}
     count: 5
     distance: 8
     time: 60
+  - prefab: {fileID: 7650011717829272153, guid: 0cdf96aa6744a4049a7dc350caf9f45c, type: 3}
+    count: 10
+    distance: 8
+    time: 75
+  - prefab: {fileID: 7650011717829272153, guid: 0cdf96aa6744a4049a7dc350caf9f45c, type: 3}
+    count: 15
+    distance: 8
+    time: 90
 --- !u!1 &1595284046
 GameObject:
   m_ObjectHideFlags: 0
