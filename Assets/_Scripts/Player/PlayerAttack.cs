@@ -26,7 +26,6 @@ namespace SimpleSurvivors.Player
             while (_isRunning)
             {
                 // TODO: Refactor to use object pooling
-                //print("Fired attack");
                 _currentAttack.SetActive(true);
                 yield return new WaitForSeconds(0.1f);
                 _currentAttack.SetActive(false);

@@ -26,6 +26,11 @@ namespace SimpleSurvivors.Player
             _totalExpNeeded = _expRequirement.GetTotalExpRequirement(_level);
         }
 
+        private void UpdateLevelSprite(int level)
+        {
+            levelText.text = $"LV {level}";
+        }
+
         private void LevelUp()
         {
             float expPercent = GetExpPercent();         
@@ -38,8 +43,7 @@ namespace SimpleSurvivors.Player
             _currentExpPoints = 0;
             _totalExpNeeded = _expRequirement.GetTotalExpRequirement(_level);
             UpdateExpBar(0f);
-
-            levelText.text = $"LV {_level}";
+            UpdateLevelSprite(_level);
         }
 
         private float GetExpPercent()
@@ -63,6 +67,9 @@ namespace SimpleSurvivors.Player
         {
             _totalExpPoints = 0;
             _currentExpPoints = 0;
+            _level = 1;
+            
+            UpdateLevelSprite(_level);
             UpdateExpBar(0f);
         }
 
