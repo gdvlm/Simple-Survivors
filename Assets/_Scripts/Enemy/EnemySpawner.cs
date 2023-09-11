@@ -10,38 +10,66 @@ namespace SimpleSurvivors.Enemy
         [SerializeField] private Transform playerPosition;
         [SerializeField] private Timer timer;
         [SerializeField] private Transform lootParent;
-        [SerializeField] private SpawnSchedule[] spawnSchedules;
+        [SerializeField] private WaveSO[] waves;
 
         private List<GameObject> _enemies = new();
         private bool _isEnabled = false;
-        private int _currentScheduleIndex = 0;
+        private int _waveIndex = 0;
+
+        private void Start()
+        {
+            ResetSpawnTimers();
+        }
 
         void Update()
         {
-            if (!_isEnabled || spawnSchedules.Length == 0)
+            if (!_isEnabled || waves.Length == 0)
             {
                 return;
             }
 
-            SpawnOnSchedule();
+            SpawnOnTimer();
         }
 
-        private void SpawnOnSchedule()
+        private void ResetSpawnTimers()
         {
-            if (spawnSchedules[_currentScheduleIndex].time < timer.GetTime())
+            if (waves.Length == 0)
             {
-                Spawn(spawnSchedules[_currentScheduleIndex].prefab,
-                    spawnSchedules[_currentScheduleIndex].distance,
-                    spawnSchedules[_currentScheduleIndex].count);
-                _currentScheduleIndex++;
+                return;
+            }
 
-                if (_currentScheduleIndex == spawnSchedules.Length)
+            for (int i = 0; i < waves.Length; i++)
+            {
+                foreach (WaveSO.WaveDetail waveDetail in waves[i].waveDetails)
                 {
-                    _isEnabled = false;
+                    waveDetail.nextSpawnTime = 0;
                 }
             }
         }
 
+        private void CheckNextSpawnTimer()
+        {
+            if (waves.Length > _waveIndex + 1 && timer.GetTime() > waves[_waveIndex + 1].spawnTimer)
+            {
+                _waveIndex++;
+            }            
+        }
+
+        private void SpawnOnTimer()
+        {
+            CheckNextSpawnTimer();
+
+            foreach (WaveSO.WaveDetail waveDetail in waves[_waveIndex].waveDetails)
+            {
+                if (timer.GetTime() > waveDetail.nextSpawnTime)
+                {
+                    Spawn(waveDetail.enemyPrefab, waveDetail.distance, waveDetail.spawnCount);
+                    waveDetail.nextSpawnTime += timer.GetTime() + waveDetail.spawnFrequency;
+                    print($"Spawned {waveDetail.spawnCount} enemy!");
+                }
+            }
+        }
+        
         /// <summary>
         /// Spawns a given prefab at a certain distance from the center a given number of times.
         /// </summary>
@@ -56,7 +84,7 @@ namespace SimpleSurvivors.Enemy
 
                 EnemyHealth enemyHealth = enemy.GetComponent<EnemyHealth>();
                 enemyHealth.ReadyEnemy();
-            
+
                 EnemyMovement enemyMovement = enemy.GetComponent<EnemyMovement>();
                 enemyMovement.Initialize(playerPosition);
                 _enemies.Add(enemy);
@@ -71,14 +99,15 @@ namespace SimpleSurvivors.Enemy
             for (int i = 0; i < transform.childCount; i++)
             {
                 Destroy(transform.GetChild(i).gameObject);
-            }            
+            }
 
             for (int i = 0; i < lootParent.childCount; i++)
             {
                 Destroy(lootParent.GetChild(i).gameObject);
             }
 
-            _currentScheduleIndex = 0;
+            _waveIndex = 0;
+            ResetSpawnTimers();
             _isEnabled = true;
         }
     }

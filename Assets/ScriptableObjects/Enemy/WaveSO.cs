@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace SimpleSurvivors.Enemy
 {
@@ -7,7 +8,7 @@ namespace SimpleSurvivors.Enemy
     public class WaveSO : ScriptableObject
     {
         public WaveDetail[] waveDetails;
-        public float spawnTime;
+        public float spawnTimer;
 
         [Serializable]
         public class WaveDetail
@@ -15,6 +16,7 @@ namespace SimpleSurvivors.Enemy
             public GameObject enemyPrefab;
             public int spawnCount;
             public float spawnFrequency;
+            public float nextSpawnTime;
             [Range(0, 10f)] public float distance;
         }
     }

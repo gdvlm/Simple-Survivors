@@ -2821,6 +2821,11 @@ MonoBehaviour:
     count: 15
     distance: 8
     time: 90
+  waves:
+  - {fileID: 11400000, guid: a8b6fcd73b5909a469ca7d8420d96811, type: 2}
+  - {fileID: 11400000, guid: 3442f52387e0d9543ae1909caa35299b, type: 2}
+  - {fileID: 11400000, guid: a989b2eb4e84bc14fb361c6cd23f4cc9, type: 2}
+  useNewSpawnSystem: 1
 --- !u!1 &1595284046
 GameObject:
   m_ObjectHideFlags: 0
