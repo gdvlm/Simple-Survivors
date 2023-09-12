@@ -1,51 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2334120169242701011
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6282928314936205589}
-  - component: {fileID: 5821956494992954657}
-  m_Layer: 0
-  m_Name: Attack
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &6282928314936205589
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2334120169242701011}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 5218328877150823760}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5821956494992954657
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2334120169242701011}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ddeeb87fb6be1974198ad0449c90e3b7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attackPrefab: {fileID: 4431058977273660533, guid: e0085e67714f8aa46a7e5796e70758da, type: 3}
-  attackOffset: 1
 --- !u!1 &5218328876468542282
 GameObject:
   m_ObjectHideFlags: 0
@@ -312,6 +266,7 @@ GameObject:
   - component: {fileID: 5218328877150823761}
   - component: {fileID: 5218328877150823762}
   - component: {fileID: 7580128697342213497}
+  - component: {fileID: 3245193423690857863}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -333,7 +288,6 @@ Transform:
   m_Children:
   - {fileID: 5218328876468542283}
   - {fileID: 5218328877752186418}
-  - {fileID: 6282928314936205589}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -403,6 +357,7 @@ MonoBehaviour:
   playerSprite: {fileID: 5218328876468542282}
   defeatCanvas: {fileID: 0}
   timer: {fileID: 0}
+  playerHp: 100
 --- !u!114 &7580128697342213497
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -415,15 +370,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80496e7fec208b643b29b073c58846ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  experienceTable:
-  - level: 1
-    experiencePoints: 10
-  - level: 2
-    experiencePoints: 20
-  - level: 3
-    experiencePoints: 30
-  _experiencePoints: 0
-  _level: 1
+  levelText: {fileID: 0}
+  expBarSprite: {fileID: 0}
+--- !u!114 &3245193423690857863
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5218328877150823757}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddeeb87fb6be1974198ad0449c90e3b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackPrefab: {fileID: 4431058977273660533, guid: e0085e67714f8aa46a7e5796e70758da, type: 3}
+  attackOffset: 1
 --- !u!1 &5218328877752186417
 GameObject:
   m_ObjectHideFlags: 0

@@ -65,7 +65,7 @@ namespace SimpleSurvivors.Enemy
                 {
                     Spawn(waveDetail.enemyPrefab, waveDetail.distance, waveDetail.spawnCount);
                     waveDetail.nextSpawnTime += timer.GetTime() + waveDetail.spawnFrequency;
-                    print($"Spawned {waveDetail.spawnCount} enemy!");
+                    print($"Spawned {waveDetail.spawnCount} {waveDetail.enemyPrefab.name} enemy");
                 }
             }
         }
