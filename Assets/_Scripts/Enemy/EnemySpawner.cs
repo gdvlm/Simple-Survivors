@@ -47,25 +47,25 @@ namespace SimpleSurvivors.Enemy
             }
         }
 
-        private void CheckNextSpawnTimer()
+        private bool ShouldMoveToNextWave()
         {
-            if (waves.Length > _waveIndex + 1 && timer.GetTime() > waves[_waveIndex + 1].spawnTimer)
-            {
-                _waveIndex++;
-            }            
+            return waves.Length > _waveIndex + 1 && timer.GetTime() > waves[_waveIndex + 1].spawnTimer;
         }
 
         private void SpawnOnTimer()
         {
-            CheckNextSpawnTimer();
+            if (ShouldMoveToNextWave())
+            {
+                _waveIndex++;
+            }
 
             foreach (WaveSO.WaveDetail waveDetail in waves[_waveIndex].waveDetails)
             {
                 if (timer.GetTime() > waveDetail.nextSpawnTime)
                 {
                     Spawn(waveDetail.enemyPrefab, waveDetail.distance, waveDetail.spawnCount);
-                    waveDetail.nextSpawnTime += timer.GetTime() + waveDetail.spawnFrequency;
-                    print($"Spawned {waveDetail.spawnCount} {waveDetail.enemyPrefab.name} enemy");
+                    waveDetail.nextSpawnTime = timer.GetTime() + waveDetail.spawnFrequency;
+                    print($"Spawned {waveDetail.spawnCount} {waveDetail.enemyPrefab.name} enemy at {timer.GetTime():0.00}");
                 }
             }
         }

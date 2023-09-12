@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: Wave 3
   m_EditorClassIdentifier: 
   waveDetails:
-  - enemyPrefab: {fileID: 1920071628209019622, guid: 0dd68960c2cde3c42a3d8636a11db70c, type: 3}
+  - enemyPrefab: {fileID: 6864368344625920715, guid: a7cd77a73112e0b40a926a78e8c7728d, type: 3}
     spawnCount: 15
     spawnFrequency: 10
-    nextSpawnTime: 0
+    nextSpawnTime: 130.00171
     distance: 8
-  - enemyPrefab: {fileID: 6864368344625920715, guid: a7cd77a73112e0b40a926a78e8c7728d, type: 3}
+  - enemyPrefab: {fileID: 7650011717829272153, guid: 0cdf96aa6744a4049a7dc350caf9f45c, type: 3}
     spawnCount: 10
     spawnFrequency: 20
-    nextSpawnTime: 0
+    nextSpawnTime: 140.00171
     distance: 8
   spawnTimer: 120

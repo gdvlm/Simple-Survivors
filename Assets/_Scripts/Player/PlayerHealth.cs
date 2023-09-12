@@ -11,7 +11,7 @@ namespace SimpleSurvivors.Player
         [SerializeField] private GameObject playerSprite;
         [SerializeField] private GameObject defeatCanvas;
         [SerializeField] private Timer timer;
-        [SerializeField] private int playerHp;
+        [SerializeField][Tooltip("Override the player HP for testing.")] private int playerHp;
 
         private PlayerAttack _playerAttack;
         private PlayerExp _playerExp;
