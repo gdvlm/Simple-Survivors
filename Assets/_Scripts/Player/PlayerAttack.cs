@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -8,8 +9,14 @@ namespace SimpleSurvivors.Player
         [SerializeField] private GameObject attackPrefab;
         [SerializeField] private float attackOffset = 1.0f;
 
+        private PlayerExp _playerExp;
         private GameObject _currentAttack;
         private bool _isRunning;
+
+        void Awake()
+        {
+            _playerExp = GetComponent<PlayerExp>();
+        }
 
         /// <summary>
         /// Create an attack prefab and attach to this object.
@@ -31,7 +38,10 @@ namespace SimpleSurvivors.Player
                 _currentAttack.SetActive(false);
 
                 // Delay
-                yield return new WaitForSeconds(1.5f);
+                // TODO: Replace with actual level up mechanism
+                float baseDelay = 1.5f;
+                float levelBonus = (float)_playerExp.GetLevel() / 100 * baseDelay;
+                yield return new WaitForSeconds(Math.Clamp(baseDelay - levelBonus, 0.1f, baseDelay));
             }
         }
 

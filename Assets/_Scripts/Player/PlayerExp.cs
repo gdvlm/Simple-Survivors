@@ -86,5 +86,13 @@ namespace SimpleSurvivors.Player
                 LevelUp();
             }
         }
+
+        /// <summary>
+        /// Returns the player's current level.
+        /// </summary>
+        public int GetLevel()
+        {
+            return _level;
+        }
     }
 }

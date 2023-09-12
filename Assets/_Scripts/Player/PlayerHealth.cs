@@ -11,6 +11,7 @@ namespace SimpleSurvivors.Player
         [SerializeField] private GameObject playerSprite;
         [SerializeField] private GameObject defeatCanvas;
         [SerializeField] private Timer timer;
+        [SerializeField] private int playerHp;
 
         private PlayerAttack _playerAttack;
         private PlayerExp _playerExp;
@@ -72,7 +73,7 @@ namespace SimpleSurvivors.Player
         {
             // TODO: Refactor to PlayerController class
             _isAlive = true;
-            _playerMaxHp = 100;
+            _playerMaxHp = playerHp;
             _playerCurrentHp = _playerMaxHp;
             playerSprite.SetActive(true);
             transform.position = _startingPosition;
