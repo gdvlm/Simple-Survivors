@@ -11,6 +11,7 @@ namespace SimpleSurvivors.Player
         private PlayerHealth _playerHealth;
         private PlayerInputActionWrapper _playerInputActionWrapper;
         private Vector2 _velocity;
+        private bool _canMove;
 
         void Awake()
         {
@@ -26,7 +27,7 @@ namespace SimpleSurvivors.Player
 
         void FixedUpdate()
         {
-            if (_playerHealth.IsAlive())
+            if (_playerHealth.IsAlive() && _canMove)
             {
                 _rigidbody2D.MovePosition(_rigidbody2D.position + _velocity * (movementSpeed * Time.fixedDeltaTime));
             }
@@ -40,6 +41,14 @@ namespace SimpleSurvivors.Player
         void OnDisable()
         {
             _playerInputActionWrapper.Gameplay.Disable();
+        }
+        
+        /// <summary>
+        /// Toggle whether the player can move.
+        /// </summary>
+        public void SetCanMove(bool canMove)
+        {
+            _canMove = canMove;
         }
     }
 }

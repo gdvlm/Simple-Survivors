@@ -1,3 +1,4 @@
+using System;
 using SimpleSurvivors.Enemy;
 using SimpleSurvivors.Player;
 using SimpleSurvivors.Utils;
@@ -14,6 +15,13 @@ namespace SimpleSurvivors
         [SerializeField] private EnemySpawner enemySpawner;
         [SerializeField] private Timer timer;
 
+        private PlayerInput _playerInput;
+
+        void Awake()
+        {
+            _playerInput = playerHealth.GetComponent<PlayerInput>();
+        }
+
         void Start()
         {
             startMenuCanvas.SetActive(true);
@@ -27,6 +35,7 @@ namespace SimpleSurvivors
             playerHealth.ReadyPlayer();
             enemySpawner.ResetEnemies();
             timer.StartTimer();
+            _playerInput.SetCanMove(true);
         }
 
         public void ReturnToStartMenu()
@@ -34,6 +43,7 @@ namespace SimpleSurvivors
             defeatCanvas.SetActive(false);
             startMenuCanvas.SetActive(true);
             guiCanvas.SetActive(false);
+            _playerInput.SetCanMove(false);
         }
     }
 }
