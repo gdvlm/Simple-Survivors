@@ -66,7 +66,7 @@ namespace SimpleSurvivors.Player
             playerSprite.SetActive(false);
             defeatCanvas.SetActive(true);
             timer.PauseTimer();
-            _playerAttack.StopAttack();
+            _playerAttack.SetAttack(false);
         }
 
         public void ReadyPlayer()

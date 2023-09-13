@@ -11,7 +11,7 @@ namespace SimpleSurvivors.Player
 
         private PlayerExp _playerExp;
         private GameObject _currentAttack;
-        private bool _isRunning;
+        private bool _isAttacking;
 
         void Awake()
         {
@@ -30,7 +30,7 @@ namespace SimpleSurvivors.Player
 
         private IEnumerator FireAttack()
         {
-            while (_isRunning)
+            while (_isAttacking)
             {
                 // TODO: Refactor to use object pooling
                 _currentAttack.SetActive(true);
@@ -47,14 +47,14 @@ namespace SimpleSurvivors.Player
 
         public void StartAttack()
         {
-            _isRunning = true;
+            _isAttacking = true;
             InitializeAttack();
             StartCoroutine(FireAttack());
         }
 
-        public void StopAttack()
+        public void SetAttack(bool isAttacking)
         {
-            _isRunning = false;
+            _isAttacking = true;
         }
     }
 }
