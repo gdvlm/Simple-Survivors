@@ -52,9 +52,12 @@ namespace SimpleSurvivors.Player
             StartCoroutine(FireAttack());
         }
 
+        /// <summary>
+        /// Toggle whether the player is attacking.
+        /// </summary>
         public void SetAttack(bool isAttacking)
         {
-            _isAttacking = true;
+            _isAttacking = isAttacking;
         }
     }
 }

@@ -1,4 +1,3 @@
-using System;
 using SimpleSurvivors.Enemy;
 using SimpleSurvivors.Player;
 using SimpleSurvivors.Utils;
@@ -11,15 +10,18 @@ namespace SimpleSurvivors
         [SerializeField] private GameObject startMenuCanvas;
         [SerializeField] private GameObject guiCanvas;
         [SerializeField] private GameObject defeatCanvas;
+        [SerializeField] private GameObject levelUpCanvas;
         [SerializeField] private PlayerHealth playerHealth;
         [SerializeField] private EnemySpawner enemySpawner;
         [SerializeField] private Timer timer;
 
         private PlayerInput _playerInput;
+        private PlayerAttack _playerAttack;
 
         void Awake()
         {
             _playerInput = playerHealth.GetComponent<PlayerInput>();
+            _playerAttack = playerHealth.GetComponent<PlayerAttack>();
         }
 
         void Start()
@@ -44,6 +46,27 @@ namespace SimpleSurvivors
             startMenuCanvas.SetActive(true);
             guiCanvas.SetActive(false);
             _playerInput.SetCanMove(false);
+        }
+
+        public void PauseGame()
+        {
+            timer.PauseTimer();
+            enemySpawner.PauseEnemyMovements();
+            _playerInput.SetCanMove(false);
+            _playerAttack.SetAttack(false);
+        }
+        
+        public void ResumeGame()
+        {
+            timer.ResumeTimer();
+            enemySpawner.ResumeEnemyMovements();
+            _playerInput.SetCanMove(true);
+            _playerAttack.SetAttack(true);
+        }        
+
+        public void ShowLevelUpCanvas()
+        {
+            levelUpCanvas.SetActive(true);
         }
     }
 }
