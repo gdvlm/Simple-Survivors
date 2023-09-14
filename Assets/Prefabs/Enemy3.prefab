@@ -180,7 +180,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f5a5e4e93735cc4a80f83622bf9bee6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemyHp: 4
+  _enemyHp: 10
 --- !u!114 &8101756338985591105
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -194,6 +194,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lootPrefab: {fileID: 7625876723104100347, guid: ff7a650d50e05c0439a7cad00994191b, type: 3}
+  lootParent: {fileID: 0}
 --- !u!1 &7650011718559228014
 GameObject:
   m_ObjectHideFlags: 0
