@@ -14,6 +14,7 @@ namespace SimpleSurvivors
         [SerializeField] private PlayerHealth playerHealth;
         [SerializeField] private EnemySpawner enemySpawner;
         [SerializeField] private Timer timer;
+        [SerializeField] private UpgradeManager upgradeManager;
 
         private PlayerInput _playerInput;
         private PlayerAttack _playerAttack;
@@ -62,11 +63,22 @@ namespace SimpleSurvivors
             enemySpawner.ResumeEnemyMovements();
             _playerInput.SetCanMove(true);
             _playerAttack.SetAttack(true);
-        }        
+        }
 
-        public void ShowLevelUpCanvas()
+        public void DisplayLevelUpCanvas()
         {
+            var upgradeSos = upgradeManager.GetRandomUpgrades(3);
+            for (int i = 0; i < upgradeSos.Length; i++)
+            {
+                print(upgradeSos[i]);
+            }
+            
             levelUpCanvas.SetActive(true);
+        }
+
+        public void ShowLevelUpCanvas(bool show)
+        {
+            levelUpCanvas.SetActive(show);
         }
     }
 }

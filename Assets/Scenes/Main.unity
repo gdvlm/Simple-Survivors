@@ -2255,7 +2255,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 776862462}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1909455525}
+        m_TargetAssemblyTypeName: SimpleSurvivors.GameManager, Assembly-CSharp
+        m_MethodName: ShowLevelUpCanvas
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &776862462
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2379,7 +2391,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 788543810}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1909455525}
+        m_TargetAssemblyTypeName: SimpleSurvivors.GameManager, Assembly-CSharp
+        m_MethodName: ShowLevelUpCanvas
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &788543810
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2451,7 +2475,7 @@ Transform:
   - {fileID: 320292016}
   - {fileID: 374027710}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &951462922
 GameObject:
@@ -2799,6 +2823,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1096250914}
   m_CullTransparentMesh: 1
+--- !u!114 &1114083047 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7586348241441955201, guid: 98d8d7a146f979740a64884838335cea, type: 3}
+  m_PrefabInstance: {fileID: 7586348242555179878}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08eb3870304ec4a46ac6a8b2f699d17f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1166662738
 GameObject:
   m_ObjectHideFlags: 0
@@ -4048,7 +4083,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1663841591}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1909455525}
+        m_TargetAssemblyTypeName: SimpleSurvivors.GameManager, Assembly-CSharp
+        m_MethodName: ShowLevelUpCanvas
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1663841591
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4848,6 +4895,7 @@ MonoBehaviour:
   playerHealth: {fileID: 320292018}
   enemySpawner: {fileID: 1535066869}
   timer: {fileID: 2003937766}
+  upgradeManager: {fileID: 1114083047}
 --- !u!4 &1909455526
 Transform:
   m_ObjectHideFlags: 0
@@ -5360,6 +5408,63 @@ PrefabInstance:
       objectReference: {fileID: 1770342340}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5ee18c06d5b7d204fb668b7b9fd07298, type: 3}
+--- !u!1001 &7586348242555179878
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7586348241441955200, guid: 98d8d7a146f979740a64884838335cea, type: 3}
+      propertyPath: m_Name
+      value: UpgradeManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 7586348241441955214, guid: 98d8d7a146f979740a64884838335cea, type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7586348241441955214, guid: 98d8d7a146f979740a64884838335cea, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7586348241441955214, guid: 98d8d7a146f979740a64884838335cea, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7586348241441955214, guid: 98d8d7a146f979740a64884838335cea, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7586348241441955214, guid: 98d8d7a146f979740a64884838335cea, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7586348241441955214, guid: 98d8d7a146f979740a64884838335cea, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7586348241441955214, guid: 98d8d7a146f979740a64884838335cea, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7586348241441955214, guid: 98d8d7a146f979740a64884838335cea, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7586348241441955214, guid: 98d8d7a146f979740a64884838335cea, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7586348241441955214, guid: 98d8d7a146f979740a64884838335cea, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7586348241441955214, guid: 98d8d7a146f979740a64884838335cea, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 98d8d7a146f979740a64884838335cea, type: 3}
 --- !u!1001 &7766944038994268881
 PrefabInstance:
   m_ObjectHideFlags: 0

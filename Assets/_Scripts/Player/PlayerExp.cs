@@ -40,7 +40,7 @@ namespace SimpleSurvivors.Player
             
             // TODO: Show leveled UI here (animation, sounds, etc)
             gameManager.PauseGame();
-            gameManager.ShowLevelUpCanvas();
+            gameManager.DisplayLevelUpCanvas();
             
             _currentExpPoints = 0;
             _totalExpNeeded = _expRequirement.GetTotalExpRequirement(_level);
