@@ -94,9 +94,12 @@ namespace SimpleSurvivors
             levelUpCanvas.SetActive(true);
         }
 
-        public void ShowLevelUpCanvas(bool show)
+        //public void SelectUpgrade(UpgradeSO upgradeSo)
+        public void SelectUpgrade()
         {
-            levelUpCanvas.SetActive(show);
+            // TODO: Somehow pass upgradeSo here from button to apply to character
+            levelUpCanvas.SetActive(false);
+            ResumeGame();
         }
     }
 }

@@ -23,7 +23,8 @@ namespace SimpleSurvivors.Player
         /// </summary>
         private void InitializeAttack()
         {
-            _currentAttack = Instantiate(attackPrefab, new Vector3(transform.position.x + attackOffset, 
+            _currentAttack = Instantiate(attackPrefab, new Vector3(
+                transform.position.x + attackOffset, 
                 transform.position.y, 0), Quaternion.identity, transform);
             _currentAttack.SetActive(false);
         }
@@ -58,6 +59,11 @@ namespace SimpleSurvivors.Player
         public void SetAttack(bool isAttacking)
         {
             _isAttacking = isAttacking;
+
+            if (isAttacking)
+            {
+                StartCoroutine(FireAttack());
+            }
         }
     }
 }
