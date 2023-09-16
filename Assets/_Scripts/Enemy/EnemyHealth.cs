@@ -1,4 +1,5 @@
 using System;
+using SimpleSurvivors.Player;
 using UnityEngine;
 
 namespace SimpleSurvivors.Enemy
@@ -19,9 +20,11 @@ namespace SimpleSurvivors.Enemy
         {
             if (_isAlive && other.transform.CompareTag("PlayerAttack"))
             {
-                _enemyHp--;
+                var playerAttack = other.GetComponentInParent<PlayerAttack>();
+                _enemyHp -= playerAttack.GetAttackDamage();
+                print($"Enemy received {playerAttack.GetAttackDamage()} damage!");
 
-                if (_enemyHp == 0)
+                if (_enemyHp <= 0)
                 {
                     KillEnemy();
                 }

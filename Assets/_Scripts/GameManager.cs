@@ -72,6 +72,7 @@ namespace SimpleSurvivors
             enemySpawner.ResumeEnemyMovements();
             _playerInput.SetCanMove(true);
             _playerAttack.SetAttack(true);
+            levelUpCanvas.SetActive(false);
         }
 
         public void DisplayLevelUpCanvas()
@@ -79,16 +80,8 @@ namespace SimpleSurvivors
             var upgradeSos = upgradeManager.GetRandomUpgrades(3);
             for (int i = 0; i < upgradeSos.Length; i++)
             {
-                var nameTransform = _upgradeButtons[i].Find("NameText");
-                var nameText = nameTransform.GetComponent<TMP_Text>();
-                nameText.text = upgradeSos[i].title;
-                
-                var descriptionTransform = _upgradeButtons[i].Find("DescriptionText");
-                var descriptionText = descriptionTransform.GetComponent<TMP_Text>();
-                descriptionText.text = upgradeSos[i].description;
-                
-                // TODO: Map upgrade image
-                print(upgradeSos[i]);
+                var upgradeItem = _upgradeButtons[i].GetComponent<UpgradeItem>();
+                upgradeItem.UpdateUpgrade(upgradeSos[i]);
             }
             
             levelUpCanvas.SetActive(true);

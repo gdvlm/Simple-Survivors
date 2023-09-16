@@ -12,6 +12,7 @@ namespace SimpleSurvivors.Player
         private PlayerExp _playerExp;
         private GameObject _currentAttack;
         private bool _isAttacking;
+        private int _attackDamage = 1;
 
         void Awake()
         {
@@ -64,6 +65,19 @@ namespace SimpleSurvivors.Player
             {
                 StartCoroutine(FireAttack());
             }
+        }
+
+        /// <summary>
+        /// Upgrades the attack given a percentage.
+        /// </summary>
+        public void UpgradeAttack(float percentage)
+        {
+            _attackDamage = (int)(_attackDamage * percentage);
+        }
+
+        public int GetAttackDamage()
+        {
+            return _attackDamage;
         }
     }
 }

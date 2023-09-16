@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: AttackDamageUpgrade
   m_EditorClassIdentifier: 
   attackAdd: 0
-  attackMultiply: 1.1
+  attackMultiply: 3
   attackSpeedAdd: 0
   attackSpeedMultiply: 1
   movementSpeedMultiply: 1
