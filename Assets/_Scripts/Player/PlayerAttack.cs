@@ -9,10 +9,12 @@ namespace SimpleSurvivors.Player
         [SerializeField] private GameObject attackPrefab;
         [SerializeField] private float attackOffset = 1.0f;
 
+        private readonly float _minimumDelay = 0.1f;
         private PlayerExp _playerExp;
         private GameObject _currentAttack;
         private bool _isAttacking;
         private int _attackDamage = 1;
+        private float _attackDelay = 1.5f;
 
         void Awake()
         {
@@ -38,12 +40,8 @@ namespace SimpleSurvivors.Player
                 _currentAttack.SetActive(true);
                 yield return new WaitForSeconds(0.1f);
                 _currentAttack.SetActive(false);
-
-                // Delay
-                // TODO: Replace with actual level up mechanism
-                float baseDelay = 1.5f;
-                float levelBonus = (float)_playerExp.GetLevel() / 100 * baseDelay;
-                yield return new WaitForSeconds(Math.Clamp(baseDelay - levelBonus, 0.1f, baseDelay));
+                
+                yield return new WaitForSeconds(Math.Max(_attackDelay, _minimumDelay));
             }
         }
 
@@ -73,6 +71,19 @@ namespace SimpleSurvivors.Player
         public void UpgradeAttack(float percentage)
         {
             _attackDamage = (int)(_attackDamage * percentage);
+        }
+
+        /// <summary>
+        /// Upgrades the attack delay by subtracting a static value.
+        /// </summary>
+        public void UpgradeAttackDelay(float delayPercentage)
+        {
+            if (_attackDelay <= _minimumDelay)
+            {
+                return;
+            }
+            
+            _attackDelay -= delayPercentage;
         }
 
         public int GetAttackDamage()

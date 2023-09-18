@@ -14,8 +14,8 @@ namespace SimpleSurvivors.Utils
         [SerializeField] private TMP_Text description;
         [SerializeField] private Image image;
 
-        private PlayerAttack _playerAttack;
         private UpgradeSO _upgradeSo;
+        private PlayerAttack _playerAttack;
 
         void Awake()
         {
@@ -33,6 +33,7 @@ namespace SimpleSurvivors.Utils
         public void ResumeGame()
         {
             _playerAttack.UpgradeAttack(_upgradeSo.attackMultiply);
+            _playerAttack.UpgradeAttackDelay(_upgradeSo.attackSpeedAdd);
             // TODO: Add other upgrade effects here
             
             gameManager.ResumeGame();
