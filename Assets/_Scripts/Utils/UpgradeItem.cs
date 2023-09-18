@@ -16,10 +16,12 @@ namespace SimpleSurvivors.Utils
 
         private UpgradeSO _upgradeSo;
         private PlayerAttack _playerAttack;
+        private PlayerInput _playerInput;
 
         void Awake()
         {
             _playerAttack = player.GetComponent<PlayerAttack>();
+            _playerInput = player.GetComponent<PlayerInput>();
         }
 
         public void UpdateUpgrade(UpgradeSO upgradeSo)
@@ -34,7 +36,7 @@ namespace SimpleSurvivors.Utils
         {
             _playerAttack.UpgradeAttack(_upgradeSo.attackMultiply);
             _playerAttack.UpgradeAttackDelay(_upgradeSo.attackSpeedAdd);
-            // TODO: Add other upgrade effects here
+            _playerInput.UpgradeMovementSpeed(_upgradeSo.movementSpeedMultiply);
             
             gameManager.ResumeGame();
         }

@@ -7,6 +7,7 @@ namespace SimpleSurvivors.Player
     {
         [SerializeField] private float movementSpeed;
 
+        private readonly float _maximumMovementSpeed = 6f;
         private Rigidbody2D _rigidbody2D;
         private PlayerHealth _playerHealth;
         private PlayerInputActionWrapper _playerInputActionWrapper;
@@ -49,6 +50,19 @@ namespace SimpleSurvivors.Player
         public void SetCanMove(bool canMove)
         {
             _canMove = canMove;
+        }
+
+        /// <summary>
+        /// Upgrades the movement speed by a percentage.
+        /// </summary>
+        public void UpgradeMovementSpeed(float percentage)
+        {
+            if (movementSpeed >= _maximumMovementSpeed)
+            {
+                return;
+            }
+            
+            movementSpeed *= percentage;
         }
     }
 }

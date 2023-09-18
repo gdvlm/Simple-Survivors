@@ -76,14 +76,14 @@ namespace SimpleSurvivors.Player
         /// <summary>
         /// Upgrades the attack delay by subtracting a static value.
         /// </summary>
-        public void UpgradeAttackDelay(float delayPercentage)
+        public void UpgradeAttackDelay(float delayValue)
         {
             if (_attackDelay <= _minimumDelay)
             {
                 return;
             }
             
-            _attackDelay -= delayPercentage;
+            _attackDelay -= delayValue;
         }
 
         public int GetAttackDamage()
