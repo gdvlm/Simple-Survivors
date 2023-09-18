@@ -15,6 +15,7 @@ namespace SimpleSurvivors.Player
 
         private PlayerAttack _playerAttack;
         private PlayerExp _playerExp;
+        private PlayerInput _playerInput;
         private bool _isAlive;
         private int _playerMaxHp;
         private int _playerCurrentHp;
@@ -25,6 +26,7 @@ namespace SimpleSurvivors.Player
         {
             _playerAttack = GetComponentInChildren<PlayerAttack>();
             _playerExp = GetComponent<PlayerExp>();
+            _playerInput = GetComponent<PlayerInput>();
             _capsuleCollider = GetComponent<CapsuleCollider2D>();
         }
 
@@ -80,6 +82,7 @@ namespace SimpleSurvivors.Player
             playerHpSprite.transform.localScale = Vector3.one;
             _playerExp.ResetExp();
             _playerAttack.StartAttack();
+            _playerInput.ResetMovementSpeed();
         }
 
         public bool IsAlive()

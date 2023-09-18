@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace SimpleSurvivors.Player
@@ -8,6 +9,7 @@ namespace SimpleSurvivors.Player
         [SerializeField] private float movementSpeed;
 
         private readonly float _maximumMovementSpeed = 6f;
+        private float _startingMovementSpeed;
         private Rigidbody2D _rigidbody2D;
         private PlayerHealth _playerHealth;
         private PlayerInputActionWrapper _playerInputActionWrapper;
@@ -19,6 +21,11 @@ namespace SimpleSurvivors.Player
             _rigidbody2D = GetComponent<Rigidbody2D>();
             _playerHealth = GetComponent<PlayerHealth>();
             _playerInputActionWrapper = new PlayerInputActionWrapper();
+        }
+
+        void Start()
+        {
+            _startingMovementSpeed = movementSpeed;
         }
 
         void Update()
@@ -50,6 +57,11 @@ namespace SimpleSurvivors.Player
         public void SetCanMove(bool canMove)
         {
             _canMove = canMove;
+        }
+
+        public void ResetMovementSpeed()
+        {
+            movementSpeed = _startingMovementSpeed;
         }
 
         /// <summary>

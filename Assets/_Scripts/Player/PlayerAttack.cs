@@ -8,17 +8,25 @@ namespace SimpleSurvivors.Player
     {
         [SerializeField] private GameObject attackPrefab;
         [SerializeField] private float attackOffset = 1.0f;
+        [SerializeField] private int attackDamage = 1;
+        [SerializeField] private float attackDelay = 1.5f;
 
         private readonly float _minimumDelay = 0.1f;
+        private int _startingAttackDamage;
+        private float _startingAttackDelay;
         private PlayerExp _playerExp;
         private GameObject _currentAttack;
         private bool _isAttacking;
-        private int _attackDamage = 1;
-        private float _attackDelay = 1.5f;
 
         void Awake()
         {
             _playerExp = GetComponent<PlayerExp>();
+        }
+
+        private void Start()
+        {
+            _startingAttackDamage = attackDamage;
+            _startingAttackDelay = attackDelay;
         }
 
         /// <summary>
@@ -30,6 +38,8 @@ namespace SimpleSurvivors.Player
                 transform.position.x + attackOffset, 
                 transform.position.y, 0), Quaternion.identity, transform);
             _currentAttack.SetActive(false);
+            attackDamage = _startingAttackDamage;
+            attackDelay = _startingAttackDelay;
         }
 
         private IEnumerator FireAttack()
@@ -41,7 +51,7 @@ namespace SimpleSurvivors.Player
                 yield return new WaitForSeconds(0.1f);
                 _currentAttack.SetActive(false);
                 
-                yield return new WaitForSeconds(Math.Max(_attackDelay, _minimumDelay));
+                yield return new WaitForSeconds(Math.Max(attackDelay, _minimumDelay));
             }
         }
 
@@ -70,7 +80,7 @@ namespace SimpleSurvivors.Player
         /// </summary>
         public void UpgradeAttack(float percentage)
         {
-            _attackDamage = (int)(_attackDamage * percentage);
+            attackDamage = (int)(attackDamage * percentage);
         }
 
         /// <summary>
@@ -78,17 +88,17 @@ namespace SimpleSurvivors.Player
         /// </summary>
         public void UpgradeAttackDelay(float delayValue)
         {
-            if (_attackDelay <= _minimumDelay)
+            if (attackDelay <= _minimumDelay)
             {
                 return;
             }
             
-            _attackDelay -= delayValue;
+            attackDelay -= delayValue;
         }
 
         public int GetAttackDamage()
         {
-            return _attackDamage;
+            return attackDamage;
         }
     }
 }

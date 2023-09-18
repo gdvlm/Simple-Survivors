@@ -32,7 +32,7 @@ namespace SimpleSurvivors.Utils
             // TODO: Map image here
         }
 
-        public void ResumeGame()
+        public void SelectUpgrade()
         {
             _playerAttack.UpgradeAttack(_upgradeSo.attackMultiply);
             _playerAttack.UpgradeAttackDelay(_upgradeSo.attackSpeedAdd);
