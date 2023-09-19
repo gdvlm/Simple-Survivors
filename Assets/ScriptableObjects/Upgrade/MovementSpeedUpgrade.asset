@@ -17,5 +17,6 @@ MonoBehaviour:
   attackSpeedAdd: 0
   attackSpeedMultiply: 1
   movementSpeedMultiply: 1.1
+  sprite: {fileID: 7482667652216324306, guid: 8fcb7990d843c6b40a11045844bad702, type: 3}
   title: Movement Speed ++
   description: Increases movement speed by 10%.

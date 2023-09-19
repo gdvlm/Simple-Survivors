@@ -29,7 +29,7 @@ namespace SimpleSurvivors.Utils
             _upgradeSo = upgradeSo;
             title.text = upgradeSo.title;
             description.text = upgradeSo.description;
-            // TODO: Map image here
+            image.sprite = upgradeSo.sprite;
         }
 
         public void SelectUpgrade()

@@ -10,6 +10,7 @@ namespace SimpleSurvivors.Upgrade
         public float attackSpeedAdd = 0;
         public float attackSpeedMultiply = 1;
         public float movementSpeedMultiply = 1;
+        public Sprite sprite;
 
         public string title;
         public string description;
