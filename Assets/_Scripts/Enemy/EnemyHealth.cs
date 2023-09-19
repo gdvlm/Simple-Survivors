@@ -1,4 +1,3 @@
-using System;
 using SimpleSurvivors.Player;
 using UnityEngine;
 
@@ -8,8 +7,8 @@ namespace SimpleSurvivors.Enemy
     {
         // TODO: Integrate with Scriptable Objects
         private EnemyLoot _enemyLoot;
-        private bool _isAlive = false;
-        public int _enemyHp;
+        private bool _isAlive;
+        private int _enemyHp;
 
         void Awake()
         {
@@ -22,7 +21,6 @@ namespace SimpleSurvivors.Enemy
             {
                 var playerAttack = other.GetComponentInParent<PlayerAttack>();
                 _enemyHp -= playerAttack.GetAttackDamage();
-                print($"Enemy received {playerAttack.GetAttackDamage()} damage!");
 
                 if (_enemyHp <= 0)
                 {
@@ -42,11 +40,6 @@ namespace SimpleSurvivors.Enemy
         public void ReadyEnemy()
         {
             _isAlive = true;
-        }
-
-        public bool IsAlive()
-        {
-            return _isAlive;
         }
     }
 }

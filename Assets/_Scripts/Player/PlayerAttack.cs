@@ -14,14 +14,8 @@ namespace SimpleSurvivors.Player
         private readonly float _minimumDelay = 0.1f;
         private int _startingAttackDamage;
         private float _startingAttackDelay;
-        private PlayerExp _playerExp;
         private GameObject _currentAttack;
         private bool _isAttacking;
-
-        void Awake()
-        {
-            _playerExp = GetComponent<PlayerExp>();
-        }
 
         private void Start()
         {

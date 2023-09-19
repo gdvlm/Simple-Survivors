@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using SimpleSurvivors.Enemy;
 using SimpleSurvivors.Player;
 using SimpleSurvivors.Utils;
-using TMPro;
 using UnityEngine;
 
 namespace SimpleSurvivors
