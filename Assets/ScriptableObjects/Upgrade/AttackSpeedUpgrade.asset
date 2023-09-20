@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0759c2df5212b6e4b90f86c29ebf1989, type: 3}
+  m_Name: AttackSpeedUpgrade
+  m_EditorClassIdentifier: 
+  attackAdd: 0
+  attackMultiply: 1
+  attackSpeedAdd: 0.1
+  attackSpeedMultiply: 1
+  movementSpeedMultiply: 1
+  sprite: {fileID: 7482667652216324306, guid: 7b2bdad4692fbf64da51202eacd61c9a, type: 3}
+  title: Attack Speed +
+  description: Increases attack speed by 10%.

@@ -8,14 +8,19 @@ namespace SimpleSurvivors.Player
     {
         [SerializeField] private GameObject attackPrefab;
         [SerializeField] private float attackOffset = 1.0f;
+        [SerializeField] private int attackDamage = 1;
+        [SerializeField] private float attackDelay = 1.5f;
 
-        private PlayerExp _playerExp;
+        private readonly float _minimumDelay = 0.1f;
+        private int _startingAttackDamage;
+        private float _startingAttackDelay;
         private GameObject _currentAttack;
-        private bool _isRunning;
+        private bool _isAttacking;
 
-        void Awake()
+        private void Start()
         {
-            _playerExp = GetComponent<PlayerExp>();
+            _startingAttackDamage = attackDamage;
+            _startingAttackDelay = attackDelay;
         }
 
         /// <summary>
@@ -23,38 +28,71 @@ namespace SimpleSurvivors.Player
         /// </summary>
         private void InitializeAttack()
         {
-            _currentAttack = Instantiate(attackPrefab, new Vector3(transform.position.x + attackOffset, 
+            _currentAttack = Instantiate(attackPrefab, new Vector3(
+                transform.position.x + attackOffset, 
                 transform.position.y, 0), Quaternion.identity, transform);
             _currentAttack.SetActive(false);
+            attackDamage = _startingAttackDamage;
+            attackDelay = _startingAttackDelay;
         }
 
         private IEnumerator FireAttack()
         {
-            while (_isRunning)
+            while (_isAttacking)
             {
                 // TODO: Refactor to use object pooling
                 _currentAttack.SetActive(true);
                 yield return new WaitForSeconds(0.1f);
                 _currentAttack.SetActive(false);
-
-                // Delay
-                // TODO: Replace with actual level up mechanism
-                float baseDelay = 1.5f;
-                float levelBonus = (float)_playerExp.GetLevel() / 100 * baseDelay;
-                yield return new WaitForSeconds(Math.Clamp(baseDelay - levelBonus, 0.1f, baseDelay));
+                
+                yield return new WaitForSeconds(Math.Max(attackDelay, _minimumDelay));
             }
         }
 
         public void StartAttack()
         {
-            _isRunning = true;
+            _isAttacking = true;
             InitializeAttack();
             StartCoroutine(FireAttack());
         }
 
-        public void StopAttack()
+        /// <summary>
+        /// Toggle whether the player is attacking.
+        /// </summary>
+        public void SetAttack(bool isAttacking)
         {
-            _isRunning = false;
+            _isAttacking = isAttacking;
+
+            if (isAttacking)
+            {
+                StartCoroutine(FireAttack());
+            }
+        }
+
+        /// <summary>
+        /// Upgrades the attack given a percentage.
+        /// </summary>
+        public void UpgradeAttack(float percentage)
+        {
+            attackDamage = (int)(attackDamage * percentage);
+        }
+
+        /// <summary>
+        /// Upgrades the attack delay by subtracting a static value.
+        /// </summary>
+        public void UpgradeAttackDelay(float delayValue)
+        {
+            if (attackDelay <= _minimumDelay)
+            {
+                return;
+            }
+            
+            attackDelay -= delayValue;
+        }
+
+        public int GetAttackDamage()
+        {
+            return attackDamage;
         }
     }
 }

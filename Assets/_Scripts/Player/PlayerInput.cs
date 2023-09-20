@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace SimpleSurvivors.Player
@@ -7,16 +8,24 @@ namespace SimpleSurvivors.Player
     {
         [SerializeField] private float movementSpeed;
 
+        private readonly float _maximumMovementSpeed = 6f;
+        private float _startingMovementSpeed;
         private Rigidbody2D _rigidbody2D;
         private PlayerHealth _playerHealth;
         private PlayerInputActionWrapper _playerInputActionWrapper;
         private Vector2 _velocity;
+        private bool _canMove;
 
         void Awake()
         {
             _rigidbody2D = GetComponent<Rigidbody2D>();
             _playerHealth = GetComponent<PlayerHealth>();
             _playerInputActionWrapper = new PlayerInputActionWrapper();
+        }
+
+        void Start()
+        {
+            _startingMovementSpeed = movementSpeed;
         }
 
         void Update()
@@ -26,7 +35,7 @@ namespace SimpleSurvivors.Player
 
         void FixedUpdate()
         {
-            if (_playerHealth.IsAlive())
+            if (_playerHealth.IsAlive() && _canMove)
             {
                 _rigidbody2D.MovePosition(_rigidbody2D.position + _velocity * (movementSpeed * Time.fixedDeltaTime));
             }
@@ -40,6 +49,32 @@ namespace SimpleSurvivors.Player
         void OnDisable()
         {
             _playerInputActionWrapper.Gameplay.Disable();
+        }
+        
+        /// <summary>
+        /// Toggle whether the player can move.
+        /// </summary>
+        public void SetCanMove(bool canMove)
+        {
+            _canMove = canMove;
+        }
+
+        public void ResetMovementSpeed()
+        {
+            movementSpeed = _startingMovementSpeed;
+        }
+
+        /// <summary>
+        /// Upgrades the movement speed by a percentage.
+        /// </summary>
+        public void UpgradeMovementSpeed(float percentage)
+        {
+            if (movementSpeed >= _maximumMovementSpeed)
+            {
+                return;
+            }
+            
+            movementSpeed *= percentage;
         }
     }
 }

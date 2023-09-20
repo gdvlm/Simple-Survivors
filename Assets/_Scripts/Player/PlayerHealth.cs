@@ -15,8 +15,9 @@ namespace SimpleSurvivors.Player
 
         private PlayerAttack _playerAttack;
         private PlayerExp _playerExp;
+        private PlayerInput _playerInput;
         private bool _isAlive;
-        private int _playerMaxHp;
+        public int _playerMaxHp;
         private int _playerCurrentHp;
         private Vector3 _startingPosition;
         private CapsuleCollider2D _capsuleCollider;
@@ -25,6 +26,7 @@ namespace SimpleSurvivors.Player
         {
             _playerAttack = GetComponentInChildren<PlayerAttack>();
             _playerExp = GetComponent<PlayerExp>();
+            _playerInput = GetComponent<PlayerInput>();
             _capsuleCollider = GetComponent<CapsuleCollider2D>();
         }
 
@@ -50,14 +52,18 @@ namespace SimpleSurvivors.Player
             }
         
             _playerCurrentHp = Math.Clamp(_playerCurrentHp, 0, _playerCurrentHp - damage);
-        
-            float hpPercent = (float)_playerCurrentHp / _playerMaxHp;
-            playerHpSprite.transform.localScale = new Vector3(hpPercent, 1, 1);
+            UpdateHealthBar();
 
             if (_playerCurrentHp == 0)
             {
                 KillPlayer();
             }
+        }
+
+        private void UpdateHealthBar()
+        {
+            float hpPercent = (float)_playerCurrentHp / _playerMaxHp;
+            playerHpSprite.transform.localScale = new Vector3(hpPercent, 1, 1);            
         }
 
         private void KillPlayer()
@@ -66,7 +72,7 @@ namespace SimpleSurvivors.Player
             playerSprite.SetActive(false);
             defeatCanvas.SetActive(true);
             timer.PauseTimer();
-            _playerAttack.StopAttack();
+            _playerAttack.SetAttack(false);
         }
 
         public void ReadyPlayer()
@@ -80,11 +86,21 @@ namespace SimpleSurvivors.Player
             playerHpSprite.transform.localScale = Vector3.one;
             _playerExp.ResetExp();
             _playerAttack.StartAttack();
+            _playerInput.ResetMovementSpeed();
         }
 
         public bool IsAlive()
         {
             return _isAlive;
+        }
+        
+        /// <summary>
+        /// Upgrades the health given a percentage.
+        /// </summary>
+        public void UpgradeHealth(float percentage)
+        {
+            _playerMaxHp = (int)(_playerMaxHp * percentage);
+            UpdateHealthBar();
         }
     }
 }

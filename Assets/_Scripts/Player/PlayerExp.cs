@@ -7,6 +7,7 @@ namespace SimpleSurvivors.Player
     {
         [SerializeField] private TMP_Text levelText;
         [SerializeField] private Transform expBarSprite;
+        [SerializeField] private GameManager gameManager;
         
         private IExpRequirement _expRequirement;
         private int _totalExpPoints = 0;
@@ -38,7 +39,8 @@ namespace SimpleSurvivors.Player
             _level++;
             
             // TODO: Show leveled UI here (animation, sounds, etc)
-            
+            gameManager.PauseGame();
+            gameManager.DisplayLevelUpCanvas();
             
             _currentExpPoints = 0;
             _totalExpNeeded = _expRequirement.GetTotalExpRequirement(_level);

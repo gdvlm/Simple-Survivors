@@ -12,6 +12,7 @@ namespace SimpleSurvivors.Enemy
         private Rigidbody2D _rigidbody2D;
         private Transform _playerPosition;
         private PlayerHealth _playerHealth;
+        private bool _isMoving;
     
         void Awake()
         {
@@ -21,7 +22,7 @@ namespace SimpleSurvivors.Enemy
         void FixedUpdate()
         {
             // _playerHealth is null until Initialize() is called
-            if (_playerHealth?.IsAlive() == true)
+            if (_playerHealth?.IsAlive() == true && _isMoving)
             {
                 MoveTowardsPlayer();    
             }
@@ -37,6 +38,7 @@ namespace SimpleSurvivors.Enemy
         {
             _playerPosition = playerPosition;
             _playerHealth = playerPosition.GetComponent<PlayerHealth>();
+            _isMoving = true;
         }
 
         public void ResetRandomPosition()
@@ -44,6 +46,14 @@ namespace SimpleSurvivors.Enemy
             float distance = 8.0f;
             Vector2 randomPosition = Vector2Extensions.GetRandomPositionByDistance(distance);
             transform.position = new Vector3(randomPosition.x, randomPosition.y, 1);
+        }
+
+        /// <summary>
+        /// Toggles whether the enemy is moving.
+        /// </summary>
+        public void SetMovement(bool isMoving)
+        {
+            _isMoving = isMoving;
         }
     }
 }

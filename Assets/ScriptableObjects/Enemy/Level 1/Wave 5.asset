@@ -10,17 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d4f43ca3eaa84814ab39cefe616087ea, type: 3}
-  m_Name: Wave 3
+  m_Name: Wave 5
   m_EditorClassIdentifier: 
   waveDetails:
-  - enemyPrefab: {fileID: 6864368344625920715, guid: a7cd77a73112e0b40a926a78e8c7728d, type: 3}
-    spawnCount: 15
-    spawnFrequency: 5
-    nextSpawnTime: 130.00171
-    distance: 8
   - enemyPrefab: {fileID: 7650011717829272153, guid: 0cdf96aa6744a4049a7dc350caf9f45c, type: 3}
+    spawnCount: 10
+    spawnFrequency: 10
+    nextSpawnTime: 140.00171
+    distance: 8
+  - enemyPrefab: {fileID: 7650011717829272153, guid: 72221b2faf78d2949be8af27675e0bab, type: 3}
     spawnCount: 10
     spawnFrequency: 20
     nextSpawnTime: 140.00171
     distance: 8
-  spawnTimer: 120
+  - enemyPrefab: {fileID: 7650011717829272153, guid: 4495a56ec1f356449a62a3fae0267fe2, type: 3}
+    spawnCount: 5
+    spawnFrequency: 25
+    nextSpawnTime: 130.00171
+    distance: 8
+  spawnTimer: 600

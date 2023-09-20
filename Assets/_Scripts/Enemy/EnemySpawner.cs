@@ -12,7 +12,7 @@ namespace SimpleSurvivors.Enemy
         [SerializeField] private Transform lootParent;
         [SerializeField] private WaveSO[] waves;
 
-        private List<GameObject> _enemies = new();
+        private readonly List<EnemyMovement> _pausedMovements = new();
         private bool _isEnabled = false;
         private int _waveIndex = 0;
 
@@ -65,7 +65,6 @@ namespace SimpleSurvivors.Enemy
                 {
                     Spawn(waveDetail.enemyPrefab, waveDetail.distance, waveDetail.spawnCount);
                     waveDetail.nextSpawnTime = timer.GetTime() + waveDetail.spawnFrequency;
-                    print($"Spawned {waveDetail.spawnCount} {waveDetail.enemyPrefab.name} enemy at {timer.GetTime():0.00}");
                 }
             }
         }
@@ -87,7 +86,6 @@ namespace SimpleSurvivors.Enemy
 
                 EnemyMovement enemyMovement = enemy.GetComponent<EnemyMovement>();
                 enemyMovement.Initialize(playerPosition);
-                _enemies.Add(enemy);
 
                 EnemyLoot enemyLoot = enemy.GetComponent<EnemyLoot>();
                 enemyLoot.lootParent = lootParent;
@@ -109,6 +107,26 @@ namespace SimpleSurvivors.Enemy
             _waveIndex = 0;
             ResetSpawnTimers();
             _isEnabled = true;
+        }
+
+        public void PauseEnemyMovements()
+        {
+            for (int i = 0; i < transform.childCount; i++)
+            {
+                EnemyMovement enemyMovement = transform.GetChild(i).GetComponent<EnemyMovement>();
+                enemyMovement.SetMovement(false);
+                _pausedMovements.Add(enemyMovement);
+            }            
+        }
+
+        public void ResumeEnemyMovements()
+        {
+            foreach (EnemyMovement enemyMovement in _pausedMovements)
+            {
+                enemyMovement.SetMovement(true);
+            }
+            
+            _pausedMovements.Clear();
         }
     }
 }
