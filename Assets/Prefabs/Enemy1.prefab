@@ -119,7 +119,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ac24fff074025048940f90f18c782f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
+  speed: 0.5
 --- !u!114 &-8274710864354788125
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -132,7 +132,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f5a5e4e93735cc4a80f83622bf9bee6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemyHp: 1
 --- !u!114 &4087402068011397200
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -146,6 +145,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lootPrefab: {fileID: 7625876723104100347, guid: b53e96116b2de0b4a87eaf5163cda09d, type: 3}
+  lootParent: {fileID: 0}
 --- !u!1 &1920071629465407764
 GameObject:
   m_ObjectHideFlags: 0

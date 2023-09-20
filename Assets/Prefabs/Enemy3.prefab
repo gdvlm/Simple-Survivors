@@ -47,7 +47,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.25
+  m_Radius: 0.37
 --- !u!1 &7650011717797746730
 GameObject:
   m_ObjectHideFlags: 0
@@ -95,7 +95,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.1
+  m_Radius: 0.2
 --- !u!1 &7650011717829272153
 GameObject:
   m_ObjectHideFlags: 0
@@ -167,7 +167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ac24fff074025048940f90f18c782f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
+  speed: 0.5
 --- !u!114 &-8239772751018340168
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -180,7 +180,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f5a5e4e93735cc4a80f83622bf9bee6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemyHp: 10
 --- !u!114 &8101756338985591105
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -221,7 +220,7 @@ Transform:
   m_GameObject: {fileID: 7650011718559228014}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalScale: {x: 0.75, y: 0.75, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7650011717829272156}
