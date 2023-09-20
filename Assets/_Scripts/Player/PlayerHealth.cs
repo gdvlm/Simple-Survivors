@@ -17,7 +17,7 @@ namespace SimpleSurvivors.Player
         private PlayerExp _playerExp;
         private PlayerInput _playerInput;
         private bool _isAlive;
-        private int _playerMaxHp;
+        public int _playerMaxHp;
         private int _playerCurrentHp;
         private Vector3 _startingPosition;
         private CapsuleCollider2D _capsuleCollider;
@@ -52,14 +52,18 @@ namespace SimpleSurvivors.Player
             }
         
             _playerCurrentHp = Math.Clamp(_playerCurrentHp, 0, _playerCurrentHp - damage);
-        
-            float hpPercent = (float)_playerCurrentHp / _playerMaxHp;
-            playerHpSprite.transform.localScale = new Vector3(hpPercent, 1, 1);
+            UpdateHealthBar();
 
             if (_playerCurrentHp == 0)
             {
                 KillPlayer();
             }
+        }
+
+        private void UpdateHealthBar()
+        {
+            float hpPercent = (float)_playerCurrentHp / _playerMaxHp;
+            playerHpSprite.transform.localScale = new Vector3(hpPercent, 1, 1);            
         }
 
         private void KillPlayer()
@@ -88,6 +92,15 @@ namespace SimpleSurvivors.Player
         public bool IsAlive()
         {
             return _isAlive;
+        }
+        
+        /// <summary>
+        /// Upgrades the health given a percentage.
+        /// </summary>
+        public void UpgradeHealth(float percentage)
+        {
+            _playerMaxHp = (int)(_playerMaxHp * percentage);
+            UpdateHealthBar();
         }
     }
 }
