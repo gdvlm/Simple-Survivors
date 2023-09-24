@@ -77,9 +77,9 @@ namespace SimpleSurvivors.Player
             {
                 return true;
             }
-            
+
             _playerDirection = playerDirection;
-            return true;
+            return false;
         }
         
         /// <summary>
