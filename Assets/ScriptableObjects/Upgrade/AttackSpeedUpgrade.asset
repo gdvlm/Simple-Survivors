@@ -17,6 +17,7 @@ MonoBehaviour:
   attackSpeedAdd: 0.1
   attackSpeedMultiply: 1
   movementSpeedMultiply: 1
-  sprite: {fileID: 7482667652216324306, guid: 7b2bdad4692fbf64da51202eacd61c9a, type: 3}
-  title: Attack Speed +
+  healthMultiply: 1
+  sprite: {fileID: 21300000, guid: 3368716fbd382454d8cb4c5a0c82695b, type: 3}
+  title: Attack Speed
   description: Increases attack speed by 10%.

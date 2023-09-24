@@ -18,6 +18,6 @@ MonoBehaviour:
   attackSpeedMultiply: 1
   movementSpeedMultiply: 1
   healthMultiply: 1.1
-  sprite: {fileID: -9095717837082945937, guid: c215c5e8bff7b6c43abb35a77ee2ad26, type: 3}
-  title: Health ++
+  sprite: {fileID: 21300000, guid: 961b7611ce0cf4844ae7186116425337, type: 3}
+  title: Health
   description: Increases maximum health by 10%.

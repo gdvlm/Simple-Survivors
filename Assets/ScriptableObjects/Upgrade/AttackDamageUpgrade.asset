@@ -17,6 +17,7 @@ MonoBehaviour:
   attackSpeedAdd: 0
   attackSpeedMultiply: 1
   movementSpeedMultiply: 1
-  sprite: {fileID: -2413806693520163455, guid: b5fa7bf3136d3c04cba8789fa2903282, type: 3}
-  title: Attack Damage ++
+  healthMultiply: 1
+  sprite: {fileID: 21300000, guid: 703a56da04d0bc04bb9c3ab09d382bc7, type: 3}
+  title: Attack Damage
   description: Increases attack damage by 10%.
