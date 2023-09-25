@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7650011717158491451}
-  - component: {fileID: 7650011717158491452}
+  - component: {fileID: 1963033434568960212}
   m_Layer: 0
   m_Name: DamageCollider
   m_TagString: Enemy
@@ -32,8 +32,8 @@ Transform:
   m_Father: {fileID: 7650011717829272156}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!58 &7650011717158491452
-CircleCollider2D:
+--- !u!70 &1963033434568960212
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -46,8 +46,8 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.25
+  m_Size: {x: 0.43, y: 0.25}
+  m_Direction: 1
 --- !u!1 &7650011717797746730
 GameObject:
   m_ObjectHideFlags: 0
@@ -204,6 +204,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7650011718559228015}
   - component: {fileID: 7650011718559228016}
+  - component: {fileID: 50939879357542774}
   m_Layer: 0
   m_Name: Circle
   m_TagString: Untagged
@@ -220,7 +221,7 @@ Transform:
   m_GameObject: {fileID: 7650011718559228014}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7650011717829272156}
@@ -267,7 +268,7 @@ SpriteRenderer:
   m_SortingLayerID: 2048200221
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_Sprite: {fileID: -1973735315, guid: 8c90b5ca9721cb0449482f6f8fd7111e, type: 3}
   m_Color: {r: 1, g: 0.96859986, b: 0.08176094, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -278,3 +279,23 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &50939879357542774
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7650011718559228014}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: dcd629d8ad926d546aefe26b4cf65aa0, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
