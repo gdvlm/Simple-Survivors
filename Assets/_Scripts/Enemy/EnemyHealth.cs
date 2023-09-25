@@ -5,7 +5,8 @@ namespace SimpleSurvivors.Enemy
 {
     public class EnemyHealth : MonoBehaviour
     {
-        // TODO: Integrate with Scriptable Objects
+        [SerializeField] private EnemySO enemySo;
+        
         private EnemyLoot _enemyLoot;
         private bool _isAlive;
         private int _enemyHp;
@@ -39,6 +40,7 @@ namespace SimpleSurvivors.Enemy
 
         public void ReadyEnemy()
         {
+            _enemyHp = enemySo.enemyHp;
             _isAlive = true;
         }
     }
