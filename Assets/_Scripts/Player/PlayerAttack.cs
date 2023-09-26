@@ -7,7 +7,7 @@ namespace SimpleSurvivors.Player
     public class PlayerAttack : MonoBehaviour
     {
         [SerializeField] private GameObject attackPrefab;
-        [SerializeField] private float attackOffset = 1.0f;
+        [SerializeField] private float attackOffset = -1.0f;
         [SerializeField] private int attackDamage = 1;
         [SerializeField] private float attackDelay = 1.5f;
 
@@ -93,6 +93,12 @@ namespace SimpleSurvivors.Player
         public int GetAttackDamage()
         {
             return attackDamage;
+        }
+
+        public void FaceOppositeDirection()
+        {
+            
+            print("face player to opposite direction");
         }
     }
 }

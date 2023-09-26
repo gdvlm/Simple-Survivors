@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 namespace SimpleSurvivors.Player
@@ -15,6 +14,7 @@ namespace SimpleSurvivors.Player
         private PlayerInputActionWrapper _playerInputActionWrapper;
         private Vector2 _velocity;
         private bool _canMove;
+        private PlayerDirection _playerDirection;
 
         void Awake()
         {
@@ -26,11 +26,20 @@ namespace SimpleSurvivors.Player
         void Start()
         {
             _startingMovementSpeed = movementSpeed;
+            _playerDirection = PlayerDirection.Right;
         }
 
         void Update()
         {
             _velocity = _playerInputActionWrapper.Gameplay.Movement.ReadValue<Vector2>();
+
+            if (!PlayerIsFacingSameDirection(_velocity))
+            {
+                float newYRotation = _playerDirection == PlayerDirection.Left
+                    ? 0
+                    : 180;
+                transform.eulerAngles = new(transform.eulerAngles.x, newYRotation, transform.eulerAngles.z);
+            }
         }
 
         void FixedUpdate()
@@ -49,6 +58,28 @@ namespace SimpleSurvivors.Player
         void OnDisable()
         {
             _playerInputActionWrapper.Gameplay.Disable();
+        }
+
+        /// <summary>
+        /// Indicates whether the player is facing a new direction compared to previous frame.
+        /// </summary>
+        private bool PlayerIsFacingSameDirection(Vector2 input)
+        {
+            if (input.x == 0)
+            {
+                return true;
+            }
+            
+            PlayerDirection playerDirection = input.x > 0
+                ? PlayerDirection.Right
+                : PlayerDirection.Left;
+            if (playerDirection == _playerDirection)
+            {
+                return true;
+            }
+
+            _playerDirection = playerDirection;
+            return false;
         }
         
         /// <summary>
