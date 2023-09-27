@@ -15,6 +15,7 @@ namespace SimpleSurvivors
         [SerializeField] private Transform upgradeButtons;
         [SerializeField] private PlayerHealth playerHealth;
         [SerializeField] private EnemySpawner enemySpawner;
+        [SerializeField] private HealthSpawner healthSpawner;
         [SerializeField] private Timer timer;
         [SerializeField] private UpgradeManager upgradeManager;
 
@@ -47,6 +48,7 @@ namespace SimpleSurvivors
             enemySpawner.ResetEnemies();
             timer.StartTimer();
             _playerInput.SetCanMove(true);
+            healthSpawner.SetEnabled(true);
         }
 
         public void ReturnToStartMenu()

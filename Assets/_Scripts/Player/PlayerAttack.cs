@@ -28,9 +28,13 @@ namespace SimpleSurvivors.Player
         /// </summary>
         private void InitializeAttack()
         {
-            _currentAttack = Instantiate(attackPrefab, new Vector3(
-                transform.position.x + attackOffset, 
-                transform.position.y, 0), Quaternion.identity, transform);
+            if (_currentAttack == null)
+            {
+                _currentAttack = Instantiate(attackPrefab, new Vector3(
+                    transform.position.x + attackOffset, 
+                    transform.position.y, 0), Quaternion.identity, transform);    
+            }
+            
             _currentAttack.SetActive(false);
             attackDamage = _startingAttackDamage;
             attackDelay = _startingAttackDelay;
@@ -93,12 +97,6 @@ namespace SimpleSurvivors.Player
         public int GetAttackDamage()
         {
             return attackDamage;
-        }
-
-        public void FaceOppositeDirection()
-        {
-            
-            print("face player to opposite direction");
         }
     }
 }
