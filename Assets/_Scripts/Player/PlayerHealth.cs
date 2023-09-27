@@ -75,6 +75,17 @@ namespace SimpleSurvivors.Player
             _playerAttack.SetAttack(false);
         }
 
+        public void HealPlayer(int healAmount)
+        {
+            if (_playerCurrentHp == _playerMaxHp)
+            {
+                return;
+            }
+            
+            _playerCurrentHp = Math.Min(_playerCurrentHp + healAmount, _playerMaxHp);
+            UpdateHealthBar();
+        }
+
         public void ReadyPlayer()
         {
             // TODO: Refactor to PlayerController class
