@@ -71,7 +71,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 2048200221
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 46cdbab4887b1ac4aa02c0c44f79d9dd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -155,7 +155,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 2087533261
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 1
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 0.5471698, g: 0, b: 0, a: 1}
@@ -239,7 +239,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 2087533261
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 0.122641504, g: 0.122641504, b: 0.122641504, a: 1}
@@ -358,7 +358,6 @@ MonoBehaviour:
   defeatCanvas: {fileID: 0}
   timer: {fileID: 0}
   playerHp: 100
-  _playerMaxHp: 0
 --- !u!114 &7580128697342213497
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -390,6 +389,7 @@ MonoBehaviour:
   attackOffset: 1
   attackDamage: 1
   attackDelay: 1.5
+  spriteGO: {fileID: 5218328876468542282}
 --- !u!1 &5218328877752186417
 GameObject:
   m_ObjectHideFlags: 0

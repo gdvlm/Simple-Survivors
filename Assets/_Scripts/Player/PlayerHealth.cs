@@ -17,7 +17,7 @@ namespace SimpleSurvivors.Player
         private PlayerExp _playerExp;
         private PlayerInput _playerInput;
         private bool _isAlive;
-        public int _playerMaxHp;
+        private int _playerMaxHp;
         private int _playerCurrentHp;
         private Vector3 _startingPosition;
         private CapsuleCollider2D _capsuleCollider;
