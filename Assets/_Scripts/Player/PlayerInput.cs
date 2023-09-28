@@ -11,6 +11,7 @@ namespace SimpleSurvivors.Player
         private float _startingMovementSpeed;
         private Rigidbody2D _rigidbody2D;
         private PlayerHealth _playerHealth;
+        private PlayerAttack _playerAttack;
         private PlayerInputActionWrapper _playerInputActionWrapper;
         private Vector2 _velocity;
         private bool _canMove;
@@ -20,6 +21,7 @@ namespace SimpleSurvivors.Player
         {
             _rigidbody2D = GetComponent<Rigidbody2D>();
             _playerHealth = GetComponent<PlayerHealth>();
+            _playerAttack = GetComponent<PlayerAttack>();
             _playerInputActionWrapper = new PlayerInputActionWrapper();
         }
 
@@ -38,7 +40,7 @@ namespace SimpleSurvivors.Player
                 float newYRotation = _playerDirection == PlayerDirection.Left
                     ? 0
                     : 180;
-                transform.eulerAngles = new(transform.eulerAngles.x, newYRotation, transform.eulerAngles.z);
+                _playerAttack.SetPlayerDirection(newYRotation);
             }
         }
 
