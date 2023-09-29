@@ -6,6 +6,7 @@ namespace SimpleSurvivors.Enemy
     public class EnemyHealth : MonoBehaviour
     {
         [SerializeField] private EnemySO enemySo;
+        [SerializeField] private GameObject damagePrefab;
         
         private EnemyLoot _enemyLoot;
         private bool _isAlive;
@@ -22,6 +23,9 @@ namespace SimpleSurvivors.Enemy
             {
                 var playerAttack = other.GetComponentInParent<PlayerAttack>();
                 _enemyHp -= playerAttack.GetAttackDamage();
+
+                print($"Show damage: {playerAttack.GetAttackDamage()}");
+                Instantiate(damagePrefab, transform);
 
                 if (_enemyHp <= 0)
                 {
