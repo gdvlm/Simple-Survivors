@@ -1,4 +1,5 @@
 using SimpleSurvivors.Player;
+using Unity.Mathematics;
 using UnityEngine;
 
 namespace SimpleSurvivors.Enemy
@@ -11,6 +12,7 @@ namespace SimpleSurvivors.Enemy
         private EnemyLoot _enemyLoot;
         private bool _isAlive;
         private int _enemyHp;
+        private Transform _damagePopUpContainer;
 
         void Awake()
         {
@@ -25,7 +27,7 @@ namespace SimpleSurvivors.Enemy
                 _enemyHp -= playerAttack.GetAttackDamage();
 
                 print($"Show damage: {playerAttack.GetAttackDamage()}");
-                Instantiate(damagePrefab, transform);
+                Instantiate(damagePrefab, transform.position, quaternion.identity, _damagePopUpContainer);
 
                 if (_enemyHp <= 0)
                 {
@@ -42,8 +44,9 @@ namespace SimpleSurvivors.Enemy
             Destroy(gameObject);
         }
 
-        public void ReadyEnemy()
+        public void ReadyEnemy(Transform damagePopupContainer)
         {
+            _damagePopUpContainer = damagePopupContainer;
             _enemyHp = enemySo.enemyHp;
             _isAlive = true;
         }
