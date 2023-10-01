@@ -1,4 +1,5 @@
 using SimpleSurvivors.Player;
+using TMPro;
 using Unity.Mathematics;
 using UnityEngine;
 
@@ -27,7 +28,11 @@ namespace SimpleSurvivors.Enemy
                 _enemyHp -= playerAttack.GetAttackDamage();
 
                 print($"Show damage: {playerAttack.GetAttackDamage()}");
-                Instantiate(damagePrefab, transform.position, quaternion.identity, _damagePopUpContainer);
+                
+                var prefab = Instantiate(damagePrefab, transform.position,
+                    quaternion.identity, _damagePopUpContainer);
+                TMP_Text damageText = prefab.GetComponentInChildren<TMP_Text>();
+                damageText.text = playerAttack.GetAttackDamage().ToString();
 
                 if (_enemyHp <= 0)
                 {
