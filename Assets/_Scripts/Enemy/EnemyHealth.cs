@@ -26,8 +26,6 @@ namespace SimpleSurvivors.Enemy
             {
                 var playerAttack = other.GetComponentInParent<PlayerAttack>();
                 _enemyHp -= playerAttack.GetAttackDamage();
-
-                print($"Show damage: {playerAttack.GetAttackDamage()}");
                 
                 var prefab = Instantiate(damagePrefab, transform.position,
                     quaternion.identity, _damagePopUpContainer);

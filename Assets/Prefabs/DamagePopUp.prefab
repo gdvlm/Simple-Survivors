@@ -181,6 +181,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 762482068999367835}
+  - component: {fileID: 5043993213897922024}
   m_Layer: 0
   m_Name: DamagePopup
   m_TagString: Untagged
@@ -204,3 +205,34 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5043993213897922024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 762482068999367834}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cab23d53a937974a8d7744bcfe1e1be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enableMoveUp: 1
+  moveUpSpeed: 0.01
+  moveUpDelay: 0.02
+  moveUpDuration: 0.1
+  enableExpand: 1
+  expandSpeed: 0.05
+  expandDelay: 0.015
+  expandDuration: 0.1
+  enableShrink: 1
+  shrinkSpeed: 0.06
+  shrinkDelay: 0.02
+  shrinkDuration: 0.05
+  enableFadeOut: 1
+  fadeOutSpeed: 0.1
+  fadeOutDelay: 0.02
+  fadeOutDuration: 2
+  enableDestroy: 1
+  destroyDelay: 0.1
+  destroyDuration: 1
