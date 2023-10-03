@@ -8,6 +8,7 @@ namespace SimpleSurvivors.Enemy
     public class EnemySpawner : MonoBehaviour
     {
         [SerializeField] private Transform playerPosition;
+        [SerializeField] private Transform damagePopupContainer;
         [SerializeField] private Timer timer;
         [SerializeField] private Transform lootParent;
         [SerializeField] private WaveSO[] waves;
@@ -82,7 +83,7 @@ namespace SimpleSurvivors.Enemy
                     Quaternion.identity, transform);
 
                 EnemyHealth enemyHealth = enemy.GetComponent<EnemyHealth>();
-                enemyHealth.ReadyEnemy();
+                enemyHealth.ReadyEnemy(damagePopupContainer);
 
                 EnemyMovement enemyMovement = enemy.GetComponent<EnemyMovement>();
                 enemyMovement.Initialize(playerPosition);

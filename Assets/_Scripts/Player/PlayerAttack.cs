@@ -10,7 +10,7 @@ namespace SimpleSurvivors.Player
         [SerializeField] private float attackOffset = -1.0f;
         [SerializeField] private int attackDamage = 1;
         [SerializeField] private float attackDelay = 1.5f;
-        [SerializeField] private GameObject spriteGO;
+        [SerializeField] private GameObject spriteGo;
 
         private readonly float _minimumDelay = 0.1f;
         private int _startingAttackDamage;
@@ -102,8 +102,8 @@ namespace SimpleSurvivors.Player
 
         public void SetPlayerDirection(float newYRotation)
         {
-            spriteGO.transform.eulerAngles = new(spriteGO.transform.eulerAngles.x, newYRotation,
-                spriteGO.transform.eulerAngles.z);
+            spriteGo.transform.eulerAngles = new(spriteGo.transform.eulerAngles.x, newYRotation,
+                spriteGo.transform.eulerAngles.z);
 
             float offset = newYRotation > 0.0f ? attackOffset : -attackOffset;
             _currentAttack.transform.position =

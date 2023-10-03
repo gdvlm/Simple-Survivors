@@ -389,7 +389,7 @@ MonoBehaviour:
   attackOffset: 1
   attackDamage: 1
   attackDelay: 1.5
-  spriteGO: {fileID: 5218328876468542282}
+  spriteGo: {fileID: 5218328876468542282}
 --- !u!1 &5218328877752186417
 GameObject:
   m_ObjectHideFlags: 0

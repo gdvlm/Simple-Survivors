@@ -1,4 +1,6 @@
 using SimpleSurvivors.Player;
+using TMPro;
+using Unity.Mathematics;
 using UnityEngine;
 
 namespace SimpleSurvivors.Enemy
@@ -6,10 +8,12 @@ namespace SimpleSurvivors.Enemy
     public class EnemyHealth : MonoBehaviour
     {
         [SerializeField] private EnemySO enemySo;
+        [SerializeField] private GameObject damagePrefab;
         
         private EnemyLoot _enemyLoot;
         private bool _isAlive;
         private int _enemyHp;
+        private Transform _damagePopUpContainer;
 
         void Awake()
         {
@@ -22,6 +26,11 @@ namespace SimpleSurvivors.Enemy
             {
                 var playerAttack = other.GetComponentInParent<PlayerAttack>();
                 _enemyHp -= playerAttack.GetAttackDamage();
+                
+                var prefab = Instantiate(damagePrefab, transform.position,
+                    quaternion.identity, _damagePopUpContainer);
+                TMP_Text damageText = prefab.GetComponentInChildren<TMP_Text>();
+                damageText.text = playerAttack.GetAttackDamage().ToString();
 
                 if (_enemyHp <= 0)
                 {
@@ -38,8 +47,9 @@ namespace SimpleSurvivors.Enemy
             Destroy(gameObject);
         }
 
-        public void ReadyEnemy()
+        public void ReadyEnemy(Transform damagePopupContainer)
         {
+            _damagePopUpContainer = damagePopupContainer;
             _enemyHp = enemySo.enemyHp;
             _isAlive = true;
         }

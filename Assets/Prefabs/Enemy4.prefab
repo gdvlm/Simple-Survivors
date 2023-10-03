@@ -181,6 +181,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemySo: {fileID: 11400000, guid: 8e2251755619cec4ca7559b9a247221c, type: 2}
+  damagePrefab: {fileID: 762482068999367834, guid: 103cf1bb3d0a6744f98817537ed9d526, type: 3}
 --- !u!114 &8101756338985591105
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -267,7 +268,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 2048200221
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: -1973735315, guid: 8c90b5ca9721cb0449482f6f8fd7111e, type: 3}
   m_Color: {r: 1, g: 0.96859986, b: 0.08176094, a: 1}
