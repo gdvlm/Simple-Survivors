@@ -117,16 +117,11 @@ namespace SimpleSurvivors.Enemy
             return enemy;
         }
 
-        public void RecycleEnemy(GameObject enemy)
-        {
-            enemy.SetActive(false);
-        }
-
         public void ResetEnemies()
         {
             for (int i = 0; i < transform.childCount; i++)
             {
-                RecycleEnemy(transform.GetChild(i).gameObject);
+                transform.GetChild(i).gameObject.SetActive(false);
             }
 
             for (int i = 0; i < lootParent.childCount; i++)
