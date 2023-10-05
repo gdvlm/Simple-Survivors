@@ -9,7 +9,7 @@ namespace SimpleSurvivors.Enemy
     {
         [SerializeField] private EnemySO enemySo;
         [SerializeField] private GameObject damagePrefab;
-        
+
         private EnemyLoot _enemyLoot;
         private bool _isAlive;
         private int _enemyHp;
@@ -43,11 +43,10 @@ namespace SimpleSurvivors.Enemy
         {
             _isAlive = false;
             _enemyLoot.DropLoot();
-            
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
 
-        public void ReadyEnemy(Transform damagePopupContainer)
+        public void ReadyEnemy(Transform damagePopupContainer, EnemySpawner enemySpawner)
         {
             _damagePopUpContainer = damagePopupContainer;
             _enemyHp = enemySo.enemyHp;

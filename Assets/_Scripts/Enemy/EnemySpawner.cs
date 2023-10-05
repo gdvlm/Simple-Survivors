@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using SimpleSurvivors.Extensions;
 using SimpleSurvivors.Utils;
 using UnityEngine;
@@ -13,6 +14,7 @@ namespace SimpleSurvivors.Enemy
         [SerializeField] private Transform lootParent;
         [SerializeField] private WaveSO[] waves;
 
+        public Dictionary<string, List<GameObject>> _pooledEnemyHash = new();
         private readonly List<EnemyMovement> _pausedMovements = new();
         private bool _isEnabled = false;
         private int _waveIndex = 0;
@@ -77,13 +79,12 @@ namespace SimpleSurvivors.Enemy
         {
             for (int i = 0; i < times; i++)
             {
-                // TODO: Implement object pooling
                 Vector2 randomPosition = Vector2Extensions.GetRandomPositionByDistance(distance);
-                GameObject enemy = Instantiate(prefab, new Vector3(randomPosition.x, randomPosition.y, 0),
-                    Quaternion.identity, transform);
+                GameObject enemy = GetOrCreate(prefab);
+                enemy.transform.position = randomPosition;
 
                 EnemyHealth enemyHealth = enemy.GetComponent<EnemyHealth>();
-                enemyHealth.ReadyEnemy(damagePopupContainer);
+                enemyHealth.ReadyEnemy(damagePopupContainer, this);
 
                 EnemyMovement enemyMovement = enemy.GetComponent<EnemyMovement>();
                 enemyMovement.Initialize(playerPosition);
@@ -93,11 +94,34 @@ namespace SimpleSurvivors.Enemy
             }
         }
 
+        /// <summary>
+        /// Retrive an enemy using object pooling.
+        /// </summary>
+        private GameObject GetOrCreate(GameObject prefab)
+        {
+            if (_pooledEnemyHash.ContainsKey(prefab.name) && _pooledEnemyHash[prefab.name].Any(pe => !pe.activeSelf))
+            {
+                GameObject pooledEnemy = _pooledEnemyHash[prefab.name].First(pe => !pe.activeSelf);
+                pooledEnemy.SetActive(true);
+                return pooledEnemy;
+            }
+            
+            GameObject enemy = Instantiate(prefab, transform);
+            if (_pooledEnemyHash.ContainsKey(prefab.name))
+            {
+                _pooledEnemyHash[prefab.name].Add(enemy);
+                return enemy;
+            }
+
+            _pooledEnemyHash[prefab.name] = new() { enemy };
+            return enemy;
+        }
+
         public void ResetEnemies()
         {
             for (int i = 0; i < transform.childCount; i++)
             {
-                Destroy(transform.GetChild(i).gameObject);
+                transform.GetChild(i).gameObject.SetActive(false);
             }
 
             for (int i = 0; i < lootParent.childCount; i++)

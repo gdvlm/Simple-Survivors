@@ -51,7 +51,7 @@ namespace SimpleSurvivors.Player
                 return;
             }
         
-            _playerCurrentHp = Math.Clamp(_playerCurrentHp, 0, _playerCurrentHp - damage);
+            _playerCurrentHp = Math.Max(0, _playerCurrentHp - damage);
             UpdateHealthBar();
 
             if (_playerCurrentHp == 0)
