@@ -386,9 +386,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackPrefab: {fileID: 4431058977273660533, guid: e0085e67714f8aa46a7e5796e70758da, type: 3}
-  attackOffset: 1
+  attackXOffset: 1
+  attackYOffset: 0.2
   attackDamage: 1
   attackDelay: 1.5
+  animationDelay: 0.1
   spriteGo: {fileID: 5218328876468542282}
 --- !u!1 &5218328877752186417
 GameObject:

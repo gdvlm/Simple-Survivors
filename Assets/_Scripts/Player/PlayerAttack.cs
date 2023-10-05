@@ -7,7 +7,8 @@ namespace SimpleSurvivors.Player
     public class PlayerAttack : MonoBehaviour
     {
         [SerializeField] private GameObject attackPrefab;
-        [SerializeField] private float attackOffset = -1.0f;
+        [SerializeField] private float attackXOffset = -1.0f;
+        [SerializeField] private float attackYOffset = -0.5f;
         [SerializeField] private int attackDamage = 1;
         [SerializeField] private float attackDelay = 1.5f;
         [SerializeField] private GameObject spriteGo;
@@ -32,8 +33,8 @@ namespace SimpleSurvivors.Player
             if (_currentAttack == null)
             {
                 _currentAttack = Instantiate(attackPrefab, new Vector3(
-                    transform.position.x + attackOffset, 
-                    transform.position.y, 0), Quaternion.identity, transform);    
+                    transform.position.x + attackXOffset, 
+                    transform.position.y + attackYOffset, 0), Quaternion.identity, transform);
             }
             
             _currentAttack.SetActive(false);
@@ -105,9 +106,9 @@ namespace SimpleSurvivors.Player
             spriteGo.transform.eulerAngles = new(spriteGo.transform.eulerAngles.x, newYRotation,
                 spriteGo.transform.eulerAngles.z);
 
-            float offset = newYRotation > 0.0f ? attackOffset : -attackOffset;
+            float xOffset = newYRotation > 0.0f ? attackXOffset : -attackXOffset;
             _currentAttack.transform.position =
-                new Vector3(transform.position.x + offset, transform.position.y, 0);
+                new Vector3(transform.position.x + xOffset, transform.position.y + attackYOffset, 0);
 
             float reverseAngle = newYRotation == 0 ? 180.0f : 0f;
             _currentAttack.transform.eulerAngles = new(_currentAttack.transform.eulerAngles.x,
