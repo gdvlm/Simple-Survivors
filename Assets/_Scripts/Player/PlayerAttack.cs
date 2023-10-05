@@ -11,6 +11,7 @@ namespace SimpleSurvivors.Player
         [SerializeField] private float attackYOffset = -0.5f;
         [SerializeField] private int attackDamage = 1;
         [SerializeField] private float attackDelay = 1.5f;
+        [SerializeField] private float animationDelay = 0.5f;
         [SerializeField] private GameObject spriteGo;
 
         private readonly float _minimumDelay = 0.1f;
@@ -35,6 +36,10 @@ namespace SimpleSurvivors.Player
                 _currentAttack = Instantiate(attackPrefab, new Vector3(
                     transform.position.x + attackXOffset, 
                     transform.position.y + attackYOffset, 0), Quaternion.identity, transform);
+                
+                // Set animation speed
+                var animator = _currentAttack.GetComponentInChildren<Animator>();
+                animator.speed /= animationDelay;
             }
             
             _currentAttack.SetActive(false);
@@ -48,9 +53,9 @@ namespace SimpleSurvivors.Player
             {
                 // TODO: Refactor to use object pooling
                 _currentAttack.SetActive(true);
-                yield return new WaitForSeconds(0.1f);
+                yield return new WaitForSeconds(animationDelay);
                 _currentAttack.SetActive(false);
-                
+
                 yield return new WaitForSeconds(Math.Max(attackDelay, _minimumDelay));
             }
         }
