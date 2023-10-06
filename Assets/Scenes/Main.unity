@@ -1634,7 +1634,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 2102577645
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!224 &763713212
 RectTransform:
@@ -4349,6 +4349,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 824985865}
     m_Modifications:
+    - target: {fileID: 3245193423690857863, guid: 5ee18c06d5b7d204fb668b7b9fd07298, type: 3}
+      propertyPath: animationDelay
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 5218328877150823757, guid: 5ee18c06d5b7d204fb668b7b9fd07298, type: 3}
       propertyPath: m_Name
       value: Player
