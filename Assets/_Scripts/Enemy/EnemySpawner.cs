@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using SimpleSurvivors.Extensions;
+using SimpleSurvivors.Player;
 using SimpleSurvivors.Utils;
 using UnityEngine;
 
@@ -9,6 +10,7 @@ namespace SimpleSurvivors.Enemy
     public class EnemySpawner : MonoBehaviour
     {
         [SerializeField] private Transform playerPosition;
+        [SerializeField] private PlayerAttack playerAttack;
         [SerializeField] private Transform damagePopupContainer;
         [SerializeField] private Timer timer;
         [SerializeField] private Transform lootParent;
@@ -84,7 +86,7 @@ namespace SimpleSurvivors.Enemy
                 enemy.transform.position = randomPosition;
 
                 EnemyHealth enemyHealth = enemy.GetComponent<EnemyHealth>();
-                enemyHealth.ReadyEnemy(damagePopupContainer, this);
+                enemyHealth.ReadyEnemy(damagePopupContainer, playerAttack);
 
                 EnemyMovement enemyMovement = enemy.GetComponent<EnemyMovement>();
                 enemyMovement.Initialize(playerPosition);
