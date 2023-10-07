@@ -35,14 +35,11 @@ namespace SimpleSurvivors.Player
             if (_currentAttack == null)
             {
                 _currentAttack = Instantiate(attackPrefab, new Vector3(
-                    transform.position.x + attackXOffset, 
+                    transform.position.x + attackXOffset,
                     transform.position.y + attackYOffset, 0), Quaternion.identity);
-                
-                // Set animation speed
-                var animator = _currentAttack.GetComponentInChildren<Animator>();
-                animator.speed /= animationDelay;
             }
-            
+
+            SetAttackAnimationSpeed(1 / animationDelay);
             _currentAttack.SetActive(false);
             attackDamage = _startingAttackDamage;
             attackDelay = _startingAttackDelay;
@@ -56,10 +53,19 @@ namespace SimpleSurvivors.Player
 
                 _currentAttack.SetActive(true);
                 yield return new WaitForSeconds(animationDelay);
-                
+
                 _currentAttack.SetActive(false);
                 yield return new WaitForSeconds(Math.Max(attackDelay, _minimumDelay));
             }
+        }
+
+        /// <summary>
+        /// Set current attack's animation speed.
+        /// </summary>
+        private void SetAttackAnimationSpeed(float speed)
+        {
+            var animator = _currentAttack.GetComponentInChildren<Animator>();
+            animator.speed = speed;
         }
 
         private void SetAttackPositionAndRotation()
@@ -91,10 +97,12 @@ namespace SimpleSurvivors.Player
 
             if (!isAttacking)
             {
+                SetAttackAnimationSpeed(0);
                 StopAllCoroutines();
                 return;
             }
 
+            SetAttackAnimationSpeed(1 / animationDelay);
             StartCoroutine(FireAttack());
         }
 
@@ -115,7 +123,7 @@ namespace SimpleSurvivors.Player
             {
                 return;
             }
-            
+
             attackDelay -= delayValue;
         }
 
