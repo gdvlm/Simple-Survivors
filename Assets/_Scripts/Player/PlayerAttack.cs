@@ -52,12 +52,11 @@ namespace SimpleSurvivors.Player
         {
             while (_isAttacking)
             {
-                // TODO: Refactor to use object pooling
                 SetAttackPositionAndRotation();
+                
                 _currentAttack.SetActive(true);
                 yield return new WaitForSeconds(animationDelay);
                 _currentAttack.SetActive(false);
-
                 yield return new WaitForSeconds(Math.Max(attackDelay, _minimumDelay));
             }
         }
@@ -72,7 +71,7 @@ namespace SimpleSurvivors.Player
             _currentAttack.transform.eulerAngles = new(
                 _currentAttack.transform.eulerAngles.x,
                 reverseAngle,
-                _currentAttack.transform.eulerAngles.z);            
+                _currentAttack.transform.eulerAngles.z);
         }
 
         public void StartAttack()
@@ -124,10 +123,10 @@ namespace SimpleSurvivors.Player
         public void SetPlayerDirection(float newYRotation)
         {
             _lastYRotation = newYRotation;
-            playerSprite.transform.eulerAngles = new(playerSprite.transform.eulerAngles.x, newYRotation,
+            playerSprite.transform.eulerAngles = new(
+                playerSprite.transform.eulerAngles.x,
+                newYRotation,
                 playerSprite.transform.eulerAngles.z);
-
-            SetAttackPositionAndRotation();
         }
     }
 }
