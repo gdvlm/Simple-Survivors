@@ -82,8 +82,8 @@ namespace SimpleSurvivors.Player
 
             float expPercent = GetExpPercent();
             UpdateExpBar(expPercent);
-            
-            while (_totalExpPoints >= _totalExpNeeded)
+
+            if (_totalExpPoints >= _totalExpNeeded)
             {
                 LevelUp();
             }
