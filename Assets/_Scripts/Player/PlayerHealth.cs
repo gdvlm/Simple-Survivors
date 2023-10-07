@@ -12,6 +12,7 @@ namespace SimpleSurvivors.Player
         [SerializeField] private GameObject defeatCanvas;
         [SerializeField] private Timer timer;
         [SerializeField][Tooltip("Override the player HP for testing.")] private int playerHp;
+        [SerializeField] private int enemyAttack = 40;
 
         private PlayerAttack _playerAttack;
         private PlayerExp _playerExp;
@@ -39,8 +40,7 @@ namespace SimpleSurvivors.Player
         {
             if (_capsuleCollider.IsTouching(other) && other.transform.CompareTag("Enemy"))
             {
-                int damage = 50;
-                TakeDamage(damage);
+                TakeDamage(enemyAttack);
             }
         }
 

@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67213fa74589ed140810ed18c16623dd, type: 3}
   m_Name: Enemy2
   m_EditorClassIdentifier: 
-  enemyHp: 2
+  enemyHp: 3
