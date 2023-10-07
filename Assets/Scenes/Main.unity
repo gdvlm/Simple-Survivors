@@ -2459,7 +2459,7 @@ Transform:
   - {fileID: 1205767833}
   - {fileID: 124956148}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1294302469
 GameObject:
@@ -4434,6 +4434,10 @@ PrefabInstance:
       propertyPath: defeatCanvas
       value: 
       objectReference: {fileID: 2243971}
+    - target: {fileID: 5218328877150823762, guid: 5ee18c06d5b7d204fb668b7b9fd07298, type: 3}
+      propertyPath: enemySpawner
+      value: 
+      objectReference: {fileID: 1535066869}
     - target: {fileID: 7580128697342213497, guid: 5ee18c06d5b7d204fb668b7b9fd07298, type: 3}
       propertyPath: levelText
       value: 
@@ -4461,7 +4465,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7586348241441955214, guid: 98d8d7a146f979740a64884838335cea, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7586348241441955214, guid: 98d8d7a146f979740a64884838335cea, type: 3}
       propertyPath: m_LocalPosition.x

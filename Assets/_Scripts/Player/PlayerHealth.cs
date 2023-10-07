@@ -1,4 +1,5 @@
 using System;
+using SimpleSurvivors.Enemy;
 using SimpleSurvivors.Utils;
 using UnityEngine;
 
@@ -13,6 +14,7 @@ namespace SimpleSurvivors.Player
         [SerializeField] private Timer timer;
         [SerializeField][Tooltip("Override the player HP for testing.")] private int playerHp;
         [SerializeField] private int enemyAttack = 40;
+        [SerializeField] private EnemySpawner enemySpawner;
 
         private PlayerAttack _playerAttack;
         private PlayerExp _playerExp;
@@ -73,6 +75,7 @@ namespace SimpleSurvivors.Player
             defeatCanvas.SetActive(true);
             timer.PauseTimer();
             _playerAttack.SetAttack(false);
+            enemySpawner.PauseEnemyMovements();
         }
 
         public void HealPlayer(int healAmount)

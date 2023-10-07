@@ -73,7 +73,7 @@ namespace SimpleSurvivors.Enemy
                 }
             }
         }
-        
+
         /// <summary>
         /// Spawns a given prefab at a certain distance from the center a given number of times.
         /// </summary>
@@ -107,7 +107,7 @@ namespace SimpleSurvivors.Enemy
                 pooledEnemy.SetActive(true);
                 return pooledEnemy;
             }
-            
+
             GameObject enemy = Instantiate(prefab, transform);
             if (_pooledEnemyHash.ContainsKey(prefab.name))
             {
@@ -121,6 +121,9 @@ namespace SimpleSurvivors.Enemy
 
         public void ResetEnemies()
         {
+            // Re-enable animation on enemies paused upon player death
+            ResumeEnemyMovements();
+            
             for (int i = 0; i < transform.childCount; i++)
             {
                 transform.GetChild(i).gameObject.SetActive(false);
@@ -140,10 +143,19 @@ namespace SimpleSurvivors.Enemy
         {
             for (int i = 0; i < transform.childCount; i++)
             {
-                EnemyMovement enemyMovement = transform.GetChild(i).GetComponent<EnemyMovement>();
+                Transform child = transform.GetChild(i);
+                if (!child.gameObject.activeSelf)
+                {
+                    continue;
+                }
+
+                EnemyMovement enemyMovement = child.GetComponent<EnemyMovement>();
                 enemyMovement.SetMovement(false);
                 _pausedMovements.Add(enemyMovement);
-            }            
+
+                Animator animator = child.GetComponentInChildren<Animator>();
+                animator.speed = 0f;
+            }
         }
 
         public void ResumeEnemyMovements()
@@ -151,8 +163,11 @@ namespace SimpleSurvivors.Enemy
             foreach (EnemyMovement enemyMovement in _pausedMovements)
             {
                 enemyMovement.SetMovement(true);
+                
+                Animator animator = enemyMovement.GetComponentInChildren<Animator>();
+                animator.speed = 1;
             }
-            
+
             _pausedMovements.Clear();
         }
     }
