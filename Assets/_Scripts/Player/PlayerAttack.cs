@@ -53,9 +53,10 @@ namespace SimpleSurvivors.Player
             while (_isAttacking)
             {
                 SetAttackPositionAndRotation();
-                
+
                 _currentAttack.SetActive(true);
                 yield return new WaitForSeconds(animationDelay);
+                
                 _currentAttack.SetActive(false);
                 yield return new WaitForSeconds(Math.Max(attackDelay, _minimumDelay));
             }
@@ -88,10 +89,13 @@ namespace SimpleSurvivors.Player
         {
             _isAttacking = isAttacking;
 
-            if (isAttacking)
+            if (!isAttacking)
             {
-                StartCoroutine(FireAttack());
+                StopAllCoroutines();
+                return;
             }
+
+            StartCoroutine(FireAttack());
         }
 
         /// <summary>
