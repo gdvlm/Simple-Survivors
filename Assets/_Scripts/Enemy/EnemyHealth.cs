@@ -14,6 +14,7 @@ namespace SimpleSurvivors.Enemy
         private bool _isAlive;
         private int _enemyHp;
         private Transform _damagePopUpContainer;
+        private PlayerAttack _playerAttack;
 
         void Awake()
         {
@@ -24,13 +25,12 @@ namespace SimpleSurvivors.Enemy
         {
             if (_isAlive && other.transform.CompareTag("PlayerAttack"))
             {
-                var playerAttack = other.GetComponentInParent<PlayerAttack>();
-                _enemyHp -= playerAttack.GetAttackDamage();
+                _enemyHp -= _playerAttack.GetAttackDamage();
                 
                 var prefab = Instantiate(damagePrefab, transform.position,
                     quaternion.identity, _damagePopUpContainer);
                 TMP_Text damageText = prefab.GetComponentInChildren<TMP_Text>();
-                damageText.text = playerAttack.GetAttackDamage().ToString();
+                damageText.text = _playerAttack.GetAttackDamage().ToString();
 
                 if (_enemyHp <= 0)
                 {
@@ -46,9 +46,10 @@ namespace SimpleSurvivors.Enemy
             gameObject.SetActive(false);
         }
 
-        public void ReadyEnemy(Transform damagePopupContainer, EnemySpawner enemySpawner)
+        public void ReadyEnemy(Transform damagePopupContainer, PlayerAttack playerAttack)
         {
             _damagePopUpContainer = damagePopupContainer;
+            _playerAttack = playerAttack;
             _enemyHp = enemySo.enemyHp;
             _isAlive = true;
         }

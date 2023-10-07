@@ -12,13 +12,14 @@ namespace SimpleSurvivors.Player
         [SerializeField] private int attackDamage = 1;
         [SerializeField] private float attackDelay = 1.5f;
         [SerializeField] private float animationDelay = 0.5f;
-        [SerializeField] private GameObject spriteGo;
+        [SerializeField] private GameObject playerSprite;
 
         private readonly float _minimumDelay = 0.1f;
         private int _startingAttackDamage;
         private float _startingAttackDelay;
         private GameObject _currentAttack;
         private bool _isAttacking;
+        private float _lastYRotation = 180f;
 
         private void Start()
         {
@@ -35,7 +36,7 @@ namespace SimpleSurvivors.Player
             {
                 _currentAttack = Instantiate(attackPrefab, new Vector3(
                     transform.position.x + attackXOffset, 
-                    transform.position.y + attackYOffset, 0), Quaternion.identity, transform);
+                    transform.position.y + attackYOffset, 0), Quaternion.identity);
                 
                 // Set animation speed
                 var animator = _currentAttack.GetComponentInChildren<Animator>();
@@ -52,12 +53,26 @@ namespace SimpleSurvivors.Player
             while (_isAttacking)
             {
                 // TODO: Refactor to use object pooling
+                SetAttackPositionAndRotation();
                 _currentAttack.SetActive(true);
                 yield return new WaitForSeconds(animationDelay);
                 _currentAttack.SetActive(false);
 
                 yield return new WaitForSeconds(Math.Max(attackDelay, _minimumDelay));
             }
+        }
+
+        private void SetAttackPositionAndRotation()
+        {
+            float xOffset = _lastYRotation > 0.0f ? attackXOffset : -attackXOffset;
+            _currentAttack.transform.position =
+                new Vector3(transform.position.x + xOffset, transform.position.y + attackYOffset, 0);
+
+            float reverseAngle = _lastYRotation == 0 ? 180.0f : 0f;
+            _currentAttack.transform.eulerAngles = new(
+                _currentAttack.transform.eulerAngles.x,
+                reverseAngle,
+                _currentAttack.transform.eulerAngles.z);            
         }
 
         public void StartAttack()
@@ -108,16 +123,11 @@ namespace SimpleSurvivors.Player
 
         public void SetPlayerDirection(float newYRotation)
         {
-            spriteGo.transform.eulerAngles = new(spriteGo.transform.eulerAngles.x, newYRotation,
-                spriteGo.transform.eulerAngles.z);
+            _lastYRotation = newYRotation;
+            playerSprite.transform.eulerAngles = new(playerSprite.transform.eulerAngles.x, newYRotation,
+                playerSprite.transform.eulerAngles.z);
 
-            float xOffset = newYRotation > 0.0f ? attackXOffset : -attackXOffset;
-            _currentAttack.transform.position =
-                new Vector3(transform.position.x + xOffset, transform.position.y + attackYOffset, 0);
-
-            float reverseAngle = newYRotation == 0 ? 180.0f : 0f;
-            _currentAttack.transform.eulerAngles = new(_currentAttack.transform.eulerAngles.x,
-                reverseAngle, _currentAttack.transform.eulerAngles.z);
+            SetAttackPositionAndRotation();
         }
     }
 }
