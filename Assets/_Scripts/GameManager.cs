@@ -12,6 +12,7 @@ namespace SimpleSurvivors
         [SerializeField] private GameObject guiCanvas;
         [SerializeField] private GameObject defeatCanvas;
         [SerializeField] private GameObject levelUpCanvas;
+        [SerializeField] private GameObject pauseMenuCanvas;
         [SerializeField] private Transform upgradeButtons;
         [SerializeField] private PlayerHealth playerHealth;
         [SerializeField] private EnemySpawner enemySpawner;
@@ -74,6 +75,7 @@ namespace SimpleSurvivors
             _playerInput.SetCanMove(true);
             _playerAttack.SetAttack(true);
             levelUpCanvas.SetActive(false);
+            pauseMenuCanvas.SetActive(false);
         }
 
         public void DisplayLevelUpCanvas()

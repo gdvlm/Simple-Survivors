@@ -1,4 +1,6 @@
+using SimpleSurvivors.InputActionWrappers;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace SimpleSurvivors.Player
 {
@@ -6,6 +8,8 @@ namespace SimpleSurvivors.Player
     public class PlayerInput : MonoBehaviour
     {
         [SerializeField] private float movementSpeed;
+        [SerializeField] private GameObject pauseMenuCanvas;
+        [SerializeField] private GameManager gameManager;
 
         private readonly float _maximumMovementSpeed = 6f;
         private float _startingMovementSpeed;
@@ -23,6 +27,7 @@ namespace SimpleSurvivors.Player
             _playerHealth = GetComponent<PlayerHealth>();
             _playerAttack = GetComponent<PlayerAttack>();
             _playerInputActionWrapper = new PlayerInputActionWrapper();
+            _playerInputActionWrapper.Gameplay.Pause.performed += OnPause;
         }
 
         void Start()
@@ -35,7 +40,7 @@ namespace SimpleSurvivors.Player
         {
             _velocity = _playerInputActionWrapper.Gameplay.Movement.ReadValue<Vector2>();
 
-            if (!PlayerIsFacingSameDirection(_velocity))
+            if (!PlayerIsFacingSameDirection(_velocity) && _canMove)
             {
                 float newYRotation = _playerDirection == PlayerDirection.Left
                     ? 0
@@ -82,6 +87,25 @@ namespace SimpleSurvivors.Player
 
             _playerDirection = playerDirection;
             return false;
+        }
+
+        public void OnPause(InputAction.CallbackContext context)
+        {
+            // Handle resuming
+            if (pauseMenuCanvas.activeSelf)
+            {
+                gameManager.ResumeGame();
+                return;
+            }
+            
+            // Ignore input
+            if (!_canMove)
+            {
+                return;
+            }
+            
+            pauseMenuCanvas.SetActive(true);
+            gameManager.PauseGame();
         }
         
         /// <summary>
