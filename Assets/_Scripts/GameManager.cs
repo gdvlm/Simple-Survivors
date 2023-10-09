@@ -19,6 +19,7 @@ namespace SimpleSurvivors
         [SerializeField] private HealthSpawner healthSpawner;
         [SerializeField] private Timer timer;
         [SerializeField] private UpgradeManager upgradeManager;
+        [SerializeField] private GameObject levelUpParticles;
 
         private PlayerInput _playerInput;
         private PlayerAttack _playerAttack;
@@ -76,6 +77,7 @@ namespace SimpleSurvivors
             _playerAttack.SetAttack(true);
             levelUpCanvas.SetActive(false);
             pauseMenuCanvas.SetActive(false);
+            levelUpParticles.SetActive(false);
         }
 
         public void DisplayLevelUpCanvas()
@@ -88,6 +90,7 @@ namespace SimpleSurvivors
             }
             
             levelUpCanvas.SetActive(true);
+            levelUpParticles.SetActive(true);
         }
     }
 }
