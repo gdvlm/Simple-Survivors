@@ -1,6 +1,7 @@
 using System;
 using SimpleSurvivors.Enemy;
 using SimpleSurvivors.Utils;
+using SimpleSurvivors.Variables;
 using UnityEngine;
 
 namespace SimpleSurvivors.Player
@@ -12,7 +13,7 @@ namespace SimpleSurvivors.Player
         [SerializeField] private GameObject playerSprite;
         [SerializeField] private GameObject defeatCanvas;
         [SerializeField] private Timer timer;
-        [SerializeField][Tooltip("Override the player HP for testing.")] private int playerHp;
+        [SerializeField][Tooltip("Override the player HP for testing.")] private IntVariable playerHp;
         [SerializeField] private int enemyAttack = 40;
         [SerializeField] private EnemySpawner enemySpawner;
 
@@ -20,7 +21,6 @@ namespace SimpleSurvivors.Player
         private PlayerExp _playerExp;
         private PlayerInput _playerInput;
         private bool _isAlive;
-        private int _playerMaxHp;
         private int _playerCurrentHp;
         private Vector3 _startingPosition;
         private CapsuleCollider2D _capsuleCollider;
@@ -64,7 +64,7 @@ namespace SimpleSurvivors.Player
 
         private void UpdateHealthBar()
         {
-            float hpPercent = (float)_playerCurrentHp / _playerMaxHp;
+            float hpPercent = (float)_playerCurrentHp / playerHp.RuntimeValue;
             playerHpSprite.transform.localScale = new Vector3(hpPercent, 1, 1);            
         }
 
@@ -80,12 +80,12 @@ namespace SimpleSurvivors.Player
 
         public void HealPlayer(int healAmount)
         {
-            if (_playerCurrentHp == _playerMaxHp)
+            if (_playerCurrentHp == playerHp.RuntimeValue)
             {
                 return;
             }
             
-            _playerCurrentHp = Math.Min(_playerCurrentHp + healAmount, _playerMaxHp);
+            _playerCurrentHp = Math.Min(_playerCurrentHp + healAmount, playerHp.RuntimeValue);
             UpdateHealthBar();
         }
 
@@ -93,8 +93,7 @@ namespace SimpleSurvivors.Player
         {
             // TODO: Refactor to PlayerController class
             _isAlive = true;
-            _playerMaxHp = playerHp;
-            _playerCurrentHp = _playerMaxHp;
+            _playerCurrentHp = playerHp.RuntimeValue;
             playerSprite.SetActive(true);
             transform.position = _startingPosition;
             playerHpSprite.transform.localScale = Vector3.one;
@@ -113,7 +112,7 @@ namespace SimpleSurvivors.Player
         /// </summary>
         public void UpgradeHealth(float percentage)
         {
-            _playerMaxHp = (int)(_playerMaxHp * percentage);
+            playerHp.RuntimeValue = (int)(playerHp.RuntimeValue * percentage);
             UpdateHealthBar();
         }
     }
