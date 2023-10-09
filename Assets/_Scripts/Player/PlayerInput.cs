@@ -1,4 +1,5 @@
 using SimpleSurvivors.InputActionWrappers;
+using SimpleSurvivors.Variables;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -10,6 +11,7 @@ namespace SimpleSurvivors.Player
         [SerializeField] private float movementSpeed;
         [SerializeField] private GameObject pauseMenuCanvas;
         [SerializeField] private GameManager gameManager;
+        [SerializeField] private PlayerDirectionVariable playerDirectionVariable;
 
         private readonly float _maximumMovementSpeed = 6f;
         private float _startingMovementSpeed;
@@ -19,7 +21,6 @@ namespace SimpleSurvivors.Player
         private PlayerInputActionWrapper _playerInputActionWrapper;
         private Vector2 _velocity;
         private bool _canMove;
-        private PlayerDirection _playerDirection;
 
         void Awake()
         {
@@ -33,7 +34,6 @@ namespace SimpleSurvivors.Player
         void Start()
         {
             _startingMovementSpeed = movementSpeed;
-            _playerDirection = PlayerDirection.Right;
         }
 
         void Update()
@@ -42,7 +42,7 @@ namespace SimpleSurvivors.Player
 
             if (!PlayerIsFacingSameDirection(_velocity) && _canMove)
             {
-                float newYRotation = _playerDirection == PlayerDirection.Left
+                float newYRotation = playerDirectionVariable.RuntimeValue == PlayerDirection.Left
                     ? 0
                     : 180;
                 _playerAttack.SetPlayerDirection(newYRotation);
@@ -80,12 +80,12 @@ namespace SimpleSurvivors.Player
             PlayerDirection playerDirection = input.x > 0
                 ? PlayerDirection.Right
                 : PlayerDirection.Left;
-            if (playerDirection == _playerDirection)
+            if (playerDirection == playerDirectionVariable.RuntimeValue)
             {
                 return true;
             }
 
-            _playerDirection = playerDirection;
+            playerDirectionVariable.RuntimeValue = playerDirection;
             return false;
         }
 

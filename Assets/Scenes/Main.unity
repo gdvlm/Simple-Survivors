@@ -29946,6 +29946,10 @@ PrefabInstance:
       propertyPath: pauseMenuCanvas
       value: 
       objectReference: {fileID: 1658049719}
+    - target: {fileID: 5218328877150823758, guid: 5ee18c06d5b7d204fb668b7b9fd07298, type: 3}
+      propertyPath: playerDirectionVariable
+      value: 
+      objectReference: {fileID: 11400000, guid: 4359d2b8c99109c4cbb3705ba4f1bf40, type: 2}
     - target: {fileID: 5218328877150823760, guid: 5ee18c06d5b7d204fb668b7b9fd07298, type: 3}
       propertyPath: m_RootOrder
       value: 2
