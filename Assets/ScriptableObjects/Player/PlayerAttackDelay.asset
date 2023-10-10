@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 485aee851eee0104d907ffe26bda51ed, type: 3}
-  m_Name: PlayerHP
+  m_Script: {fileID: 11500000, guid: d99bee3ec89fd8d46b5d5d4d96e119fe, type: 3}
+  m_Name: PlayerAttackDelay
   m_EditorClassIdentifier: 
-  InitialValue: 100
+  InitialValue: 1.5

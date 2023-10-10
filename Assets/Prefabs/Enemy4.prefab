@@ -182,6 +182,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemySo: {fileID: 11400000, guid: 8e2251755619cec4ca7559b9a247221c, type: 2}
   damagePrefab: {fileID: 762482068999367834, guid: 103cf1bb3d0a6744f98817537ed9d526, type: 3}
+  playerDamage: {fileID: 11400000, guid: 7221163937fd75e4f9bfb8950812e7f7, type: 2}
 --- !u!114 &8101756338985591105
 MonoBehaviour:
   m_ObjectHideFlags: 0
