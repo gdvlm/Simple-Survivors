@@ -29924,8 +29924,8 @@ PrefabInstance:
       objectReference: {fileID: 556777669}
     - target: {fileID: 3245193423690857863, guid: 5ee18c06d5b7d204fb668b7b9fd07298, type: 3}
       propertyPath: animationDelay
-      value: 0.1
-      objectReference: {fileID: 0}
+      value: 
+      objectReference: {fileID: 11400000, guid: 91e115bbb401c6043b0ffe258d06830b, type: 2}
     - target: {fileID: 5218328877150823757, guid: 5ee18c06d5b7d204fb668b7b9fd07298, type: 3}
       propertyPath: m_Name
       value: Player
@@ -30010,6 +30010,10 @@ PrefabInstance:
       propertyPath: enemySpawner
       value: 
       objectReference: {fileID: 1535066869}
+    - target: {fileID: 7580128697342213497, guid: 5ee18c06d5b7d204fb668b7b9fd07298, type: 3}
+      propertyPath: level
+      value: 
+      objectReference: {fileID: 11400000, guid: 2977185f271d9934ca9da6132abe00e6, type: 2}
     - target: {fileID: 7580128697342213497, guid: 5ee18c06d5b7d204fb668b7b9fd07298, type: 3}
       propertyPath: levelText
       value: 

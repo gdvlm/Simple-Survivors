@@ -1,3 +1,4 @@
+using SimpleSurvivors.Variables;
 using TMPro;
 using UnityEngine;
 
@@ -8,12 +9,12 @@ namespace SimpleSurvivors.Player
         [SerializeField] private TMP_Text levelText;
         [SerializeField] private Transform expBarSprite;
         [SerializeField] private GameManager gameManager;
+        [SerializeField] private IntVariable playerLevel;
         
         private IExpRequirement _expRequirement;
         private int _totalExpPoints = 0;
         private int _currentExpPoints = 0;
         private int _totalExpNeeded = 0;
-        private int _level = 1;
 
         void Start()
         {
@@ -24,8 +25,8 @@ namespace SimpleSurvivors.Player
             
             // This can be dynamically changed if classes were implemented
             _expRequirement = new DefaultExpRequirement();
-            _totalExpNeeded = _expRequirement.GetTotalExpRequirement(_level);
-        }
+            _totalExpNeeded = _expRequirement.GetTotalExpRequirement(playerLevel.RuntimeValue);
+        } 
 
         private void UpdateLevelSprite(int level)
         {
@@ -36,23 +37,23 @@ namespace SimpleSurvivors.Player
         {
             float expPercent = GetExpPercent();         
             UpdateExpBar(expPercent);
-            _level++;
+            playerLevel.RuntimeValue++;
             
             // TODO: Show leveled UI here (animation, sounds, etc)
             gameManager.PauseGame();
             gameManager.DisplayLevelUpCanvas();
             
             _currentExpPoints = 0;
-            _totalExpNeeded = _expRequirement.GetTotalExpRequirement(_level);
+            _totalExpNeeded = _expRequirement.GetTotalExpRequirement(playerLevel.RuntimeValue);
             UpdateExpBar(0f);
-            UpdateLevelSprite(_level);
+            UpdateLevelSprite(playerLevel.RuntimeValue);
         }
 
         private float GetExpPercent()
         {
-            int expNeededForPrevLevel = _level <= 1
+            int expNeededForPrevLevel = playerLevel.RuntimeValue <= 1
                 ? 0
-                : _expRequirement.GetTotalExpRequirement(_level - 1);
+                : _expRequirement.GetTotalExpRequirement(playerLevel.RuntimeValue - 1);
 
             _currentExpPoints = _totalExpPoints - expNeededForPrevLevel;
             int expNeededForCurrentLevel = _totalExpNeeded - expNeededForPrevLevel;
@@ -65,20 +66,20 @@ namespace SimpleSurvivors.Player
             expBarSprite.localScale = new Vector3(expPercent, 1, 1);
         }
         
-        public void ResetExp()
+        public void ResetLevel()
         {
             _totalExpPoints = 0;
             _currentExpPoints = 0;
-            _level = 1;
+            playerLevel.RuntimeValue = 1;
             
-            UpdateLevelSprite(_level);
+            UpdateLevelSprite(playerLevel.RuntimeValue);
             UpdateExpBar(0f);
         }
 
         public void GainExp(int expPoints)
         {
-            _totalExpPoints += _expRequirement.GetTotalGainedExp(_level, expPoints);
-            _totalExpNeeded = _expRequirement.GetTotalExpRequirement(_level);
+            _totalExpPoints += _expRequirement.GetTotalGainedExp(playerLevel.RuntimeValue, expPoints);
+            _totalExpNeeded = _expRequirement.GetTotalExpRequirement(playerLevel.RuntimeValue);
 
             float expPercent = GetExpPercent();
             UpdateExpBar(expPercent);
@@ -87,14 +88,6 @@ namespace SimpleSurvivors.Player
             {
                 LevelUp();
             }
-        }
-
-        /// <summary>
-        /// Returns the player's current level.
-        /// </summary>
-        public int GetLevel()
-        {
-            return _level;
         }
     }
 }

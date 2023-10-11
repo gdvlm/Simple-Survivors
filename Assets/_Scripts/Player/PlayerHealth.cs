@@ -97,7 +97,7 @@ namespace SimpleSurvivors.Player
             playerSprite.SetActive(true);
             transform.position = _startingPosition;
             playerHpSprite.transform.localScale = Vector3.one;
-            _playerExp.ResetExp();
+            _playerExp.ResetLevel();
             _playerAttack.StartAttack();
             _playerInput.ResetMovementSpeed();
         }
