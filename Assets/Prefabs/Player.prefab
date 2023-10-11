@@ -341,6 +341,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 5
+  pauseMenuCanvas: {fileID: 0}
+  gameManager: {fileID: 0}
+  playerDirectionVariable: {fileID: 11400000, guid: 4359d2b8c99109c4cbb3705ba4f1bf40, type: 2}
 --- !u!114 &5218328877150823762
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -357,8 +360,8 @@ MonoBehaviour:
   playerSprite: {fileID: 5218328876468542282}
   defeatCanvas: {fileID: 0}
   timer: {fileID: 0}
-  playerHp: 100
-  enemyAttack: 40
+  playerHp: {fileID: 11400000, guid: 8848d63fa4a86d24eb0593f68351ad87, type: 2}
+  enemyAttack: {fileID: 11400000, guid: 5444a2fd9a177124d839ba5c7425f6b2, type: 2}
   enemySpawner: {fileID: 0}
 --- !u!114 &7580128697342213497
 MonoBehaviour:
@@ -375,6 +378,7 @@ MonoBehaviour:
   levelText: {fileID: 0}
   expBarSprite: {fileID: 0}
   gameManager: {fileID: 0}
+  playerLevel: {fileID: 11400000, guid: 2977185f271d9934ca9da6132abe00e6, type: 2}
 --- !u!114 &3245193423690857863
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -388,12 +392,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackPrefab: {fileID: 4431058977273660533, guid: e0085e67714f8aa46a7e5796e70758da, type: 3}
+  playerSprite: {fileID: 0}
   attackXOffset: 1
   attackYOffset: 0.2
-  attackDamage: 1
-  attackDelay: 1.5
-  animationDelay: 0.1
-  playerSprite: {fileID: 0}
+  attackDelay: {fileID: 11400000, guid: 835d50365efaa064885ee5540eaa4712, type: 2}
+  animationDelay: {fileID: 11400000, guid: 91e115bbb401c6043b0ffe258d06830b, type: 2}
+  attackDamage: {fileID: 11400000, guid: 7221163937fd75e4f9bfb8950812e7f7, type: 2}
 --- !u!1 &5218328877752186417
 GameObject:
   m_ObjectHideFlags: 0

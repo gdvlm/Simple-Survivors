@@ -7,8 +7,9 @@ namespace SimpleSurvivors.Utils
     {
         [SerializeField] private GameObject[] prefabs;
         [SerializeField] private Timer timer;
-        [SerializeField] private float spawnCoolDown = 15.0f;
         
+        [SerializeField][Tooltip("Spawn cooldown in seconds")]
+        private float spawnCoolDown = 15.0f;
         [SerializeField][Tooltip("Maximum distance from the center of the map to spawn the prefabs")]
         private float spawnMaxRadius = 8.0f;
         [SerializeField][Tooltip("Minimum distance from the center of the map to spawn the prefabs")]

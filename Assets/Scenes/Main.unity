@@ -11995,7 +11995,7 @@ MonoBehaviour:
   prefabs:
   - {fileID: 331377560569296007, guid: 356023d6dcefcd34ba2c1b83408fca22, type: 3}
   timer: {fileID: 2003937766}
-  spawnCoolDown: 30
+  spawnCoolDown: 15
   spawnMaxRadius: 8
   spawnMinRadius: 3
 --- !u!4 &681351380
@@ -29998,6 +29998,10 @@ PrefabInstance:
       propertyPath: playerHp
       value: 
       objectReference: {fileID: 11400000, guid: 8848d63fa4a86d24eb0593f68351ad87, type: 2}
+    - target: {fileID: 5218328877150823762, guid: 5ee18c06d5b7d204fb668b7b9fd07298, type: 3}
+      propertyPath: enemyAttack
+      value: 
+      objectReference: {fileID: 11400000, guid: 5444a2fd9a177124d839ba5c7425f6b2, type: 2}
     - target: {fileID: 5218328877150823762, guid: 5ee18c06d5b7d204fb668b7b9fd07298, type: 3}
       propertyPath: playerHpOld
       value: 100

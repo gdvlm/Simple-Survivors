@@ -14,7 +14,7 @@ namespace SimpleSurvivors.Player
         [SerializeField] private GameObject defeatCanvas;
         [SerializeField] private Timer timer;
         [SerializeField] private IntVariable playerHp;
-        [SerializeField] private int enemyAttack = 40;
+        [SerializeField] private IntVariable enemyAttack;
         [SerializeField] private EnemySpawner enemySpawner;
 
         private PlayerAttack _playerAttack;
@@ -42,7 +42,7 @@ namespace SimpleSurvivors.Player
         {
             if (_capsuleCollider.IsTouching(other) && other.transform.CompareTag("Enemy"))
             {
-                TakeDamage(enemyAttack);
+                TakeDamage(enemyAttack.RuntimeValue);
             }
         }
 
