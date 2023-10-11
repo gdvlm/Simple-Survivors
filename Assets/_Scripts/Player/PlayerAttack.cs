@@ -8,16 +8,14 @@ namespace SimpleSurvivors.Player
     public class PlayerAttack : MonoBehaviour
     {
         [SerializeField] private GameObject attackPrefab;
+        [SerializeField] private GameObject playerSprite;
         [SerializeField] private float attackXOffset = -1.0f;
         [SerializeField] private float attackYOffset = -0.5f;
         [SerializeField] private FloatVariable attackDelay;
-        [SerializeField] private float animationDelay = 0.5f;
-        [SerializeField] private GameObject playerSprite;
+        [SerializeField] private FloatVariable animationDelay;
         [SerializeField] private IntVariable attackDamage;
 
         private readonly float _minimumDelay = 0.1f;
-        private int _startingAttackDamage;
-        private float _startingAttackDelay;
         private GameObject _currentAttack;
         private bool _isAttacking;
         private float _lastYRotation = 180f;
@@ -34,7 +32,7 @@ namespace SimpleSurvivors.Player
                     transform.position.y + attackYOffset, 0), Quaternion.identity);
             }
 
-            SetAttackAnimationSpeed(1 / animationDelay);
+            SetAttackAnimationSpeed(1 / animationDelay.RuntimeValue);
             _currentAttack.SetActive(false);
             attackDelay.RuntimeValue = attackDelay.InitialValue;
         }
@@ -46,7 +44,7 @@ namespace SimpleSurvivors.Player
                 SetAttackPositionAndRotation();
 
                 _currentAttack.SetActive(true);
-                yield return new WaitForSeconds(animationDelay);
+                yield return new WaitForSeconds(animationDelay.RuntimeValue);
 
                 _currentAttack.SetActive(false);
                 yield return new WaitForSeconds(Math.Max(attackDelay.RuntimeValue, _minimumDelay));
@@ -96,7 +94,7 @@ namespace SimpleSurvivors.Player
                 return;
             }
 
-            SetAttackAnimationSpeed(1 / animationDelay);
+            SetAttackAnimationSpeed(1 / animationDelay.RuntimeValue);
             StartCoroutine(FireAttack());
         }
 
