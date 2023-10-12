@@ -46,7 +46,7 @@ namespace SimpleSurvivors.Enemy
             gameObject.SetActive(false);
         }
 
-        public void ReadyEnemy(Transform damagePopupContainer)
+        public void Initialize(Transform damagePopupContainer)
         {
             _damagePopUpContainer = damagePopupContainer;
             _enemyHp = enemySo.enemyHp;

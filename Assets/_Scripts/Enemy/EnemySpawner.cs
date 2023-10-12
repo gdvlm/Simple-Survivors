@@ -84,7 +84,7 @@ namespace SimpleSurvivors.Enemy
                 enemy.transform.position = randomPosition;
 
                 EnemyHealth enemyHealth = enemy.GetComponent<EnemyHealth>();
-                enemyHealth.ReadyEnemy(damagePopupContainer);
+                enemyHealth.Initialize(damagePopupContainer);
 
                 EnemyMovement enemyMovement = enemy.GetComponent<EnemyMovement>();
                 enemyMovement.Initialize(playerPosition);

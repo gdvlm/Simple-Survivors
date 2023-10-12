@@ -8,7 +8,7 @@ namespace SimpleSurvivors.Variables
     {
         public float InitialValue;
 
-        //[NonSerialized]
+        [NonSerialized]
         public float RuntimeValue;
 
         public void OnAfterDeserialize()

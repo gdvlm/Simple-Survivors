@@ -21,7 +21,7 @@ namespace SimpleSurvivors.Player
         /// <summary>
         /// Create an attack prefab and attach to this object.
         /// </summary>
-        private void InitializeAttack()
+        private void Initialize()
         {
             if (_currentAttack == null)
             {
@@ -75,7 +75,7 @@ namespace SimpleSurvivors.Player
         public void StartAttack()
         {
             _isAttacking = true;
-            InitializeAttack();
+            Initialize();
             StartCoroutine(FireAttack());
         }
 
