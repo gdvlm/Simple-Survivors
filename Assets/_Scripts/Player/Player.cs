@@ -69,19 +69,8 @@ namespace SimpleSurvivors.Player
             enemySpawner.PauseEnemyMovements();
         }
 
-        public void HealPlayer(int healAmount)
-        {
-            if (currentPlayerHp.RuntimeValue == maxPlayerHp.RuntimeValue)
-            {
-                return;
-            }
-            
-            currentPlayerHp.RuntimeValue = Math.Min(currentPlayerHp.RuntimeValue + healAmount, maxPlayerHp.RuntimeValue);
-        }
-
         public void ReadyPlayer()
         {
-            // TODO: Refactor to PlayerController class
             _isAlive = true;
             currentPlayerHp.RuntimeValue = maxPlayerHp.RuntimeValue;
             playerSprite.SetActive(true);
