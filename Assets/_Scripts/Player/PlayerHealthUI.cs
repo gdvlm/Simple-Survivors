@@ -3,13 +3,12 @@ using UnityEngine;
 
 namespace SimpleSurvivors.Player
 {
-    public class PlayerHealth : MonoBehaviour
+    public class PlayerHealthUI : MonoBehaviour
     {
         [SerializeField] private GameObject playerHpSprite;
         [SerializeField] private IntVariable maxPlayerHp;
         [SerializeField] private IntVariable currentPlayerHp;
 
-        // Update is called once per frame
         void Update()
         {
             float hpPercent = (float)currentPlayerHp.RuntimeValue / maxPlayerHp.RuntimeValue;
