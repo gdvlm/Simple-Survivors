@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d99bee3ec89fd8d46b5d5d4d96e119fe, type: 3}
   m_Name: PlayerAnimationDelay
   m_EditorClassIdentifier: 
-  InitialValue: 0.5
+  InitialValue: 0.1
