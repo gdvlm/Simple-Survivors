@@ -1,15 +1,13 @@
 using SimpleSurvivors.Variables;
-using TMPro;
 using UnityEngine;
 
 namespace SimpleSurvivors.Player
 {
     public class PlayerExp : MonoBehaviour
     {
-        [SerializeField] private TMP_Text levelText;
-        [SerializeField] private Transform expBarSprite;
         [SerializeField] private GameManager gameManager;
         [SerializeField] private IntVariable playerLevel;
+        [SerializeField] private FloatVariable playerExpPercent;
         
         private IExpRequirement _expRequirement;
         private int _totalExpPoints = 0;
@@ -18,25 +16,14 @@ namespace SimpleSurvivors.Player
 
         void Start()
         {
-            if (levelText == null)
-            {
-                Debug.LogError($"{nameof(levelText)} is not assigned.", this);
-            }
-            
             // This can be dynamically changed if classes were implemented
             _expRequirement = new DefaultExpRequirement();
             _totalExpNeeded = _expRequirement.GetTotalExpRequirement(playerLevel.RuntimeValue);
-        } 
-
-        private void UpdateLevelSprite(int level)
-        {
-            levelText.text = $"LV {level}";
         }
 
         private void LevelUp()
         {
-            float expPercent = GetExpPercent();         
-            UpdateExpBar(expPercent);
+            playerExpPercent.RuntimeValue = GetExpPercent();
             playerLevel.RuntimeValue++;
             
             // TODO: Show leveled UI here (animation, sounds, etc)
@@ -45,8 +32,7 @@ namespace SimpleSurvivors.Player
             
             _currentExpPoints = 0;
             _totalExpNeeded = _expRequirement.GetTotalExpRequirement(playerLevel.RuntimeValue);
-            UpdateExpBar(0f);
-            UpdateLevelSprite(playerLevel.RuntimeValue);
+            playerExpPercent.RuntimeValue = 0f;
         }
 
         private float GetExpPercent()
@@ -60,29 +46,20 @@ namespace SimpleSurvivors.Player
             
             return Mathf.Clamp((float)_currentExpPoints / expNeededForCurrentLevel, 0f, 100f);            
         }
-
-        private void UpdateExpBar(float expPercent)
-        {
-            expBarSprite.localScale = new Vector3(expPercent, 1, 1);
-        }
         
         public void ResetLevel()
         {
             _totalExpPoints = 0;
             _currentExpPoints = 0;
             playerLevel.RuntimeValue = 1;
-            
-            UpdateLevelSprite(playerLevel.RuntimeValue);
-            UpdateExpBar(0f);
+            playerExpPercent.RuntimeValue = 0f;
         }
 
         public void GainExp(int expPoints)
         {
             _totalExpPoints += _expRequirement.GetTotalGainedExp(playerLevel.RuntimeValue, expPoints);
             _totalExpNeeded = _expRequirement.GetTotalExpRequirement(playerLevel.RuntimeValue);
-
-            float expPercent = GetExpPercent();
-            UpdateExpBar(expPercent);
+            playerExpPercent.RuntimeValue = GetExpPercent();
 
             if (_totalExpPoints >= _totalExpNeeded)
             {

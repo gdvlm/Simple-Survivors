@@ -29910,6 +29910,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 824985865}
     m_Modifications:
+    - target: {fileID: 294478269910258708, guid: 5ee18c06d5b7d204fb668b7b9fd07298, type: 3}
+      propertyPath: expBarSprite
+      value: 
+      objectReference: {fileID: 1770342340}
     - target: {fileID: 3245193423690857863, guid: 5ee18c06d5b7d204fb668b7b9fd07298, type: 3}
       propertyPath: attackDelay
       value: 
@@ -29926,6 +29930,10 @@ PrefabInstance:
       propertyPath: animationDelay
       value: 
       objectReference: {fileID: 11400000, guid: 91e115bbb401c6043b0ffe258d06830b, type: 2}
+    - target: {fileID: 4890478921649881186, guid: 5ee18c06d5b7d204fb668b7b9fd07298, type: 3}
+      propertyPath: levelText
+      value: 
+      objectReference: {fileID: 663718754}
     - target: {fileID: 5218328877150823757, guid: 5ee18c06d5b7d204fb668b7b9fd07298, type: 3}
       propertyPath: m_Name
       value: Player
