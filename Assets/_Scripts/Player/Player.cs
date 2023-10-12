@@ -69,7 +69,7 @@ namespace SimpleSurvivors.Player
             enemySpawner.PauseEnemyMovements();
         }
 
-        public void ReadyPlayer()
+        public void Initialize()
         {
             _isAlive = true;
             currentPlayerHp.RuntimeValue = maxPlayerHp.RuntimeValue;

@@ -47,7 +47,7 @@ namespace SimpleSurvivors
         {
             startMenuCanvas.SetActive(false);
             guiCanvas.SetActive(true);
-            player.ReadyPlayer();
+            player.Initialize();
             enemySpawner.ResetEnemies();
             timer.StartTimer();
             _playerInput.SetCanMove(true);
