@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using SimpleSurvivors.Variables;
 using UnityEngine;
@@ -14,8 +13,7 @@ namespace SimpleSurvivors.Player
         [SerializeField] private FloatVariable attackDelay;
         [SerializeField] private FloatVariable animationDelay;
         [SerializeField] private IntVariable attackDamage;
-
-        private readonly float _minimumDelay = 0.1f;
+        
         private GameObject _currentAttack;
         private bool _isAttacking;
         private float _lastYRotation = 180f;
@@ -35,6 +33,7 @@ namespace SimpleSurvivors.Player
             SetAttackAnimationSpeed(1 / animationDelay.RuntimeValue);
             _currentAttack.SetActive(false);
             attackDelay.RuntimeValue = attackDelay.InitialValue;
+            attackDamage.RuntimeValue = attackDamage.InitialValue;
         }
 
         private IEnumerator FireAttack()
@@ -47,7 +46,7 @@ namespace SimpleSurvivors.Player
                 yield return new WaitForSeconds(animationDelay.RuntimeValue);
 
                 _currentAttack.SetActive(false);
-                yield return new WaitForSeconds(Math.Max(attackDelay.RuntimeValue, _minimumDelay));
+                yield return new WaitForSeconds(attackDelay.RuntimeValue);
             }
         }
 
@@ -96,27 +95,6 @@ namespace SimpleSurvivors.Player
 
             SetAttackAnimationSpeed(1 / animationDelay.RuntimeValue);
             StartCoroutine(FireAttack());
-        }
-
-        /// <summary>
-        /// Upgrades the attack given a percentage.
-        /// </summary>
-        public void UpgradeAttack(float percentage)
-        {
-            attackDamage.RuntimeValue = (int)(attackDamage.RuntimeValue * percentage);
-        }
-
-        /// <summary>
-        /// Upgrades the attack delay by subtracting a static value.
-        /// </summary>
-        public void UpgradeAttackDelay(float delayValue)
-        {
-            if (attackDelay.RuntimeValue <= _minimumDelay)
-            {
-                return;
-            }
-
-            attackDelay.RuntimeValue -= delayValue;
         }
 
         public void SetPlayerDirection(float newYRotation)

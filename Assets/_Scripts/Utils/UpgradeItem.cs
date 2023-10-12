@@ -16,14 +16,14 @@ namespace SimpleSurvivors.Utils
         [SerializeField] private Image image;
         [SerializeField] private IntVariable maxPlayerHp;
         [SerializeField] private FloatVariable movementSpeed;
+        [SerializeField] private IntVariable attackDamage;
+        [SerializeField] private FloatVariable attackDelay;
 
         private UpgradeSO _upgradeSo;
-        private PlayerAttack _playerAttack;
         private PlayerExp _playerExp;
 
         void Awake()
         {
-            _playerAttack = player.GetComponent<PlayerAttack>();
             _playerExp = player.GetComponent<PlayerExp>();
         }
 
@@ -37,10 +37,7 @@ namespace SimpleSurvivors.Utils
 
         public void SelectUpgrade()
         {
-            _playerAttack.UpgradeAttack(_upgradeSo.attackMultiply);
-            _playerAttack.UpgradeAttackDelay(_upgradeSo.attackSpeedAdd);
-            _upgradeSo.ApplyUpgrade(maxPlayerHp, movementSpeed);
-            
+            _upgradeSo.ApplyUpgrade(maxPlayerHp, movementSpeed, attackDamage, attackDelay);
             gameManager.ResumeGame();
             
             // Handle leveling multiple times consecutively - this could be an event
