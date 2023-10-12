@@ -3,6 +3,7 @@ using SimpleSurvivors.Enemy;
 using SimpleSurvivors.Player;
 using SimpleSurvivors.Utils;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace SimpleSurvivors
 {
@@ -14,7 +15,7 @@ namespace SimpleSurvivors
         [SerializeField] private GameObject levelUpCanvas;
         [SerializeField] private GameObject pauseMenuCanvas;
         [SerializeField] private Transform upgradeButtons;
-        [SerializeField] private PlayerHealth playerHealth;
+        [FormerlySerializedAs("playerHealth")] [SerializeField] private Player.Player player;
         [SerializeField] private EnemySpawner enemySpawner;
         [SerializeField] private HealthSpawner healthSpawner;
         [SerializeField] private Timer timer;
@@ -27,8 +28,8 @@ namespace SimpleSurvivors
 
         void Awake()
         {
-            _playerInput = playerHealth.GetComponent<PlayerInput>();
-            _playerAttack = playerHealth.GetComponent<PlayerAttack>();
+            _playerInput = player.GetComponent<PlayerInput>();
+            _playerAttack = player.GetComponent<PlayerAttack>();
 
             for (int i = 0; i < upgradeButtons.childCount; i++)
             {
@@ -46,7 +47,7 @@ namespace SimpleSurvivors
         {
             startMenuCanvas.SetActive(false);
             guiCanvas.SetActive(true);
-            playerHealth.ReadyPlayer();
+            player.ReadyPlayer();
             enemySpawner.ResetEnemies();
             timer.StartTimer();
             _playerInput.SetCanMove(true);

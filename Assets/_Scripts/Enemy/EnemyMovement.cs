@@ -1,5 +1,4 @@
 using SimpleSurvivors.Extensions;
-using SimpleSurvivors.Player;
 using UnityEngine;
 
 namespace SimpleSurvivors.Enemy
@@ -11,7 +10,7 @@ namespace SimpleSurvivors.Enemy
 
         private Rigidbody2D _rigidbody2D;
         private Transform _playerPosition;
-        private PlayerHealth _playerHealth;
+        private Player.Player _player;
         private bool _isMoving;
     
         void Awake()
@@ -22,7 +21,7 @@ namespace SimpleSurvivors.Enemy
         void FixedUpdate()
         {
             // _playerHealth is null until Initialize() is called
-            if (_playerHealth?.IsAlive() == true && _isMoving)
+            if (_player?.IsAlive() == true && _isMoving)
             {
                 MoveTowardsPlayer();    
             }
@@ -37,7 +36,7 @@ namespace SimpleSurvivors.Enemy
         public void Initialize(Transform playerPosition)
         {
             _playerPosition = playerPosition;
-            _playerHealth = playerPosition.GetComponent<PlayerHealth>();
+            _player = playerPosition.GetComponent<Player.Player>();
             _isMoving = true;
         }
 

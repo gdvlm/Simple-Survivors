@@ -11,10 +11,10 @@ namespace SimpleSurvivors.Item
         {
             if (other.transform.CompareTag("Player"))
             {
-                PlayerHealth playerHealth = other.GetComponent<PlayerHealth>();
-                if (playerHealth != null)
+                Player.Player player = other.GetComponent<Player.Player>();
+                if (player != null)
                 {
-                    playerHealth.HealPlayer(healAmount);
+                    player.HealPlayer(healAmount);
                 }
                 
                 Destroy(gameObject);

@@ -17,14 +17,14 @@ namespace SimpleSurvivors.Utils
         private UpgradeSO _upgradeSo;
         private PlayerAttack _playerAttack;
         private PlayerInput _playerInput;
-        private PlayerHealth _playerHealth;
+        private Player.Player _player;
         private PlayerExp _playerExp;
 
         void Awake()
         {
             _playerAttack = player.GetComponent<PlayerAttack>();
             _playerInput = player.GetComponent<PlayerInput>();
-            _playerHealth = player.GetComponent<PlayerHealth>();
+            _player = player.GetComponent<Player.Player>();
             _playerExp = player.GetComponent<PlayerExp>();
         }
 
@@ -41,7 +41,7 @@ namespace SimpleSurvivors.Utils
             _playerAttack.UpgradeAttack(_upgradeSo.attackMultiply);
             _playerAttack.UpgradeAttackDelay(_upgradeSo.attackSpeedAdd);
             _playerInput.UpgradeMovementSpeed(_upgradeSo.movementSpeedMultiply);
-            _playerHealth.UpgradeHealth(_upgradeSo.healthMultiply);
+            _player.UpgradeHealth(_upgradeSo.healthMultiply);
             
             gameManager.ResumeGame();
             

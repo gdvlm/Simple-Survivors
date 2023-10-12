@@ -16,7 +16,7 @@ namespace SimpleSurvivors.Player
         private readonly float _maximumMovementSpeed = 6f;
         private float _startingMovementSpeed;
         private Rigidbody2D _rigidbody2D;
-        private PlayerHealth _playerHealth;
+        private Player _player;
         private PlayerAttack _playerAttack;
         private PlayerInputActionWrapper _playerInputActionWrapper;
         private Vector2 _velocity;
@@ -25,7 +25,7 @@ namespace SimpleSurvivors.Player
         void Awake()
         {
             _rigidbody2D = GetComponent<Rigidbody2D>();
-            _playerHealth = GetComponent<PlayerHealth>();
+            _player = GetComponent<Player>();
             _playerAttack = GetComponent<PlayerAttack>();
             _playerInputActionWrapper = new PlayerInputActionWrapper();
             _playerInputActionWrapper.Gameplay.Pause.performed += OnPause;
@@ -51,7 +51,7 @@ namespace SimpleSurvivors.Player
 
         void FixedUpdate()
         {
-            if (_playerHealth.IsAlive() && _canMove)
+            if (_player.IsAlive() && _canMove)
             {
                 _rigidbody2D.MovePosition(_rigidbody2D.position + _velocity * (movementSpeed * Time.fixedDeltaTime));
             }
