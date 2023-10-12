@@ -84,13 +84,5 @@ namespace SimpleSurvivors.Player
         {
             return _isAlive;
         }
-        
-        /// <summary>
-        /// Upgrades the health given a percentage.
-        /// </summary>
-        public void UpgradeHealth(float percentage)
-        {
-            maxPlayerHp.RuntimeValue = (int)(maxPlayerHp.RuntimeValue * percentage);
-        }
     }
 }

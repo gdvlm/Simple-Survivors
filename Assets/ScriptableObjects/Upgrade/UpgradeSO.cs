@@ -1,3 +1,4 @@
+using SimpleSurvivors.Variables;
 using UnityEngine;
 
 namespace SimpleSurvivors.Upgrade
@@ -15,5 +16,15 @@ namespace SimpleSurvivors.Upgrade
 
         public string title;
         public string description;
+
+        public void ApplyUpgrade(IntVariable maxPlayerHp)
+        {
+            UpgradeHealth(maxPlayerHp);
+        }
+
+        private void UpgradeHealth(IntVariable maxPlayerHp)
+        {
+            maxPlayerHp.RuntimeValue = (int)(maxPlayerHp.RuntimeValue * healthMultiply);
+        }
     }
 }

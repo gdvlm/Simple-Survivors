@@ -1,5 +1,6 @@
 using SimpleSurvivors.Player;
 using SimpleSurvivors.Upgrade;
+using SimpleSurvivors.Variables;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -13,18 +14,17 @@ namespace SimpleSurvivors.Utils
         [SerializeField] private TMP_Text title;
         [SerializeField] private TMP_Text description;
         [SerializeField] private Image image;
+        [SerializeField] private IntVariable maxPlayerHp;
 
         private UpgradeSO _upgradeSo;
         private PlayerAttack _playerAttack;
         private PlayerInput _playerInput;
-        private Player.Player _player;
         private PlayerExp _playerExp;
 
         void Awake()
         {
             _playerAttack = player.GetComponent<PlayerAttack>();
             _playerInput = player.GetComponent<PlayerInput>();
-            _player = player.GetComponent<Player.Player>();
             _playerExp = player.GetComponent<PlayerExp>();
         }
 
@@ -41,7 +41,7 @@ namespace SimpleSurvivors.Utils
             _playerAttack.UpgradeAttack(_upgradeSo.attackMultiply);
             _playerAttack.UpgradeAttackDelay(_upgradeSo.attackSpeedAdd);
             _playerInput.UpgradeMovementSpeed(_upgradeSo.movementSpeedMultiply);
-            _player.UpgradeHealth(_upgradeSo.healthMultiply);
+            _upgradeSo.ApplyUpgrade(maxPlayerHp);
             
             gameManager.ResumeGame();
             
