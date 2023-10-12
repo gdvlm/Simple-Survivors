@@ -16,15 +16,28 @@ namespace SimpleSurvivors.Upgrade
 
         public string title;
         public string description;
+        
+        private readonly float _maximumMovementSpeed = 6f;
 
-        public void ApplyUpgrade(IntVariable maxPlayerHp)
+        public void ApplyUpgrade(IntVariable maxPlayerHp, FloatVariable movementSpeed)
         {
             UpgradeHealth(maxPlayerHp);
+            UpgradeMovementSpeed(movementSpeed);
         }
 
         private void UpgradeHealth(IntVariable maxPlayerHp)
         {
             maxPlayerHp.RuntimeValue = (int)(maxPlayerHp.RuntimeValue * healthMultiply);
         }
+        
+        private void UpgradeMovementSpeed(FloatVariable movementSpeed)
+        {
+            if (movementSpeed.RuntimeValue >= _maximumMovementSpeed)
+            {
+                return;
+            }
+            
+            movementSpeed.RuntimeValue *= movementSpeedMultiply;
+        }        
     }
 }

@@ -8,13 +8,11 @@ namespace SimpleSurvivors.Player
     [RequireComponent(typeof(Rigidbody2D))]
     public class PlayerInput : MonoBehaviour
     {
-        [SerializeField] private float movementSpeed;
         [SerializeField] private GameObject pauseMenuCanvas;
         [SerializeField] private GameManager gameManager;
         [SerializeField] private PlayerDirectionVariable playerDirectionVariable;
+        [SerializeField] private FloatVariable movementSpeed;
 
-        private readonly float _maximumMovementSpeed = 6f;
-        private float _startingMovementSpeed;
         private Rigidbody2D _rigidbody2D;
         private Player _player;
         private PlayerAttack _playerAttack;
@@ -29,11 +27,6 @@ namespace SimpleSurvivors.Player
             _playerAttack = GetComponent<PlayerAttack>();
             _playerInputActionWrapper = new PlayerInputActionWrapper();
             _playerInputActionWrapper.Gameplay.Pause.performed += OnPause;
-        }
-
-        void Start()
-        {
-            _startingMovementSpeed = movementSpeed;
         }
 
         void Update()
@@ -53,7 +46,8 @@ namespace SimpleSurvivors.Player
         {
             if (_player.IsAlive() && _canMove)
             {
-                _rigidbody2D.MovePosition(_rigidbody2D.position + _velocity * (movementSpeed * Time.fixedDeltaTime));
+                _rigidbody2D.MovePosition(_rigidbody2D.position + _velocity *
+                    (movementSpeed.RuntimeValue * Time.fixedDeltaTime));
             }
         }
 
@@ -118,20 +112,7 @@ namespace SimpleSurvivors.Player
 
         public void ResetMovementSpeed()
         {
-            movementSpeed = _startingMovementSpeed;
-        }
-
-        /// <summary>
-        /// Upgrades the movement speed by a percentage.
-        /// </summary>
-        public void UpgradeMovementSpeed(float percentage)
-        {
-            if (movementSpeed >= _maximumMovementSpeed)
-            {
-                return;
-            }
-            
-            movementSpeed *= percentage;
+            movementSpeed.RuntimeValue = movementSpeed.InitialValue;
         }
     }
 }

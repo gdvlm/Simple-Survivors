@@ -15,16 +15,15 @@ namespace SimpleSurvivors.Utils
         [SerializeField] private TMP_Text description;
         [SerializeField] private Image image;
         [SerializeField] private IntVariable maxPlayerHp;
+        [SerializeField] private FloatVariable movementSpeed;
 
         private UpgradeSO _upgradeSo;
         private PlayerAttack _playerAttack;
-        private PlayerInput _playerInput;
         private PlayerExp _playerExp;
 
         void Awake()
         {
             _playerAttack = player.GetComponent<PlayerAttack>();
-            _playerInput = player.GetComponent<PlayerInput>();
             _playerExp = player.GetComponent<PlayerExp>();
         }
 
@@ -40,12 +39,11 @@ namespace SimpleSurvivors.Utils
         {
             _playerAttack.UpgradeAttack(_upgradeSo.attackMultiply);
             _playerAttack.UpgradeAttackDelay(_upgradeSo.attackSpeedAdd);
-            _playerInput.UpgradeMovementSpeed(_upgradeSo.movementSpeedMultiply);
-            _upgradeSo.ApplyUpgrade(maxPlayerHp);
+            _upgradeSo.ApplyUpgrade(maxPlayerHp, movementSpeed);
             
             gameManager.ResumeGame();
             
-            // Handle leveling multiple times consecutively
+            // Handle leveling multiple times consecutively - this could be an event
             _playerExp.GainExp(0);
         }
     }

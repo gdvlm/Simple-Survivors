@@ -501,10 +501,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 747673109350f7040ae0bccc3b14b785, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 5
   pauseMenuCanvas: {fileID: 0}
   gameManager: {fileID: 0}
   playerDirectionVariable: {fileID: 11400000, guid: 4359d2b8c99109c4cbb3705ba4f1bf40, type: 2}
+  movementSpeed: {fileID: 11400000, guid: fe225f2957008464b924d0bbe409be53, type: 2}
 --- !u!114 &7580128697342213497
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -517,7 +517,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80496e7fec208b643b29b073c58846ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  expBarSprite: {fileID: 0}
   gameManager: {fileID: 0}
   playerLevel: {fileID: 11400000, guid: 2977185f271d9934ca9da6132abe00e6, type: 2}
   playerExpPercent: {fileID: 11400000, guid: 64c8a695009cf22448db1299764003d1, type: 2}
