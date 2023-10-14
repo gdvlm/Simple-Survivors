@@ -365,6 +365,10 @@ MonoBehaviour:
   title: {fileID: 4855040224797071723}
   description: {fileID: 4855040226558820592}
   image: {fileID: 4855040225132399266}
+  maxPlayerHp: {fileID: 11400000, guid: 8848d63fa4a86d24eb0593f68351ad87, type: 2}
+  movementSpeed: {fileID: 11400000, guid: fe225f2957008464b924d0bbe409be53, type: 2}
+  attackDamage: {fileID: 11400000, guid: 7221163937fd75e4f9bfb8950812e7f7, type: 2}
+  attackDelay: {fileID: 11400000, guid: 835d50365efaa064885ee5540eaa4712, type: 2}
 --- !u!1 &4855040226558820594
 GameObject:
   m_ObjectHideFlags: 0

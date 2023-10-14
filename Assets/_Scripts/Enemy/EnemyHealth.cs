@@ -1,4 +1,4 @@
-using SimpleSurvivors.Player;
+using SimpleSurvivors.Variables;
 using TMPro;
 using Unity.Mathematics;
 using UnityEngine;
@@ -9,12 +9,12 @@ namespace SimpleSurvivors.Enemy
     {
         [SerializeField] private EnemySO enemySo;
         [SerializeField] private GameObject damagePrefab;
+        [SerializeField] private IntVariable playerDamage;
 
         private EnemyLoot _enemyLoot;
         private bool _isAlive;
         private int _enemyHp;
         private Transform _damagePopUpContainer;
-        private PlayerAttack _playerAttack;
 
         void Awake()
         {
@@ -25,12 +25,12 @@ namespace SimpleSurvivors.Enemy
         {
             if (_isAlive && other.transform.CompareTag("PlayerAttack"))
             {
-                _enemyHp -= _playerAttack.GetAttackDamage();
+                _enemyHp -= playerDamage.RuntimeValue;
                 
                 var prefab = Instantiate(damagePrefab, transform.position,
                     quaternion.identity, _damagePopUpContainer);
                 TMP_Text damageText = prefab.GetComponentInChildren<TMP_Text>();
-                damageText.text = _playerAttack.GetAttackDamage().ToString();
+                damageText.text = playerDamage.RuntimeValue.ToString();
 
                 if (_enemyHp <= 0)
                 {
@@ -46,10 +46,9 @@ namespace SimpleSurvivors.Enemy
             gameObject.SetActive(false);
         }
 
-        public void ReadyEnemy(Transform damagePopupContainer, PlayerAttack playerAttack)
+        public void Initialize(Transform damagePopupContainer)
         {
             _damagePopUpContainer = damagePopupContainer;
-            _playerAttack = playerAttack;
             _enemyHp = enemySo.enemyHp;
             _isAlive = true;
         }

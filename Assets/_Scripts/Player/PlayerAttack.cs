@@ -1,5 +1,5 @@
-using System;
 using System.Collections;
+using SimpleSurvivors.Variables;
 using UnityEngine;
 
 namespace SimpleSurvivors.Player
@@ -7,30 +7,21 @@ namespace SimpleSurvivors.Player
     public class PlayerAttack : MonoBehaviour
     {
         [SerializeField] private GameObject attackPrefab;
+        [SerializeField] private GameObject playerSprite;
         [SerializeField] private float attackXOffset = -1.0f;
         [SerializeField] private float attackYOffset = -0.5f;
-        [SerializeField] private int attackDamage = 1;
-        [SerializeField] private float attackDelay = 1.5f;
-        [SerializeField] private float animationDelay = 0.5f;
-        [SerializeField] private GameObject playerSprite;
-
-        private readonly float _minimumDelay = 0.1f;
-        private int _startingAttackDamage;
-        private float _startingAttackDelay;
+        [SerializeField] private FloatVariable attackDelay;
+        [SerializeField] private FloatVariable animationDelay;
+        [SerializeField] private IntVariable attackDamage;
+        
         private GameObject _currentAttack;
         private bool _isAttacking;
         private float _lastYRotation = 180f;
 
-        private void Start()
-        {
-            _startingAttackDamage = attackDamage;
-            _startingAttackDelay = attackDelay;
-        }
-
         /// <summary>
         /// Create an attack prefab and attach to this object.
         /// </summary>
-        private void InitializeAttack()
+        private void Initialize()
         {
             if (_currentAttack == null)
             {
@@ -39,10 +30,10 @@ namespace SimpleSurvivors.Player
                     transform.position.y + attackYOffset, 0), Quaternion.identity);
             }
 
-            SetAttackAnimationSpeed(1 / animationDelay);
+            SetAttackAnimationSpeed(1 / animationDelay.RuntimeValue);
             _currentAttack.SetActive(false);
-            attackDamage = _startingAttackDamage;
-            attackDelay = _startingAttackDelay;
+            attackDelay.RuntimeValue = attackDelay.InitialValue;
+            attackDamage.RuntimeValue = attackDamage.InitialValue;
         }
 
         private IEnumerator FireAttack()
@@ -52,10 +43,10 @@ namespace SimpleSurvivors.Player
                 SetAttackPositionAndRotation();
 
                 _currentAttack.SetActive(true);
-                yield return new WaitForSeconds(animationDelay);
+                yield return new WaitForSeconds(animationDelay.RuntimeValue);
 
                 _currentAttack.SetActive(false);
-                yield return new WaitForSeconds(Math.Max(attackDelay, _minimumDelay));
+                yield return new WaitForSeconds(attackDelay.RuntimeValue);
             }
         }
 
@@ -84,7 +75,7 @@ namespace SimpleSurvivors.Player
         public void StartAttack()
         {
             _isAttacking = true;
-            InitializeAttack();
+            Initialize();
             StartCoroutine(FireAttack());
         }
 
@@ -102,34 +93,8 @@ namespace SimpleSurvivors.Player
                 return;
             }
 
-            SetAttackAnimationSpeed(1 / animationDelay);
+            SetAttackAnimationSpeed(1 / animationDelay.RuntimeValue);
             StartCoroutine(FireAttack());
-        }
-
-        /// <summary>
-        /// Upgrades the attack given a percentage.
-        /// </summary>
-        public void UpgradeAttack(float percentage)
-        {
-            attackDamage = (int)(attackDamage * percentage);
-        }
-
-        /// <summary>
-        /// Upgrades the attack delay by subtracting a static value.
-        /// </summary>
-        public void UpgradeAttackDelay(float delayValue)
-        {
-            if (attackDelay <= _minimumDelay)
-            {
-                return;
-            }
-
-            attackDelay -= delayValue;
-        }
-
-        public int GetAttackDamage()
-        {
-            return attackDamage;
         }
 
         public void SetPlayerDirection(float newYRotation)

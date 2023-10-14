@@ -1,27 +1,26 @@
 using System;
 using SimpleSurvivors.Enemy;
 using SimpleSurvivors.Utils;
+using SimpleSurvivors.Variables;
 using UnityEngine;
 
 namespace SimpleSurvivors.Player
 {
     [RequireComponent(typeof(CapsuleCollider2D))]
-    public class PlayerHealth : MonoBehaviour
+    public class Player : MonoBehaviour
     {
-        [SerializeField] private GameObject playerHpSprite;
         [SerializeField] private GameObject playerSprite;
         [SerializeField] private GameObject defeatCanvas;
         [SerializeField] private Timer timer;
-        [SerializeField][Tooltip("Override the player HP for testing.")] private int playerHp;
-        [SerializeField] private int enemyAttack = 40;
+        [SerializeField] private IntVariable maxPlayerHp;
+        [SerializeField] private IntVariable currentPlayerHp;
+        [SerializeField] private IntVariable enemyAttack;
         [SerializeField] private EnemySpawner enemySpawner;
 
         private PlayerAttack _playerAttack;
         private PlayerExp _playerExp;
         private PlayerInput _playerInput;
         private bool _isAlive;
-        private int _playerMaxHp;
-        private int _playerCurrentHp;
         private Vector3 _startingPosition;
         private CapsuleCollider2D _capsuleCollider;
 
@@ -42,30 +41,22 @@ namespace SimpleSurvivors.Player
         {
             if (_capsuleCollider.IsTouching(other) && other.transform.CompareTag("Enemy"))
             {
-                TakeDamage(enemyAttack);
+                TakeDamage(enemyAttack.RuntimeValue);
             }
         }
 
         private void TakeDamage(int damage)
         {
-            if (_playerCurrentHp == 0)
+            if (currentPlayerHp.RuntimeValue == 0)
             {
                 return;
             }
         
-            _playerCurrentHp = Math.Max(0, _playerCurrentHp - damage);
-            UpdateHealthBar();
-
-            if (_playerCurrentHp == 0)
+            currentPlayerHp.RuntimeValue = Math.Max(0, currentPlayerHp.RuntimeValue - damage);
+            if (currentPlayerHp.RuntimeValue == 0)
             {
                 KillPlayer();
             }
-        }
-
-        private void UpdateHealthBar()
-        {
-            float hpPercent = (float)_playerCurrentHp / _playerMaxHp;
-            playerHpSprite.transform.localScale = new Vector3(hpPercent, 1, 1);            
         }
 
         private void KillPlayer()
@@ -78,27 +69,13 @@ namespace SimpleSurvivors.Player
             enemySpawner.PauseEnemyMovements();
         }
 
-        public void HealPlayer(int healAmount)
+        public void Initialize()
         {
-            if (_playerCurrentHp == _playerMaxHp)
-            {
-                return;
-            }
-            
-            _playerCurrentHp = Math.Min(_playerCurrentHp + healAmount, _playerMaxHp);
-            UpdateHealthBar();
-        }
-
-        public void ReadyPlayer()
-        {
-            // TODO: Refactor to PlayerController class
             _isAlive = true;
-            _playerMaxHp = playerHp;
-            _playerCurrentHp = _playerMaxHp;
+            currentPlayerHp.RuntimeValue = maxPlayerHp.RuntimeValue;
             playerSprite.SetActive(true);
             transform.position = _startingPosition;
-            playerHpSprite.transform.localScale = Vector3.one;
-            _playerExp.ResetExp();
+            _playerExp.ResetLevel();
             _playerAttack.StartAttack();
             _playerInput.ResetMovementSpeed();
         }
@@ -106,15 +83,6 @@ namespace SimpleSurvivors.Player
         public bool IsAlive()
         {
             return _isAlive;
-        }
-        
-        /// <summary>
-        /// Upgrades the health given a percentage.
-        /// </summary>
-        public void UpgradeHealth(float percentage)
-        {
-            _playerMaxHp = (int)(_playerMaxHp * percentage);
-            UpdateHealthBar();
         }
     }
 }

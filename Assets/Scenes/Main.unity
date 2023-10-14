@@ -1441,7 +1441,7 @@ Transform:
   - {fileID: 277463162}
   - {fileID: 116036323}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &445416647
 GameObject:
@@ -11826,7 +11826,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &663718752
 GameObject:
@@ -11995,7 +11995,7 @@ MonoBehaviour:
   prefabs:
   - {fileID: 331377560569296007, guid: 356023d6dcefcd34ba2c1b83408fca22, type: 3}
   timer: {fileID: 2003937766}
-  spawnCoolDown: 30
+  spawnCoolDown: 15
   spawnMaxRadius: 8
   spawnMinRadius: 3
 --- !u!4 &681351380
@@ -18464,7 +18464,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerPosition: {fileID: 320292016}
-  playerAttack: {fileID: 1952916967}
   damagePopupContainer: {fileID: 1673718458}
   timer: {fileID: 2003937766}
   lootParent: {fileID: 374027710}
@@ -24431,7 +24430,7 @@ MonoBehaviour:
   levelUpCanvas: {fileID: 579698897}
   pauseMenuCanvas: {fileID: 1658049719}
   upgradeButtons: {fileID: 1410996015}
-  playerHealth: {fileID: 320292018}
+  player: {fileID: 320292018}
   enemySpawner: {fileID: 1535066869}
   healthSpawner: {fileID: 681351379}
   timer: {fileID: 2003937766}
@@ -24457,17 +24456,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5218328877150823757, guid: 5ee18c06d5b7d204fb668b7b9fd07298, type: 3}
   m_PrefabInstance: {fileID: 5218328877367796192}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1952916967 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3245193423690857863, guid: 5ee18c06d5b7d204fb668b7b9fd07298, type: 3}
-  m_PrefabInstance: {fileID: 5218328877367796192}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1952916966}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ddeeb87fb6be1974198ad0449c90e3b7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2002684892
 GameObject:
   m_ObjectHideFlags: 0
@@ -29922,14 +29910,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 824985865}
     m_Modifications:
+    - target: {fileID: 294478269910258708, guid: 5ee18c06d5b7d204fb668b7b9fd07298, type: 3}
+      propertyPath: expBarSprite
+      value: 
+      objectReference: {fileID: 1770342340}
+    - target: {fileID: 3245193423690857863, guid: 5ee18c06d5b7d204fb668b7b9fd07298, type: 3}
+      propertyPath: attackDelay
+      value: 
+      objectReference: {fileID: 11400000, guid: 835d50365efaa064885ee5540eaa4712, type: 2}
+    - target: {fileID: 3245193423690857863, guid: 5ee18c06d5b7d204fb668b7b9fd07298, type: 3}
+      propertyPath: attackDamage
+      value: 
+      objectReference: {fileID: 11400000, guid: 7221163937fd75e4f9bfb8950812e7f7, type: 2}
     - target: {fileID: 3245193423690857863, guid: 5ee18c06d5b7d204fb668b7b9fd07298, type: 3}
       propertyPath: playerSprite
       value: 
       objectReference: {fileID: 556777669}
     - target: {fileID: 3245193423690857863, guid: 5ee18c06d5b7d204fb668b7b9fd07298, type: 3}
       propertyPath: animationDelay
-      value: 0.1
-      objectReference: {fileID: 0}
+      value: 
+      objectReference: {fileID: 11400000, guid: 91e115bbb401c6043b0ffe258d06830b, type: 2}
+    - target: {fileID: 4890478921649881186, guid: 5ee18c06d5b7d204fb668b7b9fd07298, type: 3}
+      propertyPath: levelText
+      value: 
+      objectReference: {fileID: 663718754}
     - target: {fileID: 5218328877150823757, guid: 5ee18c06d5b7d204fb668b7b9fd07298, type: 3}
       propertyPath: m_Name
       value: Player
@@ -29940,12 +29944,20 @@ PrefabInstance:
       objectReference: {fileID: 1909455525}
     - target: {fileID: 5218328877150823758, guid: 5ee18c06d5b7d204fb668b7b9fd07298, type: 3}
       propertyPath: movementSpeed
+      value: 
+      objectReference: {fileID: 11400000, guid: fe225f2957008464b924d0bbe409be53, type: 2}
+    - target: {fileID: 5218328877150823758, guid: 5ee18c06d5b7d204fb668b7b9fd07298, type: 3}
+      propertyPath: movementSpeed2
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5218328877150823758, guid: 5ee18c06d5b7d204fb668b7b9fd07298, type: 3}
       propertyPath: pauseMenuCanvas
       value: 
       objectReference: {fileID: 1658049719}
+    - target: {fileID: 5218328877150823758, guid: 5ee18c06d5b7d204fb668b7b9fd07298, type: 3}
+      propertyPath: playerDirectionVariable
+      value: 
+      objectReference: {fileID: 11400000, guid: 4359d2b8c99109c4cbb3705ba4f1bf40, type: 2}
     - target: {fileID: 5218328877150823760, guid: 5ee18c06d5b7d204fb668b7b9fd07298, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -29995,6 +30007,22 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2003937766}
     - target: {fileID: 5218328877150823762, guid: 5ee18c06d5b7d204fb668b7b9fd07298, type: 3}
+      propertyPath: playerHp
+      value: 
+      objectReference: {fileID: 11400000, guid: 8848d63fa4a86d24eb0593f68351ad87, type: 2}
+    - target: {fileID: 5218328877150823762, guid: 5ee18c06d5b7d204fb668b7b9fd07298, type: 3}
+      propertyPath: enemyAttack
+      value: 
+      objectReference: {fileID: 11400000, guid: 5444a2fd9a177124d839ba5c7425f6b2, type: 2}
+    - target: {fileID: 5218328877150823762, guid: 5ee18c06d5b7d204fb668b7b9fd07298, type: 3}
+      propertyPath: maxPlayerHp
+      value: 
+      objectReference: {fileID: 11400000, guid: 8848d63fa4a86d24eb0593f68351ad87, type: 2}
+    - target: {fileID: 5218328877150823762, guid: 5ee18c06d5b7d204fb668b7b9fd07298, type: 3}
+      propertyPath: playerHpOld
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 5218328877150823762, guid: 5ee18c06d5b7d204fb668b7b9fd07298, type: 3}
       propertyPath: defeatCanvas
       value: 
       objectReference: {fileID: 2243971}
@@ -30002,6 +30030,14 @@ PrefabInstance:
       propertyPath: enemySpawner
       value: 
       objectReference: {fileID: 1535066869}
+    - target: {fileID: 5218328877150823762, guid: 5ee18c06d5b7d204fb668b7b9fd07298, type: 3}
+      propertyPath: currentPlayerHp
+      value: 
+      objectReference: {fileID: 11400000, guid: 31a3941ac5a943f40aa03d3cbf4e5bb3, type: 2}
+    - target: {fileID: 7580128697342213497, guid: 5ee18c06d5b7d204fb668b7b9fd07298, type: 3}
+      propertyPath: level
+      value: 
+      objectReference: {fileID: 11400000, guid: 2977185f271d9934ca9da6132abe00e6, type: 2}
     - target: {fileID: 7580128697342213497, guid: 5ee18c06d5b7d204fb668b7b9fd07298, type: 3}
       propertyPath: levelText
       value: 
@@ -30033,7 +30069,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7586348241441955214, guid: 98d8d7a146f979740a64884838335cea, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7586348241441955214, guid: 98d8d7a146f979740a64884838335cea, type: 3}
       propertyPath: m_LocalPosition.x
