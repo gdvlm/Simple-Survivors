@@ -3,7 +3,6 @@ using SimpleSurvivors.Enemy;
 using SimpleSurvivors.Player;
 using SimpleSurvivors.Utils;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace SimpleSurvivors
 {
@@ -15,7 +14,7 @@ namespace SimpleSurvivors
         [SerializeField] private GameObject levelUpCanvas;
         [SerializeField] private GameObject pauseMenuCanvas;
         [SerializeField] private Transform upgradeButtons;
-        [FormerlySerializedAs("playerHealth")] [SerializeField] private Player.Player player;
+        [SerializeField] private Player.Player player;
         [SerializeField] private EnemySpawner enemySpawner;
         [SerializeField] private HealthSpawner healthSpawner;
         [SerializeField] private Timer timer;

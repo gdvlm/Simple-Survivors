@@ -9,7 +9,7 @@ namespace SimpleSurvivors.Utils
 {
     public class UpgradeItem : MonoBehaviour
     {
-        [SerializeField] private GameObject player;
+        [SerializeField] private PlayerExp playerExp;
         [SerializeField] private GameManager gameManager;
         [SerializeField] private TMP_Text title;
         [SerializeField] private TMP_Text description;
@@ -20,12 +20,6 @@ namespace SimpleSurvivors.Utils
         [SerializeField] private FloatVariable attackDelay;
 
         private UpgradeSO _upgradeSo;
-        private PlayerExp _playerExp;
-
-        void Awake()
-        {
-            _playerExp = player.GetComponent<PlayerExp>();
-        }
 
         public void UpdateUpgrade(UpgradeSO upgradeSo)
         {
@@ -41,7 +35,7 @@ namespace SimpleSurvivors.Utils
             gameManager.ResumeGame();
             
             // Handle leveling multiple times consecutively - this could be an event
-            _playerExp.GainExp(0);
+            playerExp.GainExp(0);
         }
     }
 }
