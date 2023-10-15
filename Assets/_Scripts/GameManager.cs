@@ -19,6 +19,7 @@ namespace SimpleSurvivors
         [SerializeField] private HealthSpawner healthSpawner;
         [SerializeField] private Timer timer;
         [SerializeField] private UpgradeManager upgradeManager;
+        [SerializeField] private MusicManager musicPlayer;
         [SerializeField] private GameObject levelUpParticles;
 
         private PlayerInput _playerInput;
@@ -51,6 +52,7 @@ namespace SimpleSurvivors
             timer.StartTimer();
             _playerInput.SetCanMove(true);
             healthSpawner.SetEnabled(true);
+            musicPlayer.Play();
         }
 
         public void ReturnToStartMenu()
@@ -59,6 +61,7 @@ namespace SimpleSurvivors
             startMenuCanvas.SetActive(true);
             guiCanvas.SetActive(false);
             _playerInput.SetCanMove(false);
+            musicPlayer.Stop();
         }
 
         public void PauseGame()
@@ -67,6 +70,7 @@ namespace SimpleSurvivors
             enemySpawner.PauseEnemyMovements();
             _playerInput.SetCanMove(false);
             _playerAttack.SetAttack(false);
+            musicPlayer.Pause();
         }
         
         public void ResumeGame()
@@ -78,6 +82,7 @@ namespace SimpleSurvivors
             levelUpCanvas.SetActive(false);
             pauseMenuCanvas.SetActive(false);
             levelUpParticles.SetActive(false);
+            musicPlayer.Play();
         }
 
         public void DisplayLevelUpCanvas()

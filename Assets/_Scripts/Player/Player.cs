@@ -16,6 +16,7 @@ namespace SimpleSurvivors.Player
         [SerializeField] private IntVariable currentPlayerHp;
         [SerializeField] private IntVariable enemyAttack;
         [SerializeField] private EnemySpawner enemySpawner;
+        [SerializeField] private MusicManager musicManager;
 
         private PlayerAttack _playerAttack;
         private PlayerExp _playerExp;
@@ -67,6 +68,7 @@ namespace SimpleSurvivors.Player
             timer.PauseTimer();
             _playerAttack.SetAttack(false);
             enemySpawner.PauseEnemyMovements();
+            musicManager.Stop();
         }
 
         public void Initialize()
