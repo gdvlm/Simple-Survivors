@@ -1,4 +1,5 @@
 using System;
+using SimpleSurvivors.Utils;
 using SimpleSurvivors.Variables;
 using UnityEngine;
 
@@ -10,6 +11,13 @@ namespace SimpleSurvivors.Item
         [SerializeField] private IntVariable maxPlayerHp;
         [SerializeField] private IntVariable currentPlayerHp;
         
+        private SoundEffectManager _soundEffectManager;
+
+        public void Initialize(SoundEffectManager soundEffectManager)
+        {
+            _soundEffectManager = soundEffectManager;
+        }
+        
         void OnTriggerEnter2D(Collider2D other)
         {
             if (other.transform.CompareTag("Player"))
@@ -17,6 +25,8 @@ namespace SimpleSurvivors.Item
                 Player.Player player = other.GetComponent<Player.Player>();
                 if (player != null)
                 {
+                    _soundEffectManager.PlaySoundEffect(SoundEffect.HealthPickUp);
+                    
                     if (currentPlayerHp.RuntimeValue == maxPlayerHp.RuntimeValue)
                     {
                         return;

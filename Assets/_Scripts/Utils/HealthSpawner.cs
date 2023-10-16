@@ -1,4 +1,5 @@
 using SimpleSurvivors.Extensions;
+using SimpleSurvivors.Item;
 using UnityEngine;
 
 namespace SimpleSurvivors.Utils
@@ -7,6 +8,7 @@ namespace SimpleSurvivors.Utils
     {
         [SerializeField] private GameObject[] prefabs;
         [SerializeField] private Timer timer;
+        [SerializeField] private SoundEffectManager soundEffectManager;
         
         [SerializeField][Tooltip("Spawn cooldown in seconds")]
         private float spawnCoolDown = 15.0f;
@@ -45,6 +47,7 @@ namespace SimpleSurvivors.Utils
             int randomIndex = Random.Range(0, prefabs.Length);
             GameObject health = Instantiate(prefabs[randomIndex], new Vector3(randomPosition.x, 
                 randomPosition.y, 0), Quaternion.identity, transform);
+            health.GetComponent<Health>().Initialize(soundEffectManager);
         }
 
         public void SetSpawnTimer()

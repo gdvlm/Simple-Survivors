@@ -1,4 +1,5 @@
 using System.Collections;
+using SimpleSurvivors.Utils;
 using SimpleSurvivors.Variables;
 using UnityEngine;
 
@@ -8,6 +9,7 @@ namespace SimpleSurvivors.Player
     {
         [SerializeField] private GameObject attackPrefab;
         [SerializeField] private Transform playerSprite;
+        [SerializeField] private SoundEffectManager soundEffectManager;
         [SerializeField] private float attackXOffset = -1.0f;
         [SerializeField] private float attackYOffset = -0.5f;
         [SerializeField] private FloatVariable attackDelay;
@@ -43,6 +45,7 @@ namespace SimpleSurvivors.Player
                 SetAttackPositionAndRotation();
 
                 _currentAttack.SetActive(true);
+                soundEffectManager.PlaySoundEffect(SoundEffect.Attack);
                 yield return new WaitForSeconds(animationDelay.RuntimeValue);
 
                 _currentAttack.SetActive(false);
