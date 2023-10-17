@@ -51,6 +51,7 @@ namespace SimpleSurvivors
             enemySpawner.ResetEnemies();
             timer.StartTimer();
             _playerInput.SetCanMove(true);
+            healthSpawner.RemoveAllHealth();
             healthSpawner.SetEnabled(true);
             musicPlayer.Play();
         }

@@ -50,6 +50,15 @@ namespace SimpleSurvivors.Utils
             health.GetComponent<Health>().Initialize(soundEffectManager);
         }
 
+        public void RemoveAllHealth()
+        {
+            var healthPickups = FindObjectsOfType<Health>();
+            foreach (var health in healthPickups)
+            {
+                Destroy(health.gameObject);
+            }
+        }
+
         public void SetSpawnTimer()
         {
             _remainingTime = timer.GetTime() + spawnCoolDown;

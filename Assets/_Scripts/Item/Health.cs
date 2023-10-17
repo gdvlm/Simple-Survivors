@@ -25,13 +25,12 @@ namespace SimpleSurvivors.Item
                 Player.Player player = other.GetComponent<Player.Player>();
                 if (player != null)
                 {
-                    _soundEffectManager.PlaySoundEffect(SoundEffect.HealthPickUp);
-                    
                     if (currentPlayerHp.RuntimeValue == maxPlayerHp.RuntimeValue)
                     {
                         return;
                     }
             
+                    _soundEffectManager.PlaySoundEffect(SoundEffect.HealthPickUp);
                     currentPlayerHp.RuntimeValue = Math.Min(currentPlayerHp.RuntimeValue + healAmount, maxPlayerHp.RuntimeValue);                    
                 }
                 
