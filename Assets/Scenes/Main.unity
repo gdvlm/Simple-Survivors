@@ -24396,11 +24396,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5aaa8c68b642f024ca05c9bb0d330b7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackSound: {fileID: 8300000, guid: 2a1147a933b26134187ba49ae799bf9b, type: 3}
-  healthPickUpSound: {fileID: 8300000, guid: da73e66433b2bec458d5b29d46a06238, type: 3}
-  levelUpSound: {fileID: 8300000, guid: dc7deadb65931bb4784a65fbf0bbe349, type: 3}
-  defeatSound: {fileID: 8300000, guid: c40494920d3d20046885c2c2a2713428, type: 3}
-  takeDamageSound: {fileID: 8300000, guid: 0244cb1d187ac2c4fbcc3d7a4d088a18, type: 3}
+  audioData: {fileID: 11400000, guid: 676ffa180feff934eb9b602c79e0236e, type: 2}
 --- !u!1 &1832492957
 GameObject:
   m_ObjectHideFlags: 0
