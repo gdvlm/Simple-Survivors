@@ -1,4 +1,5 @@
 using System;
+using SimpleSurvivors.Utils;
 using SimpleSurvivors.Variables;
 using UnityEngine;
 
@@ -9,6 +10,13 @@ namespace SimpleSurvivors.Item
         [SerializeField] private int healAmount = 5;
         [SerializeField] private IntVariable maxPlayerHp;
         [SerializeField] private IntVariable currentPlayerHp;
+        
+        private SoundEffectManager _soundEffectManager;
+
+        public void Initialize(SoundEffectManager soundEffectManager)
+        {
+            _soundEffectManager = soundEffectManager;
+        }
         
         void OnTriggerEnter2D(Collider2D other)
         {
@@ -22,6 +30,7 @@ namespace SimpleSurvivors.Item
                         return;
                     }
             
+                    _soundEffectManager.PlaySoundEffect(SoundEffect.HealthPickUp);
                     currentPlayerHp.RuntimeValue = Math.Min(currentPlayerHp.RuntimeValue + healAmount, maxPlayerHp.RuntimeValue);                    
                 }
                 

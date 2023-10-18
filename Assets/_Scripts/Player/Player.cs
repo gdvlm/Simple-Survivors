@@ -16,6 +16,8 @@ namespace SimpleSurvivors.Player
         [SerializeField] private IntVariable currentPlayerHp;
         [SerializeField] private IntVariable enemyAttack;
         [SerializeField] private EnemySpawner enemySpawner;
+        [SerializeField] private MusicManager musicManager;
+        [SerializeField] private SoundEffectManager soundEffectManager;
 
         private PlayerAttack _playerAttack;
         private PlayerExp _playerExp;
@@ -47,6 +49,8 @@ namespace SimpleSurvivors.Player
 
         private void TakeDamage(int damage)
         {
+            soundEffectManager.PlaySoundEffect(SoundEffect.TakeDamage);
+            
             if (currentPlayerHp.RuntimeValue == 0)
             {
                 return;
@@ -67,6 +71,8 @@ namespace SimpleSurvivors.Player
             timer.PauseTimer();
             _playerAttack.SetAttack(false);
             enemySpawner.PauseEnemyMovements();
+            musicManager.Stop();
+            soundEffectManager.PlaySoundEffect(SoundEffect.Defeat);
         }
 
         public void Initialize()

@@ -1,3 +1,4 @@
+using SimpleSurvivors.Utils;
 using SimpleSurvivors.Variables;
 using UnityEngine;
 
@@ -6,6 +7,7 @@ namespace SimpleSurvivors.Player
     public class PlayerExp : MonoBehaviour
     {
         [SerializeField] private GameManager gameManager;
+        [SerializeField] private SoundEffectManager soundEffectManager;
         [SerializeField] private IntVariable playerLevel;
         [SerializeField] private FloatVariable playerExpPercent;
         
@@ -26,9 +28,9 @@ namespace SimpleSurvivors.Player
             playerExpPercent.RuntimeValue = GetExpPercent();
             playerLevel.RuntimeValue++;
             
-            // TODO: Show leveled UI here (animation, sounds, etc)
             gameManager.PauseGame();
             gameManager.DisplayLevelUpCanvas();
+            soundEffectManager.PlaySoundEffect(SoundEffect.LevelUp);
             
             _currentExpPoints = 0;
             _totalExpNeeded = _expRequirement.GetTotalExpRequirement(playerLevel.RuntimeValue);
