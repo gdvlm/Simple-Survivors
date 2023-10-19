@@ -73,7 +73,7 @@ namespace SimpleSurvivors.Enemy
         }
 
         /// <summary>
-        /// Spawns a given prefab at a certain distance from the center a given number of times.
+        ///     Spawns a given prefab at a certain distance from the center a given number of times.
         /// </summary>
         private void Spawn(GameObject prefab, float distance, int times)
         {
@@ -95,7 +95,7 @@ namespace SimpleSurvivors.Enemy
         }
 
         /// <summary>
-        /// Retrive an enemy using object pooling.
+        ///     Retrive an enemy using object pooling.
         /// </summary>
         private GameObject GetOrCreate(GameObject prefab)
         {
@@ -121,7 +121,7 @@ namespace SimpleSurvivors.Enemy
         {
             // Re-enable animation on enemies paused upon player death
             ResumeEnemyMovements();
-            
+
             for (int i = 0; i < transform.childCount; i++)
             {
                 transform.GetChild(i).gameObject.SetActive(false);
@@ -161,7 +161,7 @@ namespace SimpleSurvivors.Enemy
             foreach (EnemyMovement enemyMovement in _pausedMovements)
             {
                 enemyMovement.SetMovement(true);
-                
+
                 Animator animator = enemyMovement.GetComponentInChildren<Animator>();
                 animator.speed = 1;
             }

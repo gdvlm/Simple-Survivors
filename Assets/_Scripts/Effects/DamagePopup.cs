@@ -72,7 +72,7 @@ namespace SimpleSurvivors.Effects
                 yield return new WaitForSeconds(moveUpDelay);
             }
         }
-        
+
         private IEnumerator Expand()
         {
             while (_remainingExpandDuration > 0f)
@@ -83,20 +83,20 @@ namespace SimpleSurvivors.Effects
 
                 yield return new WaitForSeconds(expandDelay);
             }
-            
+
             if (enableShrink)
             {
                 _remainingShrinkDuration = shrinkDuration;
-                StartCoroutine(Shrink());    
+                StartCoroutine(Shrink());
             }
-            
+
             if (enableFadeOut)
             {
                 _remainingFadeOutDuration = fadeOutDuration;
-                StartCoroutine(FadeOut());    
-            }            
+                StartCoroutine(FadeOut());
+            }
         }
-        
+
         private IEnumerator Shrink()
         {
             while (_remainingShrinkDuration > 0f)
@@ -124,7 +124,7 @@ namespace SimpleSurvivors.Effects
         private IEnumerator DestroyDelayed()
         {
             yield return new WaitForSeconds(destroyDuration);
-            
+
             Destroy(gameObject);
         }
     }

@@ -22,7 +22,7 @@ namespace SimpleSurvivors.Utils
             _soundDictionary[nameof(SoundEffect.Defeat)] = defeatSound;
             _soundDictionary[nameof(SoundEffect.TakeDamage)] = takeDamageSound;
         }
-        
+
         public AudioClip GetAudioClip(string sound)
         {
             if (!_soundDictionary.TryGetValue(sound, out AudioClip clip))
@@ -31,9 +31,9 @@ namespace SimpleSurvivors.Utils
             }
 
             return clip;
-        }        
+        }
     }
-    
+
     public class SoundEffect
     {
         public const string Attack = nameof(Attack);

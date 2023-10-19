@@ -28,7 +28,8 @@ namespace SimpleSurvivors.Camera
         void LateUpdate()
         {
             _cameraX = Mathf.Clamp(followTransform.position.x, _xMin + _cameraRatio, _xMax - _cameraRatio);
-            _cameraY = Mathf.Clamp(followTransform.position.y, _yMin + _cameraOrthographicSize, _yMax - _cameraOrthographicSize);
+            _cameraY = Mathf.Clamp(followTransform.position.y, _yMin + _cameraOrthographicSize,
+                _yMax - _cameraOrthographicSize);
             transform.position = new Vector3(_cameraX, _cameraY, transform.position.z);
         }
     }

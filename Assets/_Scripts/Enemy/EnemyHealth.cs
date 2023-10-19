@@ -26,7 +26,7 @@ namespace SimpleSurvivors.Enemy
             if (_isAlive && other.transform.CompareTag("PlayerAttack"))
             {
                 _enemyHp -= playerDamage.RuntimeValue;
-                
+
                 var prefab = Instantiate(damagePrefab, transform.position,
                     quaternion.identity, _damagePopUpContainer);
                 TMP_Text damageText = prefab.GetComponentInChildren<TMP_Text>();

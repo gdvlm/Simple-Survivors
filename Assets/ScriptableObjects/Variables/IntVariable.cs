@@ -8,14 +8,15 @@ namespace SimpleSurvivors.Variables
     {
         public int InitialValue;
 
-        [NonSerialized]
-        public int RuntimeValue;
+        [NonSerialized] public int RuntimeValue;
 
         public void OnAfterDeserialize()
         {
             RuntimeValue = InitialValue;
         }
 
-        public void OnBeforeSerialize() { }
+        public void OnBeforeSerialize()
+        {
+        }
     }
 }

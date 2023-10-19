@@ -33,7 +33,7 @@ namespace SimpleSurvivors.Utils
         {
             _upgradeSo.ApplyUpgrade(maxPlayerHp, movementSpeed, attackDamage, attackDelay);
             gameManager.ResumeGame();
-            
+
             // Handle leveling multiple times consecutively - this could be an event
             playerExp.GainExp(0);
         }

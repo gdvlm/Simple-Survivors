@@ -73,7 +73,7 @@ namespace SimpleSurvivors
             _playerAttack.SetAttack(false);
             musicPlayer.Pause();
         }
-        
+
         public void ResumeGame()
         {
             timer.ResumeTimer();
@@ -94,7 +94,7 @@ namespace SimpleSurvivors
                 var upgradeItem = _upgradeButtons[i].GetComponent<UpgradeItem>();
                 upgradeItem.UpdateUpgrade(upgradeSos[i]);
             }
-            
+
             levelUpCanvas.SetActive(true);
             levelUpParticles.SetActive(true);
         }

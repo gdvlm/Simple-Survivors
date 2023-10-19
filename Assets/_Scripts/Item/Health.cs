@@ -10,7 +10,7 @@ namespace SimpleSurvivors.Item
         [SerializeField] private int healAmount = 5;
         [SerializeField] private IntVariable maxPlayerHp;
         [SerializeField] private IntVariable currentPlayerHp;
-        
+
         private SoundEffectManager _soundEffectManager;
 
         public void Initialize(SoundEffectManager soundEffectManager)
@@ -29,7 +29,6 @@ namespace SimpleSurvivors.Item
                     {
                         return;
                     }
-            
                     _soundEffectManager.PlaySoundEffect(SoundEffect.HealthPickUp);
                     currentPlayerHp.RuntimeValue = Math.Min(currentPlayerHp.RuntimeValue + healAmount, maxPlayerHp.RuntimeValue);                    
                 }
