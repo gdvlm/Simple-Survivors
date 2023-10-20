@@ -9,14 +9,15 @@ namespace SimpleSurvivors.Variables
     {
         public PlayerDirection InitialValue;
 
-        [NonSerialized]
-        public PlayerDirection RuntimeValue;
+        [NonSerialized] public PlayerDirection RuntimeValue;
 
         public void OnAfterDeserialize()
         {
             RuntimeValue = InitialValue;
         }
 
-        public void OnBeforeSerialize() { }
+        public void OnBeforeSerialize()
+        {
+        }
     }
 }

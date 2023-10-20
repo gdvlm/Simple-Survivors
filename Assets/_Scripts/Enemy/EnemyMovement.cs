@@ -48,7 +48,7 @@ namespace SimpleSurvivors.Enemy
         }
 
         /// <summary>
-        /// Toggles whether the enemy is moving.
+        ///     Toggles whether the enemy is moving.
         /// </summary>
         public void SetMovement(bool isMoving)
         {
