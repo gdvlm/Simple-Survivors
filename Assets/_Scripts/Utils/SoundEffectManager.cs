@@ -20,5 +20,10 @@ namespace SimpleSurvivors.Utils
             _audioSource.clip = audioClip;
             _audioSource.Play();
         }
+
+        public void StopSoundEffects()
+        {
+            _audioSource.Stop();
+        }
     }
 }

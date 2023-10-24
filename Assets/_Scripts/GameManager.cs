@@ -20,6 +20,7 @@ namespace SimpleSurvivors
         [SerializeField] private Timer timer;
         [SerializeField] private UpgradeManager upgradeManager;
         [SerializeField] private MusicManager musicPlayer;
+        [SerializeField] private SoundEffectManager soundEffectManager;
         [SerializeField] private GameObject levelUpParticles;
 
         private PlayerInput _playerInput;
@@ -63,6 +64,7 @@ namespace SimpleSurvivors
             guiCanvas.SetActive(false);
             _playerInput.SetCanMove(false);
             musicPlayer.Stop();
+            soundEffectManager.StopSoundEffects();
         }
 
         public void PauseGame()

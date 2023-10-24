@@ -24733,6 +24733,7 @@ MonoBehaviour:
   timer: {fileID: 2003937766}
   upgradeManager: {fileID: 1114083047}
   musicPlayer: {fileID: 1747968124}
+  soundEffectManager: {fileID: 1829300996}
   levelUpParticles: {fileID: 504996157}
 --- !u!4 &1909455526
 Transform:
