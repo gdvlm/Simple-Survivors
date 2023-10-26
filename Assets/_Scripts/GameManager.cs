@@ -67,13 +67,17 @@ namespace SimpleSurvivors
             soundEffectManager.StopSoundEffects();
         }
 
-        public void PauseGame()
+        public void PauseGame(bool pauseMusic = true)
         {
             timer.PauseTimer();
             enemySpawner.PauseEnemyMovements();
             _playerInput.SetCanMove(false);
             _playerAttack.SetAttack(false);
-            musicPlayer.Pause();
+
+            if (pauseMusic)
+            {
+                musicPlayer.Pause();   
+            }
         }
 
         public void ResumeGame()
@@ -85,7 +89,7 @@ namespace SimpleSurvivors
             levelUpCanvas.SetActive(false);
             pauseMenuCanvas.SetActive(false);
             levelUpParticles.SetActive(false);
-            musicPlayer.Play();
+            musicPlayer.Resume();
         }
 
         public void DisplayLevelUpCanvas()

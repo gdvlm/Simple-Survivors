@@ -19,6 +19,11 @@ namespace SimpleSurvivors.Utils
             _audioSource.Play();
         }
 
+        public void Resume()
+        {
+            _audioSource.UnPause();
+        }
+
         public void Pause()
         {
             _audioSource.Pause();
