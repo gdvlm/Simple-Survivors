@@ -1,3 +1,5 @@
+using SimpleSurvivors.Item;
+using SimpleSurvivors.Utils;
 using UnityEngine;
 
 namespace SimpleSurvivors.Enemy
@@ -5,12 +7,20 @@ namespace SimpleSurvivors.Enemy
     public class EnemyLoot : MonoBehaviour
     {
         [SerializeField] private GameObject lootPrefab;
+        
+        private Transform _lootParent;
+        private SoundEffectManager _soundEffectManager;
 
-        [HideInInspector] public Transform lootParent;
-
+        public void Initialize(Transform lootParent, SoundEffectManager soundEffectManager)
+        {
+            _lootParent = lootParent;
+            _soundEffectManager = soundEffectManager;
+        }
+        
         public void DropLoot()
         {
-            Instantiate(lootPrefab, transform.position, transform.rotation, lootParent);
+            var lootable = Instantiate(lootPrefab, transform.position, transform.rotation, _lootParent);
+            lootable.GetComponent<Lootable>().Initialize(_soundEffectManager);
         }
     }
 }

@@ -12,6 +12,7 @@ namespace SimpleSurvivors.Enemy
         [SerializeField] private Transform damagePopupContainer;
         [SerializeField] private Timer timer;
         [SerializeField] private Transform lootParent;
+        [SerializeField] private SoundEffectManager soundEffectManager;
         [SerializeField] private WaveSO[] waves;
 
         private readonly Dictionary<string, List<GameObject>> _pooledEnemyHash = new();
@@ -90,7 +91,7 @@ namespace SimpleSurvivors.Enemy
                 enemyMovement.Initialize(playerPosition);
 
                 EnemyLoot enemyLoot = enemy.GetComponent<EnemyLoot>();
-                enemyLoot.lootParent = lootParent;
+                enemyLoot.Initialize(lootParent, soundEffectManager);
             }
         }
 
