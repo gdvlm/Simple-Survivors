@@ -30306,6 +30306,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 320292016}
     - target: {fileID: 3245193423690857863, guid: 5ee18c06d5b7d204fb668b7b9fd07298, type: 3}
+      propertyPath: attackXOffset
+      value: 1.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3245193423690857863, guid: 5ee18c06d5b7d204fb668b7b9fd07298, type: 3}
       propertyPath: animationDelay
       value: 
       objectReference: {fileID: 11400000, guid: 91e115bbb401c6043b0ffe258d06830b, type: 2}
