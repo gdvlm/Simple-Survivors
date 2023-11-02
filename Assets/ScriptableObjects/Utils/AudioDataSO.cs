@@ -8,6 +8,7 @@ namespace SimpleSurvivors.Utils
     {
         [SerializeField] private AudioClip attackSound;
         [SerializeField] private AudioClip healthPickUpSound;
+        [SerializeField] private AudioClip expPickUpSound;
         [SerializeField] private AudioClip levelUpSound;
         [SerializeField] private AudioClip defeatSound;
         [SerializeField] private AudioClip takeDamageSound;
@@ -18,6 +19,7 @@ namespace SimpleSurvivors.Utils
         {
             _soundDictionary[nameof(SoundEffect.Attack)] = attackSound;
             _soundDictionary[nameof(SoundEffect.HealthPickUp)] = healthPickUpSound;
+            _soundDictionary[nameof(SoundEffect.ExpPickUp)] = expPickUpSound;
             _soundDictionary[nameof(SoundEffect.LevelUp)] = levelUpSound;
             _soundDictionary[nameof(SoundEffect.Defeat)] = defeatSound;
             _soundDictionary[nameof(SoundEffect.TakeDamage)] = takeDamageSound;
@@ -38,6 +40,7 @@ namespace SimpleSurvivors.Utils
     {
         public const string Attack = nameof(Attack);
         public const string HealthPickUp = nameof(HealthPickUp);
+        public const string ExpPickUp = nameof(ExpPickUp);
         public const string LevelUp = nameof(LevelUp);
         public const string Defeat = nameof(Defeat);
         public const string TakeDamage = nameof(TakeDamage);

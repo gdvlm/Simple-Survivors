@@ -360,7 +360,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0626d3ca5412444d8007948fae4a3e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  playerExp: {fileID: 0}
   gameManager: {fileID: 0}
   title: {fileID: 4855040224797071723}
   description: {fileID: 4855040226558820592}

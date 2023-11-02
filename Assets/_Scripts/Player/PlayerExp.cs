@@ -28,7 +28,7 @@ namespace SimpleSurvivors.Player
             playerExpPercent.RuntimeValue = GetExpPercent();
             playerLevel.RuntimeValue++;
             
-            gameManager.PauseGame();
+            gameManager.PauseGame(false);
             gameManager.DisplayLevelUpCanvas();
             soundEffectManager.PlaySoundEffect(SoundEffect.LevelUp);
             

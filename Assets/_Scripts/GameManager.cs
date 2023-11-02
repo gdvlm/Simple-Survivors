@@ -20,6 +20,7 @@ namespace SimpleSurvivors
         [SerializeField] private Timer timer;
         [SerializeField] private UpgradeManager upgradeManager;
         [SerializeField] private MusicManager musicPlayer;
+        [SerializeField] private SoundEffectManager soundEffectManager;
         [SerializeField] private GameObject levelUpParticles;
 
         private PlayerInput _playerInput;
@@ -63,15 +64,20 @@ namespace SimpleSurvivors
             guiCanvas.SetActive(false);
             _playerInput.SetCanMove(false);
             musicPlayer.Stop();
+            soundEffectManager.StopSoundEffects();
         }
 
-        public void PauseGame()
+        public void PauseGame(bool pauseMusic = true)
         {
             timer.PauseTimer();
             enemySpawner.PauseEnemyMovements();
             _playerInput.SetCanMove(false);
             _playerAttack.SetAttack(false);
-            musicPlayer.Pause();
+
+            if (pauseMusic)
+            {
+                musicPlayer.Pause();   
+            }
         }
 
         public void ResumeGame()
@@ -83,7 +89,7 @@ namespace SimpleSurvivors
             levelUpCanvas.SetActive(false);
             pauseMenuCanvas.SetActive(false);
             levelUpParticles.SetActive(false);
-            musicPlayer.Play();
+            musicPlayer.Resume();
         }
 
         public void DisplayLevelUpCanvas()
